@@ -41,7 +41,9 @@ Only presentation data lives in `meta.json`. Anything that decides what gets ins
    `.sign` together. The key never enters any repository.
 
 `build-catalog.ps1` derives every timestamp from the packages, so re-running it on unchanged
-input reproduces the signed bytes exactly.
+input reproduces the signed bytes exactly - **on Windows PowerShell 5.1** (`powershell.exe`).
+PowerShell 7 lays JSON out differently, which would change the bytes under an existing
+signature; run the scripts with 5.1 only.
 
 ### Packages marked private
 

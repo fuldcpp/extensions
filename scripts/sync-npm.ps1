@@ -29,7 +29,7 @@ if (-not $Name) {
 function Get-LocalTarball([string] $PackageName) {
     $dir = Join-Path $packagesDir $PackageName
     if (-not (Test-Path $dir)) { return $null }
-    $files = @(Get-ChildItem -Path $dir -Filter '*.tgz' -File)
+    $files = @(Get-ChildItem -Path $dir -File | Where-Object { $_.Extension -eq '.tgz' })
     if ($files.Count -gt 1) { throw "Expected at most one .tgz in $dir, found $($files.Count)" }
     if ($files.Count -eq 0) { return $null }
     return $files[0]

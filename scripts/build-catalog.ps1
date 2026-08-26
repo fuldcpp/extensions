@@ -62,7 +62,8 @@ function Get-Optional($Object, [string] $Field) {
 $entries = @()
 $dirs = @(Get-ChildItem -Path $packagesDir -Directory)
 foreach ($dir in $dirs) {
-    $tarballs = @(Get-ChildItem -Path $dir.FullName -Filter '*.tgz' -File)
+    # -Filter '*.tgz' would also match foo.tgz1 (8.3 semantics); compare the extension itself
+    $tarballs = @(Get-ChildItem -Path $dir.FullName -File | Where-Object { $_.Extension -eq '.tgz' })
     if ($tarballs.Count -ne 1) {
         throw "Expected exactly one .tgz in $($dir.FullName), found $($tarballs.Count)"
     }
@@ -87,7 +88,6 @@ foreach ($dir in $dirs) {
 
 # Ordinal, not culture-aware: culture sorting ignores hyphens, and the order must not depend
 # on the machine that ran the script.
-$entries = @($entries | Sort-Object -Property @{ Expression = { $_.info.name } } -Culture '')
 $names = [string[]] @($entries | ForEach-Object { $_.info.name })
 [Array]::Sort($names, [StringComparer]::Ordinal)
 $entries = @($names | ForEach-Object { $n = $_; $entries | Where-Object { $_.info.name -eq $n } })

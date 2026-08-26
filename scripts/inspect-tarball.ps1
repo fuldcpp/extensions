@@ -79,8 +79,13 @@ function Get-ExtensionPackageInfo {
     $sha512 = [Convert]::ToBase64String([Security.Cryptography.SHA512]::Create().ComputeHash($bytes))
 
     $optional = @{}
-    foreach ($field in 'license', 'homepage', 'keywords') {
+    foreach ($field in 'license', 'homepage', 'keywords', 'os') {
         if ($fields -contains $field) { $optional[$field] = $pkg.$field }
+    }
+    if ($optional['os'] -and -not (@($optional['os']) -contains 'win32')) {
+        # The client refuses such a package at install time (WEB_EXTENSION_OS_UNSUPPORTED)
+        # on the platform most users run; better to hear about it here.
+        Write-Warning "$($file.Name): package.json restricts 'os' to $(@($optional['os']) -join ', ') - it will not install on Windows"
     }
     $engines = @()
     if (($fields -contains 'engines') -and $pkg.engines) {
@@ -94,6 +99,8 @@ function Get-ExtensionPackageInfo {
         version            = [string] $pkg.version
         description        = [string] $pkg.description
         author             = $author
+        main               = [string] $pkg.main
+        os                 = @($optional['os'])
         license            = [string] $optional['license']
         homepage           = [string] $optional['homepage']
         keywords           = @($optional['keywords'])
