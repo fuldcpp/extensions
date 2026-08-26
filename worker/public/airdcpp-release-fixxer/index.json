@@ -1,0 +1,19 @@
+{
+    "name":  "airdcpp-release-fixxer",
+    "dist-tags":  {
+                      "latest":  "1.2.0-beta"
+                  },
+    "modified":  "2026-08-25T21:43:05Z",
+    "versions":  {
+                     "1.2.0-beta":  {
+                                        "name":  "airdcpp-release-fixxer",
+                                        "version":  "1.2.0-beta",
+                                        "dist":  {
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-release-fixxer-v1.2.0-beta/airdcpp-release-fixxer-1.2.0-beta.tgz",
+                                                     "shasum":  "a127a5e53cf55e373b49f3564937f267dd74588f",
+                                                     "integrity":  "sha512-X9HCEpCYHfDymrYMuJw+j03gIvK9R9rMHkbGbXsdkhxQL1pk1jp0Ndyh8Sxfg7KjEQvBcNtoXuOhbpliv+BMIg==",
+                                                     "size":  88912
+                                                 }
+                                    }
+                 }
+}

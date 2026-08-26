@@ -1,0 +1,8 @@
+/*
+  Cache-Control: public, max-age=300
+  X-Content-Type-Options: nosniff
+  Access-Control-Allow-Origin: *
+/*/latest
+  Content-Type: application/json; charset=utf-8
+/catalog.json.sign
+  Content-Type: application/octet-stream

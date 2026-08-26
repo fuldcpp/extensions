@@ -1,7 +1,7 @@
 # FulDC++ extensions
 
 The extension catalog shown in FulDC++ (Extensions window, web UI, and the auto-updater) is
-served from `https://fuldcpp.net/extensions/`. This repository is where it comes from: the
+served from `https://extensions.fuldcpp.net/`. This repository is where it comes from: the
 packages under `packages/` are the exact tarballs published as release assets here, and the
 scripts turn them into the documents the clients read.
 
@@ -19,6 +19,7 @@ npm-mirror.txt                         packages mirrored from the npm registry
 scripts/build-catalog.ps1              packages/ -> out/ (catalog.json, <name>/latest, <name>/index.json)
 scripts/sync-npm.ps1                   refresh the npm mirrors (reports first; -Apply to store)
 scripts/inspect-tarball.ps1            the checks every package must pass
+worker/                                the Cloudflare Worker that serves public/ at extensions.fuldcpp.net
 tests/                                 Pester tests for the generator (Invoke-Pester .\tests)
 ```
 
@@ -35,10 +36,15 @@ Only presentation data lives in `meta.json`. Anything that decides what gets ins
    `private: true`, a version outside `X.Y.Z[-alpha|beta|rc[.N]]`.
 3. Publish the tarball **before** the catalog that points at it:
    `gh release create <name>-v<version> packages/<name>/<name>-<version>.tgz --title "<name> <version>" --notes "source: <meta.source>"`
-4. Copy `out\*` into the website repository's `extensions/` directory and sign the catalog
-   there with the release key: `FulDC.exe /sign extensions\catalog.json <path-to-air_rsa>`
-   (the release build; the debug build silently does nothing). Commit the catalog and its
-   `.sign` together. The key never enters any repository.
+4. Sign the catalog with the release key and deploy the Worker:
+   ```powershell
+   Copy-Item out\* worker\public\ -Recurse -Force
+   FulDC.exe /sign worker\public\catalog.json <path-to-air_rsa>   # the release build; debug does nothing
+   npx wrangler deploy --config worker\wrangler.toml                 # -> https://extensions.fuldcpp.net/
+   ```
+   `worker/public/` is committed with the signature so the deployed state is in git. The key
+   never enters any repository. Remove the directory of a dropped package from
+   `worker/public/` as well (the generator prunes `out/`, not `worker/public/`).
 
 `build-catalog.ps1` derives every timestamp from the packages, so re-running it on unchanged
 input reproduces the signed bytes exactly - **on Windows PowerShell 5.1** (`powershell.exe`).

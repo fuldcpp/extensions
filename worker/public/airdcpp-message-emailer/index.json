@@ -1,0 +1,19 @@
+{
+    "name":  "airdcpp-message-emailer",
+    "dist-tags":  {
+                      "latest":  "1.0.5"
+                  },
+    "modified":  "2024-10-25T15:32:45.460Z",
+    "versions":  {
+                     "1.0.5":  {
+                                   "name":  "airdcpp-message-emailer",
+                                   "version":  "1.0.5",
+                                   "dist":  {
+                                                "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-message-emailer-v1.0.5/airdcpp-message-emailer-1.0.5.tgz",
+                                                "shasum":  "ff20a4101abae4ef6b24e0f3c83f7869e13d7512",
+                                                "integrity":  "sha512-+qW100tJnvWdhQCpEy7RfTFKHa+IrlAz2ZsnIPSzBZ/c+/Lg224rTHl66OyHMbQY8JTlnNy30rtHvsYpOkJcDA==",
+                                                "size":  455457
+                                            }
+                               }
+                 }
+}

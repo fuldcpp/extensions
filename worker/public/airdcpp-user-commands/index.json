@@ -1,0 +1,19 @@
+{
+    "name":  "airdcpp-user-commands",
+    "dist-tags":  {
+                      "latest":  "2.2.2"
+                  },
+    "modified":  "2021-01-06T17:09:07.964Z",
+    "versions":  {
+                     "2.2.2":  {
+                                   "name":  "airdcpp-user-commands",
+                                   "version":  "2.2.2",
+                                   "dist":  {
+                                                "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-user-commands-v2.2.2/airdcpp-user-commands-2.2.2.tgz",
+                                                "shasum":  "e732cf880f5ab846e1ffeb6d996598b9acecd97e",
+                                                "integrity":  "sha512-B2lXlKC0kddpA9100vcqIMzH1Xjsxv4e/kUuVwNIFBUCWTlm4AllZEC1gDrZ7uL3xOQSKst/SyHHj9JC82549g==",
+                                                "size":  256199
+                                            }
+                               }
+                 }
+}

@@ -1,0 +1,19 @@
+{
+    "name":  "airdcpp-share-monitor",
+    "dist-tags":  {
+                      "latest":  "1.2.0"
+                  },
+    "modified":  "2024-10-26T10:31:19.413Z",
+    "versions":  {
+                     "1.2.0":  {
+                                   "name":  "airdcpp-share-monitor",
+                                   "version":  "1.2.0",
+                                   "dist":  {
+                                                "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-share-monitor-v1.2.0/airdcpp-share-monitor-1.2.0.tgz",
+                                                "shasum":  "10f39755940df5de73651b3b71363024d8421b20",
+                                                "integrity":  "sha512-mZwOFOzkDYpZQhTz+nrzR4y8Fbips/8UKT8wtB+3+7TjLn2VC8MPFAAOQgoJ3X2B8lW17obp/gZeBwfmSL5kkA==",
+                                                "size":  261683
+                                            }
+                               }
+                 }
+}

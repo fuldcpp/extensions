@@ -1,0 +1,24 @@
+{
+    "_id":  "airdcpp-auto-downloader@1.0.0-beta.13",
+    "name":  "airdcpp-auto-downloader",
+    "version":  "1.0.0-beta.13",
+    "description":  "BETA TESTING: Extension to add search terms that will be searched in intervals and downloaded when found.",
+    "author":  {
+                   "name":  "pepsi"
+               },
+    "homepage":  "https://github.com/peps1/airdcpp-auto-downloader",
+    "license":  "MIT",
+    "_npmUser":  {
+                     "name":  "peps1"
+                 },
+    "airdcpp":  {
+                    "apiVersion":  1,
+                    "minApiFeatureLevel":  0
+                },
+    "dist":  {
+                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-auto-downloader-v1.0.0-beta.13/airdcpp-auto-downloader-1.0.0-beta.13.tgz",
+                 "shasum":  "b8ca94646c0414714ad23ef7a10cec118ce1c9e6",
+                 "integrity":  "sha512-h/8Hs/zUOTQjXwhoUZnEPP0hry05L/0heAuyKR9xuBci7GJsLzJ+CFm0kOK63ZOavW4FA4HXRj4Tj3Br078PSg==",
+                 "size":  295896
+             }
+}

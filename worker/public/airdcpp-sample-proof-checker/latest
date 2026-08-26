@@ -1,0 +1,24 @@
+{
+    "_id":  "airdcpp-sample-proof-checker@1.2.0-beta",
+    "name":  "airdcpp-sample-proof-checker",
+    "version":  "1.2.0-beta",
+    "description":  "Checks release folders for missing Sample (with mkv) or Proof subfolders, and searches/redownloads just that subfolder if needed.",
+    "author":  {
+                   "name":  "ShareFixxers"
+               },
+    "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/master/airdcpp-sample-proof-checker",
+    "license":  "MIT",
+    "_npmUser":  {
+                     "name":  "Sopor"
+                 },
+    "airdcpp":  {
+                    "apiVersion":  1,
+                    "minApiFeatureLevel":  4
+                },
+    "dist":  {
+                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sample-proof-checker-v1.2.0-beta/airdcpp-sample-proof-checker-1.2.0-beta.tgz",
+                 "shasum":  "e044653e0258b41f08380cada74517433130baff",
+                 "integrity":  "sha512-IUOLTfXEIhi0i0kO9k1Co6wwf/07B+ThQ84R+aQs7ujWd/V+u/ZRmCHl2//uz8BbQG2sfMDcuNwi4sZIEjivwg==",
+                 "size":  41795
+             }
+}

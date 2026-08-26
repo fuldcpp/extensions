@@ -1,0 +1,18 @@
+# extensions.fuldcpp.net: serves the generated catalog documents as static assets, on a
+# custom domain whose DNS record and certificate Cloudflare creates on deploy (the same way
+# ip.fuldcpp.net and crash.fuldcpp.net are set up). Publishing is `wrangler deploy` from this
+# directory after public/ has been refreshed from ../out and catalog.json re-signed.
+name = "fuldc-extensions"
+compatibility_date = "2025-01-01"
+workers_dev = false
+
+routes = [
+  { pattern = "extensions.fuldcpp.net", custom_domain = true }
+]
+
+[assets]
+directory = "./public"
+# Documents are served byte-for-byte at their exact paths: no .html games, no redirects,
+# a plain 404 for anything else. The signature covers the exact bytes of catalog.json.
+html_handling = "none"
+not_found_handling = "none"

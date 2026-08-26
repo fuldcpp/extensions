@@ -1,0 +1,24 @@
+{
+    "_id":  "airdcpp-user-commands@2.2.2",
+    "name":  "airdcpp-user-commands",
+    "version":  "2.2.2",
+    "description":  "Extension to run commands from chat to output information or trigger actions. See /help for a full list",
+    "author":  {
+                   "name":  "pepsi"
+               },
+    "homepage":  "https://github.com/peps1/airdcpp-user-commands",
+    "license":  "MIT",
+    "_npmUser":  {
+                     "name":  "peps1"
+                 },
+    "airdcpp":  {
+                    "apiVersion":  1,
+                    "minApiFeatureLevel":  0
+                },
+    "dist":  {
+                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-user-commands-v2.2.2/airdcpp-user-commands-2.2.2.tgz",
+                 "shasum":  "e732cf880f5ab846e1ffeb6d996598b9acecd97e",
+                 "integrity":  "sha512-B2lXlKC0kddpA9100vcqIMzH1Xjsxv4e/kUuVwNIFBUCWTlm4AllZEC1gDrZ7uL3xOQSKst/SyHHj9JC82549g==",
+                 "size":  256199
+             }
+}

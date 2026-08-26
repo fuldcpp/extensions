@@ -1,0 +1,19 @@
+{
+    "name":  "airdcpp-release-validator",
+    "dist-tags":  {
+                      "latest":  "1.4.0"
+                  },
+    "modified":  "2023-05-26T17:05:03.339Z",
+    "versions":  {
+                     "1.4.0":  {
+                                   "name":  "airdcpp-release-validator",
+                                   "version":  "1.4.0",
+                                   "dist":  {
+                                                "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-release-validator-v1.4.0/airdcpp-release-validator-1.4.0.tgz",
+                                                "shasum":  "daeb38b4a0b114c537223a005549a67c5f6fe542",
+                                                "integrity":  "sha512-7v1TrvHSMOxke/V9emJ8cGG4hlhJhk54pTKuuYPKE7Cl0jV5KD2lLmvo+jK9TGaqzJCUGmtKf+dpqChfQlO56Q==",
+                                                "size":  447242
+                                            }
+                               }
+                 }
+}

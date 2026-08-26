@@ -1,0 +1,435 @@
+{
+    "formatVersion":  1,
+    "objects":  [
+                    {
+                        "package":  {
+                                        "name":  "airdcpp-advanced-sharing",
+                                        "version":  "1.0.0",
+                                        "description":  "Advanced sharing options, batch hashing with stop or resume option",
+                                        "author":  "pepsi",
+                                        "publisher":  {
+                                                          "username":  "peps1"
+                                                      },
+                                        "date":  "2021-01-07T05:17:12.137Z",
+                                        "homepage":  "https://github.com/peps1/airdcpp-advanced-sharing",
+                                        "links":  {
+                                                      "homepage":  "https://github.com/peps1/airdcpp-advanced-sharing",
+                                                      "repository":  "https://github.com/peps1/airdcpp-advanced-sharing",
+                                                      "npm":  "https://www.npmjs.com/package/airdcpp-advanced-sharing"
+                                                  },
+                                        "keywords":  [
+                                                         "airdcpp-extensions",
+                                                         "airdcpp-extensions-public"
+                                                     ],
+                                        "license":  "MIT",
+                                        "engines":  [
+
+                                                    ],
+                                        "airdcpp":  {
+                                                        "apiVersion":  1,
+                                                        "minApiFeatureLevel":  5
+                                                    },
+                                        "dist":  {
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-advanced-sharing-v1.0.0/airdcpp-advanced-sharing-1.0.0.tgz",
+                                                     "shasum":  "29daee1437339771f0b5a6d438e5a7fc499d5028",
+                                                     "integrity":  "sha512-e6z83sk+sWqKwTvuvYdoWmNj0snk2BgNFNO0lx2Fg2fZ3Pclw6hpiikWkHM8BvJ+dvQR/nNRXwoFZyHHW9F02A==",
+                                                     "size":  194319
+                                                 }
+                                    }
+                    },
+                    {
+                        "package":  {
+                                        "name":  "airdcpp-auto-downloader",
+                                        "version":  "1.0.0-beta.13",
+                                        "description":  "BETA TESTING: Extension to add search terms that will be searched in intervals and downloaded when found.",
+                                        "author":  "pepsi",
+                                        "publisher":  {
+                                                          "username":  "peps1"
+                                                      },
+                                        "date":  "2023-01-10T04:57:15.053Z",
+                                        "homepage":  "https://github.com/peps1/airdcpp-auto-downloader",
+                                        "links":  {
+                                                      "homepage":  "https://github.com/peps1/airdcpp-auto-downloader",
+                                                      "repository":  "https://github.com/peps1/airdcpp-auto-downloader",
+                                                      "npm":  "https://www.npmjs.com/package/airdcpp-auto-downloader"
+                                                  },
+                                        "keywords":  [
+                                                         "airdcpp-extensions",
+                                                         "airdcpp-extensions-public"
+                                                     ],
+                                        "license":  "MIT",
+                                        "engines":  [
+
+                                                    ],
+                                        "airdcpp":  {
+                                                        "apiVersion":  1,
+                                                        "minApiFeatureLevel":  0
+                                                    },
+                                        "dist":  {
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-auto-downloader-v1.0.0-beta.13/airdcpp-auto-downloader-1.0.0-beta.13.tgz",
+                                                     "shasum":  "b8ca94646c0414714ad23ef7a10cec118ce1c9e6",
+                                                     "integrity":  "sha512-h/8Hs/zUOTQjXwhoUZnEPP0hry05L/0heAuyKR9xuBci7GJsLzJ+CFm0kOK63ZOavW4FA4HXRj4Tj3Br078PSg==",
+                                                     "size":  295896
+                                                 }
+                                    }
+                    },
+                    {
+                        "package":  {
+                                        "name":  "airdcpp-message-emailer",
+                                        "version":  "1.0.5",
+                                        "description":  "Sends email summaries with unread hub/private messages",
+                                        "author":  "maksis",
+                                        "publisher":  {
+                                                          "username":  "maksis"
+                                                      },
+                                        "date":  "2024-10-25T15:32:45.460Z",
+                                        "homepage":  "https://github.com/maksis/airdcpp-message-emailer#readme",
+                                        "links":  {
+                                                      "homepage":  "https://github.com/maksis/airdcpp-message-emailer#readme",
+                                                      "repository":  "https://github.com/maksis/airdcpp-message-emailer",
+                                                      "npm":  "https://www.npmjs.com/package/airdcpp-message-emailer"
+                                                  },
+                                        "keywords":  [
+                                                         "airdcpp-extensions",
+                                                         "airdcpp-extensions-public"
+                                                     ],
+                                        "license":  "MIT",
+                                        "engines":  [
+
+                                                    ],
+                                        "airdcpp":  {
+                                                        "apiVersion":  1,
+                                                        "minApiFeatureLevel":  0
+                                                    },
+                                        "dist":  {
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-message-emailer-v1.0.5/airdcpp-message-emailer-1.0.5.tgz",
+                                                     "shasum":  "ff20a4101abae4ef6b24e0f3c83f7869e13d7512",
+                                                     "integrity":  "sha512-+qW100tJnvWdhQCpEy7RfTFKHa+IrlAz2ZsnIPSzBZ/c+/Lg224rTHl66OyHMbQY8JTlnNy30rtHvsYpOkJcDA==",
+                                                     "size":  455457
+                                                 }
+                                    }
+                    },
+                    {
+                        "package":  {
+                                        "name":  "airdcpp-release-fixxer",
+                                        "version":  "1.2.0-beta",
+                                        "description":  "Scans downloaded and shared release directories for missing/extra files (CRC/SFV/NFO) and automatically redownloads what\u0027s broken or missing. Fork of the official airdcpp-release-validator.",
+                                        "author":  "ShareFixxers",
+                                        "publisher":  {
+                                                          "username":  "Sopor"
+                                                      },
+                                        "date":  "2026-08-25T21:43:05Z",
+                                        "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/master/airdcpp-release-fixxer",
+                                        "links":  {
+                                                      "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/master/airdcpp-release-fixxer",
+                                                      "repository":  "https://github.com/Sopor/airdcpp-extensions"
+                                                  },
+                                        "keywords":  [
+                                                         "airdcpp-extensions",
+                                                         "airdcpp-extensions-public"
+                                                     ],
+                                        "license":  "MIT",
+                                        "engines":  [
+
+                                                    ],
+                                        "airdcpp":  {
+                                                        "apiVersion":  1,
+                                                        "minApiFeatureLevel":  4
+                                                    },
+                                        "dist":  {
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-release-fixxer-v1.2.0-beta/airdcpp-release-fixxer-1.2.0-beta.tgz",
+                                                     "shasum":  "a127a5e53cf55e373b49f3564937f267dd74588f",
+                                                     "integrity":  "sha512-X9HCEpCYHfDymrYMuJw+j03gIvK9R9rMHkbGbXsdkhxQL1pk1jp0Ndyh8Sxfg7KjEQvBcNtoXuOhbpliv+BMIg==",
+                                                     "size":  88912
+                                                 }
+                                    }
+                    },
+                    {
+                        "package":  {
+                                        "name":  "airdcpp-release-validator",
+                                        "version":  "1.4.0",
+                                        "description":  "Scan downloaded and shared release directories for missing/extra files",
+                                        "author":  "maksis",
+                                        "publisher":  {
+                                                          "username":  "maksis"
+                                                      },
+                                        "date":  "2023-05-26T17:05:03.339Z",
+                                        "homepage":  "https://github.com/airdcpp-web/airdcpp-release-validator#readme",
+                                        "links":  {
+                                                      "homepage":  "https://github.com/airdcpp-web/airdcpp-release-validator#readme",
+                                                      "repository":  "https://github.com/airdcpp-web/airdcpp-release-validator",
+                                                      "npm":  "https://www.npmjs.com/package/airdcpp-release-validator"
+                                                  },
+                                        "keywords":  [
+                                                         "airdcpp-extensions",
+                                                         "airdcpp-extensions-public"
+                                                     ],
+                                        "license":  "MIT",
+                                        "engines":  [
+
+                                                    ],
+                                        "airdcpp":  {
+                                                        "apiVersion":  1,
+                                                        "minApiFeatureLevel":  4
+                                                    },
+                                        "dist":  {
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-release-validator-v1.4.0/airdcpp-release-validator-1.4.0.tgz",
+                                                     "shasum":  "daeb38b4a0b114c537223a005549a67c5f6fe542",
+                                                     "integrity":  "sha512-7v1TrvHSMOxke/V9emJ8cGG4hlhJhk54pTKuuYPKE7Cl0jV5KD2lLmvo+jK9TGaqzJCUGmtKf+dpqChfQlO56Q==",
+                                                     "size":  447242
+                                                 }
+                                    }
+                    },
+                    {
+                        "package":  {
+                                        "name":  "airdcpp-runscript-extension",
+                                        "version":  "1.2.13",
+                                        "description":  "Execute scripts on airdcpp-api events/hooks or cron schedule.",
+                                        "author":  "zersetz-end",
+                                        "publisher":  {
+                                                          "username":  "zersetz-end"
+                                                      },
+                                        "date":  "2021-02-28T18:38:19.904Z",
+                                        "homepage":  "https://github.com/zersetz-end/airdcpp-runscript-extension#readme",
+                                        "links":  {
+                                                      "homepage":  "https://github.com/zersetz-end/airdcpp-runscript-extension#readme",
+                                                      "repository":  "https://github.com/zersetz-end/airdcpp-runscript-extension",
+                                                      "npm":  "https://www.npmjs.com/package/airdcpp-runscript-extension"
+                                                  },
+                                        "keywords":  [
+                                                         "airdcpp-extensions",
+                                                         "airdcpp-extensions-public"
+                                                     ],
+                                        "license":  "MIT",
+                                        "engines":  [
+
+                                                    ],
+                                        "airdcpp":  {
+                                                        "apiVersion":  1,
+                                                        "minApiFeatureLevel":  0
+                                                    },
+                                        "dist":  {
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-runscript-extension-v1.2.13/airdcpp-runscript-extension-1.2.13.tgz",
+                                                     "shasum":  "bc6e72e7d00d0531dd4139c55c653fe51f488530",
+                                                     "integrity":  "sha512-7NtAZQ3n9j/xub5uQ5uUiRdEZidktnwz5vulOuUWTK4qCK9GH/8OoTWHwrhVGyof/Nm31E/GgJ/AlY0rzef9nA==",
+                                                     "size":  1321876
+                                                 }
+                                    }
+                    },
+                    {
+                        "package":  {
+                                        "name":  "airdcpp-sample-proof-checker",
+                                        "version":  "1.2.0-beta",
+                                        "description":  "Checks release folders for missing Sample (with mkv) or Proof subfolders, and searches/redownloads just that subfolder if needed.",
+                                        "author":  "ShareFixxers",
+                                        "publisher":  {
+                                                          "username":  "Sopor"
+                                                      },
+                                        "date":  "2026-08-25T21:27:54Z",
+                                        "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/master/airdcpp-sample-proof-checker",
+                                        "links":  {
+                                                      "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/master/airdcpp-sample-proof-checker",
+                                                      "repository":  "https://github.com/Sopor/airdcpp-extensions"
+                                                  },
+                                        "keywords":  [
+                                                         "airdcpp-extensions",
+                                                         "airdcpp-extensions-public"
+                                                     ],
+                                        "license":  "MIT",
+                                        "engines":  [
+
+                                                    ],
+                                        "airdcpp":  {
+                                                        "apiVersion":  1,
+                                                        "minApiFeatureLevel":  4
+                                                    },
+                                        "dist":  {
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sample-proof-checker-v1.2.0-beta/airdcpp-sample-proof-checker-1.2.0-beta.tgz",
+                                                     "shasum":  "e044653e0258b41f08380cada74517433130baff",
+                                                     "integrity":  "sha512-IUOLTfXEIhi0i0kO9k1Co6wwf/07B+ThQ84R+aQs7ujWd/V+u/ZRmCHl2//uz8BbQG2sfMDcuNwi4sZIEjivwg==",
+                                                     "size":  41795
+                                                 }
+                                    }
+                    },
+                    {
+                        "package":  {
+                                        "name":  "airdcpp-search-sites",
+                                        "version":  "1.2.0",
+                                        "description":  "Extension for adding configurable context menu items that will perform web searches for files/directories",
+                                        "author":  "maksis",
+                                        "publisher":  {
+                                                          "username":  "maksis"
+                                                      },
+                                        "date":  "2024-09-18T15:08:30.855Z",
+                                        "homepage":  "https://github.com/maksis/airdcpp-search-sites#readme",
+                                        "links":  {
+                                                      "homepage":  "https://github.com/maksis/airdcpp-search-sites#readme",
+                                                      "repository":  "https://github.com/maksis/airdcpp-search-sites",
+                                                      "npm":  "https://www.npmjs.com/package/airdcpp-search-sites"
+                                                  },
+                                        "keywords":  [
+                                                         "airdcpp-extensions",
+                                                         "airdcpp-extensions-public"
+                                                     ],
+                                        "license":  "MIT",
+                                        "engines":  [
+
+                                                    ],
+                                        "airdcpp":  {
+                                                        "apiVersion":  1,
+                                                        "minApiFeatureLevel":  5
+                                                    },
+                                        "dist":  {
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-search-sites-v1.2.0/airdcpp-search-sites-1.2.0.tgz",
+                                                     "shasum":  "640f8a4c504329de1d00f3828b0c2170b27472be",
+                                                     "integrity":  "sha512-WufK2mPns9LNyqCiISm9+OlcHR2+8vZDmJs0kvLvAsm+aSolcvn8owE4oemNdSagYaJ/hRl16ebN451dMmU0nw==",
+                                                     "size":  238628
+                                                 }
+                                    }
+                    },
+                    {
+                        "package":  {
+                                        "name":  "airdcpp-sfv-folder-checker",
+                                        "version":  "1.2.0-beta",
+                                        "description":  "Hub command /sfvcheck \u003cfolder\u003e that recursively checks a folder for .sfv files and compares their CRC32 against the real files on disk. Works together with airdcpp-release-fixxer.",
+                                        "author":  "ShareFixxers",
+                                        "publisher":  {
+                                                          "username":  "Sopor"
+                                                      },
+                                        "date":  "2026-08-25T21:27:54Z",
+                                        "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/master/airdcpp-sfv-folder-checker",
+                                        "links":  {
+                                                      "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/master/airdcpp-sfv-folder-checker",
+                                                      "repository":  "https://github.com/Sopor/airdcpp-extensions"
+                                                  },
+                                        "keywords":  [
+                                                         "airdcpp-extensions",
+                                                         "airdcpp-extensions-public"
+                                                     ],
+                                        "license":  "MIT",
+                                        "engines":  [
+
+                                                    ],
+                                        "airdcpp":  {
+                                                        "apiVersion":  1,
+                                                        "minApiFeatureLevel":  0
+                                                    },
+                                        "dist":  {
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sfv-folder-checker-v1.2.0-beta/airdcpp-sfv-folder-checker-1.2.0-beta.tgz",
+                                                     "shasum":  "70258ad64cbe51de2e5e9b86a6b66d5ec05ac52b",
+                                                     "integrity":  "sha512-wL2KhuzI+DUqqXLqzVd1xMMT+ekYkhAa6GqMkCTaZK/cuJpPaYmGIIazt8IlvPau8L4yCItPJKDi8/pHyG6x4g==",
+                                                     "size":  44642
+                                                 }
+                                    }
+                    },
+                    {
+                        "package":  {
+                                        "name":  "airdcpp-share-backup",
+                                        "version":  "0.0.9-beta",
+                                        "description":  "Hub command /sharebackup [path] that saves a self-verified bzip2-compressed XML snapshot of your own share (folder names, file names, sizes, TTH) to a local backup file, named \u003cnick\u003e.\u003cCID\u003e.xml.bz2 (the same naming AirDC++ uses for its own filelists) inside a YYYY-MM-DD subfolder. Uses the stateless Share API (real paths). Can run automatically on configurable days, with automatic cleanup of old backups.",
+                                        "author":  "ShareFixxers",
+                                        "publisher":  {
+                                                          "username":  "Sopor"
+                                                      },
+                                        "date":  "2026-08-25T19:37:58Z",
+                                        "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/master/airdcpp-share-backup",
+                                        "links":  {
+                                                      "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/master/airdcpp-share-backup",
+                                                      "repository":  "https://github.com/Sopor/airdcpp-extensions"
+                                                  },
+                                        "keywords":  [
+                                                         "airdcpp-extensions",
+                                                         "airdcpp-extensions-public"
+                                                     ],
+                                        "license":  "MIT",
+                                        "engines":  [
+
+                                                    ],
+                                        "airdcpp":  {
+                                                        "apiVersion":  1,
+                                                        "minApiFeatureLevel":  9
+                                                    },
+                                        "dist":  {
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-share-backup-v0.0.9-beta/airdcpp-share-backup-0.0.9-beta.tgz",
+                                                     "shasum":  "376b396abac90515e1c51eb49f5f39e30a298600",
+                                                     "integrity":  "sha512-95aYj+Plo1ZX2zAl26MsPIrJczBagBxZOrqc011yE3TXgdGflvzTNZ3cCEUDUcUCummkHdRb04hE4vl8+D5vxA==",
+                                                     "size":  65961
+                                                 }
+                                    }
+                    },
+                    {
+                        "package":  {
+                                        "name":  "airdcpp-share-monitor",
+                                        "version":  "1.2.0",
+                                        "description":  "Real time share monitoring",
+                                        "author":  "maksis",
+                                        "publisher":  {
+                                                          "username":  "maksis"
+                                                      },
+                                        "date":  "2024-10-26T10:31:19.413Z",
+                                        "homepage":  "https://github.com/airdcpp-web/airdcpp-share-monitor#readme",
+                                        "links":  {
+                                                      "homepage":  "https://github.com/airdcpp-web/airdcpp-share-monitor#readme",
+                                                      "repository":  "https://github.com/airdcpp-web/airdcpp-share-monitor",
+                                                      "npm":  "https://www.npmjs.com/package/airdcpp-share-monitor"
+                                                  },
+                                        "keywords":  [
+                                                         "airdcpp-extensions",
+                                                         "airdcpp-extensions-public"
+                                                     ],
+                                        "license":  "MIT",
+                                        "engines":  [
+
+                                                    ],
+                                        "airdcpp":  {
+                                                        "apiVersion":  1,
+                                                        "minApiFeatureLevel":  6
+                                                    },
+                                        "dist":  {
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-share-monitor-v1.2.0/airdcpp-share-monitor-1.2.0.tgz",
+                                                     "shasum":  "10f39755940df5de73651b3b71363024d8421b20",
+                                                     "integrity":  "sha512-mZwOFOzkDYpZQhTz+nrzR4y8Fbips/8UKT8wtB+3+7TjLn2VC8MPFAAOQgoJ3X2B8lW17obp/gZeBwfmSL5kkA==",
+                                                     "size":  261683
+                                                 }
+                                    }
+                    },
+                    {
+                        "package":  {
+                                        "name":  "airdcpp-user-commands",
+                                        "version":  "2.2.2",
+                                        "description":  "Extension to run commands from chat to output information or trigger actions. See /help for a full list",
+                                        "author":  "pepsi",
+                                        "publisher":  {
+                                                          "username":  "peps1"
+                                                      },
+                                        "date":  "2021-01-06T17:09:07.964Z",
+                                        "homepage":  "https://github.com/peps1/airdcpp-user-commands",
+                                        "links":  {
+                                                      "homepage":  "https://github.com/peps1/airdcpp-user-commands",
+                                                      "repository":  "https://github.com/peps1/airdcpp-user-commands",
+                                                      "npm":  "https://www.npmjs.com/package/airdcpp-user-commands"
+                                                  },
+                                        "keywords":  [
+                                                         "airdcpp-extensions",
+                                                         "airdcpp-extensions-public"
+                                                     ],
+                                        "license":  "MIT",
+                                        "engines":  [
+
+                                                    ],
+                                        "airdcpp":  {
+                                                        "apiVersion":  1,
+                                                        "minApiFeatureLevel":  0
+                                                    },
+                                        "dist":  {
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-user-commands-v2.2.2/airdcpp-user-commands-2.2.2.tgz",
+                                                     "shasum":  "e732cf880f5ab846e1ffeb6d996598b9acecd97e",
+                                                     "integrity":  "sha512-B2lXlKC0kddpA9100vcqIMzH1Xjsxv4e/kUuVwNIFBUCWTlm4AllZEC1gDrZ7uL3xOQSKst/SyHHj9JC82549g==",
+                                                     "size":  256199
+                                                 }
+                                    }
+                    }
+                ],
+    "total":  12,
+    "time":  "2026-08-25T21:43:05Z"
+}

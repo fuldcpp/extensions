@@ -1,0 +1,19 @@
+{
+    "name":  "airdcpp-runscript-extension",
+    "dist-tags":  {
+                      "latest":  "1.2.13"
+                  },
+    "modified":  "2021-02-28T18:38:19.904Z",
+    "versions":  {
+                     "1.2.13":  {
+                                    "name":  "airdcpp-runscript-extension",
+                                    "version":  "1.2.13",
+                                    "dist":  {
+                                                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-runscript-extension-v1.2.13/airdcpp-runscript-extension-1.2.13.tgz",
+                                                 "shasum":  "bc6e72e7d00d0531dd4139c55c653fe51f488530",
+                                                 "integrity":  "sha512-7NtAZQ3n9j/xub5uQ5uUiRdEZidktnwz5vulOuUWTK4qCK9GH/8OoTWHwrhVGyof/Nm31E/GgJ/AlY0rzef9nA==",
+                                                 "size":  1321876
+                                             }
+                                }
+                 }
+}

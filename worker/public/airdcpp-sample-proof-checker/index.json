@@ -1,0 +1,19 @@
+{
+    "name":  "airdcpp-sample-proof-checker",
+    "dist-tags":  {
+                      "latest":  "1.2.0-beta"
+                  },
+    "modified":  "2026-08-25T21:27:54Z",
+    "versions":  {
+                     "1.2.0-beta":  {
+                                        "name":  "airdcpp-sample-proof-checker",
+                                        "version":  "1.2.0-beta",
+                                        "dist":  {
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sample-proof-checker-v1.2.0-beta/airdcpp-sample-proof-checker-1.2.0-beta.tgz",
+                                                     "shasum":  "e044653e0258b41f08380cada74517433130baff",
+                                                     "integrity":  "sha512-IUOLTfXEIhi0i0kO9k1Co6wwf/07B+ThQ84R+aQs7ujWd/V+u/ZRmCHl2//uz8BbQG2sfMDcuNwi4sZIEjivwg==",
+                                                     "size":  41795
+                                                 }
+                                    }
+                 }
+}

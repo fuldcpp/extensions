@@ -1,0 +1,19 @@
+{
+    "name":  "airdcpp-search-sites",
+    "dist-tags":  {
+                      "latest":  "1.2.0"
+                  },
+    "modified":  "2024-09-18T15:08:30.855Z",
+    "versions":  {
+                     "1.2.0":  {
+                                   "name":  "airdcpp-search-sites",
+                                   "version":  "1.2.0",
+                                   "dist":  {
+                                                "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-search-sites-v1.2.0/airdcpp-search-sites-1.2.0.tgz",
+                                                "shasum":  "640f8a4c504329de1d00f3828b0c2170b27472be",
+                                                "integrity":  "sha512-WufK2mPns9LNyqCiISm9+OlcHR2+8vZDmJs0kvLvAsm+aSolcvn8owE4oemNdSagYaJ/hRl16ebN451dMmU0nw==",
+                                                "size":  238628
+                                            }
+                               }
+                 }
+}

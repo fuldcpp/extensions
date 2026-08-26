@@ -1,0 +1,24 @@
+{
+    "_id":  "airdcpp-share-monitor@1.2.0",
+    "name":  "airdcpp-share-monitor",
+    "version":  "1.2.0",
+    "description":  "Real time share monitoring",
+    "author":  {
+                   "name":  "maksis"
+               },
+    "homepage":  "https://github.com/airdcpp-web/airdcpp-share-monitor#readme",
+    "license":  "MIT",
+    "_npmUser":  {
+                     "name":  "maksis"
+                 },
+    "airdcpp":  {
+                    "apiVersion":  1,
+                    "minApiFeatureLevel":  6
+                },
+    "dist":  {
+                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-share-monitor-v1.2.0/airdcpp-share-monitor-1.2.0.tgz",
+                 "shasum":  "10f39755940df5de73651b3b71363024d8421b20",
+                 "integrity":  "sha512-mZwOFOzkDYpZQhTz+nrzR4y8Fbips/8UKT8wtB+3+7TjLn2VC8MPFAAOQgoJ3X2B8lW17obp/gZeBwfmSL5kkA==",
+                 "size":  261683
+             }
+}

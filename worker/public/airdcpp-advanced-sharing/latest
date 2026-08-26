@@ -1,0 +1,24 @@
+{
+    "_id":  "airdcpp-advanced-sharing@1.0.0",
+    "name":  "airdcpp-advanced-sharing",
+    "version":  "1.0.0",
+    "description":  "Advanced sharing options, batch hashing with stop or resume option",
+    "author":  {
+                   "name":  "pepsi"
+               },
+    "homepage":  "https://github.com/peps1/airdcpp-advanced-sharing",
+    "license":  "MIT",
+    "_npmUser":  {
+                     "name":  "peps1"
+                 },
+    "airdcpp":  {
+                    "apiVersion":  1,
+                    "minApiFeatureLevel":  5
+                },
+    "dist":  {
+                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-advanced-sharing-v1.0.0/airdcpp-advanced-sharing-1.0.0.tgz",
+                 "shasum":  "29daee1437339771f0b5a6d438e5a7fc499d5028",
+                 "integrity":  "sha512-e6z83sk+sWqKwTvuvYdoWmNj0snk2BgNFNO0lx2Fg2fZ3Pclw6hpiikWkHM8BvJ+dvQR/nNRXwoFZyHHW9F02A==",
+                 "size":  194319
+             }
+}

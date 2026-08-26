@@ -1,0 +1,24 @@
+{
+    "_id":  "airdcpp-message-emailer@1.0.5",
+    "name":  "airdcpp-message-emailer",
+    "version":  "1.0.5",
+    "description":  "Sends email summaries with unread hub/private messages",
+    "author":  {
+                   "name":  "maksis"
+               },
+    "homepage":  "https://github.com/maksis/airdcpp-message-emailer#readme",
+    "license":  "MIT",
+    "_npmUser":  {
+                     "name":  "maksis"
+                 },
+    "airdcpp":  {
+                    "apiVersion":  1,
+                    "minApiFeatureLevel":  0
+                },
+    "dist":  {
+                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-message-emailer-v1.0.5/airdcpp-message-emailer-1.0.5.tgz",
+                 "shasum":  "ff20a4101abae4ef6b24e0f3c83f7869e13d7512",
+                 "integrity":  "sha512-+qW100tJnvWdhQCpEy7RfTFKHa+IrlAz2ZsnIPSzBZ/c+/Lg224rTHl66OyHMbQY8JTlnNy30rtHvsYpOkJcDA==",
+                 "size":  455457
+             }
+}

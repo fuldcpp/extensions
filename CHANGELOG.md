@@ -1,10 +1,14 @@
 # Changelog
 
-Changes to the extension catalog served at https://fuldcpp.net/extensions/. The format is
+Changes to the extension catalog served at https://extensions.fuldcpp.net/. The format is
 based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions are catalog
 publishing dates, since the catalog itself has no version number.
 
 ## [Unreleased]
+
+### Changed
+- The catalog is served from `https://extensions.fuldcpp.net/` by a Cloudflare Worker (`worker/`)
+  instead of the fuldcpp.net GitHub Pages site
 
 ## [2026-08-26]
 

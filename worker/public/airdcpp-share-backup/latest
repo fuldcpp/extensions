@@ -1,0 +1,24 @@
+{
+    "_id":  "airdcpp-share-backup@0.0.9-beta",
+    "name":  "airdcpp-share-backup",
+    "version":  "0.0.9-beta",
+    "description":  "Hub command /sharebackup [path] that saves a self-verified bzip2-compressed XML snapshot of your own share (folder names, file names, sizes, TTH) to a local backup file, named \u003cnick\u003e.\u003cCID\u003e.xml.bz2 (the same naming AirDC++ uses for its own filelists) inside a YYYY-MM-DD subfolder. Uses the stateless Share API (real paths). Can run automatically on configurable days, with automatic cleanup of old backups.",
+    "author":  {
+                   "name":  "ShareFixxers"
+               },
+    "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/master/airdcpp-share-backup",
+    "license":  "MIT",
+    "_npmUser":  {
+                     "name":  "Sopor"
+                 },
+    "airdcpp":  {
+                    "apiVersion":  1,
+                    "minApiFeatureLevel":  9
+                },
+    "dist":  {
+                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-share-backup-v0.0.9-beta/airdcpp-share-backup-0.0.9-beta.tgz",
+                 "shasum":  "376b396abac90515e1c51eb49f5f39e30a298600",
+                 "integrity":  "sha512-95aYj+Plo1ZX2zAl26MsPIrJczBagBxZOrqc011yE3TXgdGflvzTNZ3cCEUDUcUCummkHdRb04hE4vl8+D5vxA==",
+                 "size":  65961
+             }
+}

@@ -1,0 +1,24 @@
+{
+    "_id":  "airdcpp-release-fixxer@1.2.0-beta",
+    "name":  "airdcpp-release-fixxer",
+    "version":  "1.2.0-beta",
+    "description":  "Scans downloaded and shared release directories for missing/extra files (CRC/SFV/NFO) and automatically redownloads what\u0027s broken or missing. Fork of the official airdcpp-release-validator.",
+    "author":  {
+                   "name":  "ShareFixxers"
+               },
+    "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/master/airdcpp-release-fixxer",
+    "license":  "MIT",
+    "_npmUser":  {
+                     "name":  "Sopor"
+                 },
+    "airdcpp":  {
+                    "apiVersion":  1,
+                    "minApiFeatureLevel":  4
+                },
+    "dist":  {
+                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-release-fixxer-v1.2.0-beta/airdcpp-release-fixxer-1.2.0-beta.tgz",
+                 "shasum":  "a127a5e53cf55e373b49f3564937f267dd74588f",
+                 "integrity":  "sha512-X9HCEpCYHfDymrYMuJw+j03gIvK9R9rMHkbGbXsdkhxQL1pk1jp0Ndyh8Sxfg7KjEQvBcNtoXuOhbpliv+BMIg==",
+                 "size":  88912
+             }
+}
