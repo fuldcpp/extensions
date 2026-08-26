@@ -1,0 +1,4 @@
+# Tarballs are published byte-for-byte as release assets; the catalog documents are hashed
+# for the signature, so their line endings must survive git untouched.
+*.tgz            binary
+out/**           -text

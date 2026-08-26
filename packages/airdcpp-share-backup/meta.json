@@ -1,0 +1,9 @@
+{
+  "publisher": "Sopor",
+  "homepage": "https://github.com/Sopor/airdcpp-extensions/tree/master/airdcpp-share-backup",
+  "repository": "https://github.com/Sopor/airdcpp-extensions",
+  "date": "2026-08-25T19:37:58Z",
+  "source": "https://github.com/Sopor/airdcpp-extensions/raw/master/airdcpp-share-backup/airdcpp-share-backup-0.0.9-beta.tgz",
+  "upstream": "github",
+  "repacked": "private flag removed from package.json so the catalog can offer updates; every other byte of the package is unchanged"
+}

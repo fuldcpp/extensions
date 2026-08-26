@@ -1,0 +1,10 @@
+# npm packages mirrored into the catalog, one per line. Refresh with scripts/sync-npm.ps1.
+# airdcpp-create-extension is deliberately absent: it is a starter template, not an extension.
+airdcpp-advanced-sharing
+airdcpp-auto-downloader
+airdcpp-message-emailer
+airdcpp-release-validator
+airdcpp-runscript-extension
+airdcpp-search-sites
+airdcpp-share-monitor
+airdcpp-user-commands
