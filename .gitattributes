@@ -2,3 +2,7 @@
 # for the signature, so their line endings must survive git untouched.
 *.tgz            binary
 out/**           -text
+# The deployed documents: the signature covers the exact LF bytes of catalog.json, and a
+# checkout must never rewrite what wrangler uploads.
+worker/public/**  -text
+*.sign            binary
