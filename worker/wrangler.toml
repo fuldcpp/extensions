@@ -6,13 +6,20 @@ name = "fuldc-extensions"
 compatibility_date = "2025-01-01"
 workers_dev = false
 
+# A tiny script in front of the assets: it answers the bare domain with a human-readable page
+# (the catalog is data, not a site, so "/" was a raw 404) and forwards every other path to the
+# assets untouched, so the catalog documents are still served byte-for-byte.
+main = "src/index.js"
+
 routes = [
   { pattern = "extensions.fuldcpp.net", custom_domain = true }
 ]
 
 [assets]
 directory = "./public"
-# Documents are served byte-for-byte at their exact paths: no .html games, no redirects,
-# a plain 404 for anything else. The signature covers the exact bytes of catalog.json.
+# Bound to the script so it can forward non-root requests here. Documents are served
+# byte-for-byte at their exact paths: no .html games, no redirects, a plain 404 for anything
+# else. The signature covers the exact bytes of catalog.json.
+binding = "ASSETS"
 html_handling = "none"
 not_found_handling = "none"
