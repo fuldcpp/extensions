@@ -1,0 +1,24 @@
+{
+    "_id":  "airdcpp-tiny-fileserver@0.0.11-beta",
+    "name":  "airdcpp-tiny-fileserver",
+    "version":  "0.0.11-beta",
+    "description":  "Local-only (127.0.0.1) static file server for .tgz extension tarballs, so AirDC++\u0027s \"Install extensions from URL\" feature can be pointed at a folder on this machine instead of a remote host.",
+    "author":  {
+                   "name":  "ShareFixxers"
+               },
+    "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-tiny-fileserver",
+    "license":  "MIT",
+    "_npmUser":  {
+                     "name":  "Sopor"
+                 },
+    "airdcpp":  {
+                    "apiVersion":  1,
+                    "minApiFeatureLevel":  0
+                },
+    "dist":  {
+                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-tiny-fileserver-v0.0.11-beta/airdcpp-tiny-fileserver-0.0.11-beta.tgz",
+                 "shasum":  "6052b21a22fa3f6150dfdbbe65c4fb23de9bfe82",
+                 "integrity":  "sha512-bMnbo1zR5wVAz3N8qE0/AGSKNgiziniftQBZEUr8WJvbnkWHXFrAKIHyHTXY+eypfZ2wnDd/4VB+c7FCGwHXoQ==",
+                 "size":  47175
+             }
+}

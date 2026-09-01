@@ -1,0 +1,19 @@
+{
+    "name":  "airdcpp-tiny-fileserver",
+    "dist-tags":  {
+                      "latest":  "0.0.11-beta"
+                  },
+    "modified":  "2026-09-01T19:21:53Z",
+    "versions":  {
+                     "0.0.11-beta":  {
+                                         "name":  "airdcpp-tiny-fileserver",
+                                         "version":  "0.0.11-beta",
+                                         "dist":  {
+                                                      "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-tiny-fileserver-v0.0.11-beta/airdcpp-tiny-fileserver-0.0.11-beta.tgz",
+                                                      "shasum":  "6052b21a22fa3f6150dfdbbe65c4fb23de9bfe82",
+                                                      "integrity":  "sha512-bMnbo1zR5wVAz3N8qE0/AGSKNgiziniftQBZEUr8WJvbnkWHXFrAKIHyHTXY+eypfZ2wnDd/4VB+c7FCGwHXoQ==",
+                                                      "size":  47175
+                                                  }
+                                     }
+                 }
+}

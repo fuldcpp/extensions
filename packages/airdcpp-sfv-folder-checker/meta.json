@@ -1,9 +1,9 @@
 {
   "publisher": "Sopor",
-  "homepage": "https://github.com/Sopor/airdcpp-extensions/tree/master/airdcpp-sfv-folder-checker",
+  "homepage": "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-sfv-folder-checker",
   "repository": "https://github.com/Sopor/airdcpp-extensions",
-  "date": "2026-08-25T21:27:54Z",
-  "source": "https://github.com/Sopor/airdcpp-extensions/raw/master/airdcpp-sfv-folder-checker/airdcpp-sfv-folder-checker-1.2.0-beta.tgz",
+  "date": "2026-08-29T09:44:07Z",
+  "source": "https://github.com/Sopor/airdcpp-extensions/raw/2d8203d1281a1288e65962680594b3451aa74861/airdcpp-sfv-folder-checker/airdcpp-sfv-folder-checker-1.2.3-beta.tgz",
   "upstream": "github",
   "repacked": "private flag removed from package.json so the catalog can offer updates; every other byte of the package is unchanged"
 }

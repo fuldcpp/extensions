@@ -112,16 +112,16 @@
                     {
                         "package":  {
                                         "name":  "airdcpp-release-fixxer",
-                                        "version":  "1.2.0-beta",
+                                        "version":  "1.2.5-beta",
                                         "description":  "Scans downloaded and shared release directories for missing/extra files (CRC/SFV/NFO) and automatically redownloads what\u0027s broken or missing. Fork of the official airdcpp-release-validator.",
                                         "author":  "ShareFixxers",
                                         "publisher":  {
                                                           "username":  "Sopor"
                                                       },
-                                        "date":  "2026-08-25T21:43:05Z",
-                                        "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/master/airdcpp-release-fixxer",
+                                        "date":  "2026-08-30T16:40:50Z",
+                                        "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-release-fixxer",
                                         "links":  {
-                                                      "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/master/airdcpp-release-fixxer",
+                                                      "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-release-fixxer",
                                                       "repository":  "https://github.com/Sopor/airdcpp-extensions"
                                                   },
                                         "keywords":  [
@@ -137,10 +137,10 @@
                                                         "minApiFeatureLevel":  4
                                                     },
                                         "dist":  {
-                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-release-fixxer-v1.2.0-beta/airdcpp-release-fixxer-1.2.0-beta.tgz",
-                                                     "shasum":  "a127a5e53cf55e373b49f3564937f267dd74588f",
-                                                     "integrity":  "sha512-X9HCEpCYHfDymrYMuJw+j03gIvK9R9rMHkbGbXsdkhxQL1pk1jp0Ndyh8Sxfg7KjEQvBcNtoXuOhbpliv+BMIg==",
-                                                     "size":  88912
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-release-fixxer-v1.2.5-beta/airdcpp-release-fixxer-1.2.5-beta.tgz",
+                                                     "shasum":  "4a38cbc32799587b3059e26d8630e056c681819b",
+                                                     "integrity":  "sha512-chjD7Nr1S1f8gdgdHYC12l6edWKub3LdfJX5yoniVP71+0eAdlvTZDqZldTAFKxi9qZWEDlkZo4KHD4jNCw3Iw==",
+                                                     "size":  234378
                                                  }
                                     }
                     },
@@ -219,16 +219,16 @@
                     {
                         "package":  {
                                         "name":  "airdcpp-sample-proof-checker",
-                                        "version":  "1.2.0-beta",
+                                        "version":  "1.2.1-beta",
                                         "description":  "Checks release folders for missing Sample (with mkv) or Proof subfolders, and searches/redownloads just that subfolder if needed.",
                                         "author":  "ShareFixxers",
                                         "publisher":  {
                                                           "username":  "Sopor"
                                                       },
-                                        "date":  "2026-08-25T21:27:54Z",
-                                        "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/master/airdcpp-sample-proof-checker",
+                                        "date":  "2026-08-29T09:44:07Z",
+                                        "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-sample-proof-checker",
                                         "links":  {
-                                                      "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/master/airdcpp-sample-proof-checker",
+                                                      "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-sample-proof-checker",
                                                       "repository":  "https://github.com/Sopor/airdcpp-extensions"
                                                   },
                                         "keywords":  [
@@ -244,10 +244,10 @@
                                                         "minApiFeatureLevel":  4
                                                     },
                                         "dist":  {
-                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sample-proof-checker-v1.2.0-beta/airdcpp-sample-proof-checker-1.2.0-beta.tgz",
-                                                     "shasum":  "e044653e0258b41f08380cada74517433130baff",
-                                                     "integrity":  "sha512-IUOLTfXEIhi0i0kO9k1Co6wwf/07B+ThQ84R+aQs7ujWd/V+u/ZRmCHl2//uz8BbQG2sfMDcuNwi4sZIEjivwg==",
-                                                     "size":  41795
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sample-proof-checker-v1.2.1-beta/airdcpp-sample-proof-checker-1.2.1-beta.tgz",
+                                                     "shasum":  "85bbb506cd9d5f6dddc15bedf699e9db33a17c45",
+                                                     "integrity":  "sha512-IWbcBzzZLLvwbkddSnNKOOodl+DoqHP3J1TDED0nTeReuyoTnzTb0G90TD1778/p5OuZkLXnryM3lCNJUC+enQ==",
+                                                     "size":  41083
                                                  }
                                     }
                     },
@@ -290,16 +290,16 @@
                     {
                         "package":  {
                                         "name":  "airdcpp-sfv-folder-checker",
-                                        "version":  "1.2.0-beta",
+                                        "version":  "1.2.3-beta",
                                         "description":  "Hub command /sfvcheck \u003cfolder\u003e that recursively checks a folder for .sfv files and compares their CRC32 against the real files on disk. Works together with airdcpp-release-fixxer.",
                                         "author":  "ShareFixxers",
                                         "publisher":  {
                                                           "username":  "Sopor"
                                                       },
-                                        "date":  "2026-08-25T21:27:54Z",
-                                        "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/master/airdcpp-sfv-folder-checker",
+                                        "date":  "2026-08-29T09:44:07Z",
+                                        "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-sfv-folder-checker",
                                         "links":  {
-                                                      "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/master/airdcpp-sfv-folder-checker",
+                                                      "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-sfv-folder-checker",
                                                       "repository":  "https://github.com/Sopor/airdcpp-extensions"
                                                   },
                                         "keywords":  [
@@ -315,26 +315,26 @@
                                                         "minApiFeatureLevel":  0
                                                     },
                                         "dist":  {
-                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sfv-folder-checker-v1.2.0-beta/airdcpp-sfv-folder-checker-1.2.0-beta.tgz",
-                                                     "shasum":  "70258ad64cbe51de2e5e9b86a6b66d5ec05ac52b",
-                                                     "integrity":  "sha512-wL2KhuzI+DUqqXLqzVd1xMMT+ekYkhAa6GqMkCTaZK/cuJpPaYmGIIazt8IlvPau8L4yCItPJKDi8/pHyG6x4g==",
-                                                     "size":  44642
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sfv-folder-checker-v1.2.3-beta/airdcpp-sfv-folder-checker-1.2.3-beta.tgz",
+                                                     "shasum":  "2424f070cb01c41aedbfb3105d35324a3dbb334e",
+                                                     "integrity":  "sha512-It9em6hj6sdpRDSHzhY5M/FFdf720/J7hwtcb/VSfCLuO/W8X5znmaualu6XNjeCbwC1FsL7hhDFJELv5x75Rw==",
+                                                     "size":  44313
                                                  }
                                     }
                     },
                     {
                         "package":  {
                                         "name":  "airdcpp-share-backup",
-                                        "version":  "0.0.9-beta",
-                                        "description":  "Hub command /sharebackup [path] that saves a self-verified bzip2-compressed XML snapshot of your own share (folder names, file names, sizes, TTH) to a local backup file, named \u003cnick\u003e.\u003cCID\u003e.xml.bz2 (the same naming AirDC++ uses for its own filelists) inside a YYYY-MM-DD subfolder. Uses the stateless Share API (real paths). Can run automatically on configurable days, with automatic cleanup of old backups.",
+                                        "version":  "0.1.9-beta",
+                                        "description":  "Hub command /sharebackup [path] that saves a self-verified snapshot of your own share (folder names, file names, sizes, TTH) to a local backup file, with optional bz2 compression.",
                                         "author":  "ShareFixxers",
                                         "publisher":  {
                                                           "username":  "Sopor"
                                                       },
-                                        "date":  "2026-08-25T19:37:58Z",
-                                        "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/master/airdcpp-share-backup",
+                                        "date":  "2026-08-29T13:39:32Z",
+                                        "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-share-backup",
                                         "links":  {
-                                                      "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/master/airdcpp-share-backup",
+                                                      "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-share-backup",
                                                       "repository":  "https://github.com/Sopor/airdcpp-extensions"
                                                   },
                                         "keywords":  [
@@ -350,10 +350,10 @@
                                                         "minApiFeatureLevel":  9
                                                     },
                                         "dist":  {
-                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-share-backup-v0.0.9-beta/airdcpp-share-backup-0.0.9-beta.tgz",
-                                                     "shasum":  "376b396abac90515e1c51eb49f5f39e30a298600",
-                                                     "integrity":  "sha512-95aYj+Plo1ZX2zAl26MsPIrJczBagBxZOrqc011yE3TXgdGflvzTNZ3cCEUDUcUCummkHdRb04hE4vl8+D5vxA==",
-                                                     "size":  65961
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-share-backup-v0.1.9-beta/airdcpp-share-backup-0.1.9-beta.tgz",
+                                                     "shasum":  "c0ce40f134bf2d5d62da8c1900289a5539e5522c",
+                                                     "integrity":  "sha512-pcozmsSFIC6pvXuXFpbQW3LVY1BQ0pOXpi5qny8LFptF5CjUXeFiBOgHAAzjiP/JUTgLY2Z+7yRYTRjqjZnn0g==",
+                                                     "size":  66983
                                                  }
                                     }
                     },
@@ -395,6 +395,41 @@
                     },
                     {
                         "package":  {
+                                        "name":  "airdcpp-tiny-fileserver",
+                                        "version":  "0.0.11-beta",
+                                        "description":  "Local-only (127.0.0.1) static file server for .tgz extension tarballs, so AirDC++\u0027s \"Install extensions from URL\" feature can be pointed at a folder on this machine instead of a remote host.",
+                                        "author":  "ShareFixxers",
+                                        "publisher":  {
+                                                          "username":  "Sopor"
+                                                      },
+                                        "date":  "2026-09-01T19:21:53Z",
+                                        "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-tiny-fileserver",
+                                        "links":  {
+                                                      "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-tiny-fileserver",
+                                                      "repository":  "https://github.com/Sopor/airdcpp-extensions"
+                                                  },
+                                        "keywords":  [
+                                                         "airdcpp-extensions",
+                                                         "airdcpp-extensions-public"
+                                                     ],
+                                        "license":  "MIT",
+                                        "engines":  [
+
+                                                    ],
+                                        "airdcpp":  {
+                                                        "apiVersion":  1,
+                                                        "minApiFeatureLevel":  0
+                                                    },
+                                        "dist":  {
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-tiny-fileserver-v0.0.11-beta/airdcpp-tiny-fileserver-0.0.11-beta.tgz",
+                                                     "shasum":  "6052b21a22fa3f6150dfdbbe65c4fb23de9bfe82",
+                                                     "integrity":  "sha512-bMnbo1zR5wVAz3N8qE0/AGSKNgiziniftQBZEUr8WJvbnkWHXFrAKIHyHTXY+eypfZ2wnDd/4VB+c7FCGwHXoQ==",
+                                                     "size":  47175
+                                                 }
+                                    }
+                    },
+                    {
+                        "package":  {
                                         "name":  "airdcpp-user-commands",
                                         "version":  "2.2.2",
                                         "description":  "Extension to run commands from chat to output information or trigger actions. See /help for a full list",
@@ -430,6 +465,6 @@
                                     }
                     }
                 ],
-    "total":  12,
-    "time":  "2026-08-25T21:43:05Z"
+    "total":  13,
+    "time":  "2026-09-01T19:21:53Z"
 }

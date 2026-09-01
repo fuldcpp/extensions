@@ -1,18 +1,18 @@
 {
     "name":  "airdcpp-sfv-folder-checker",
     "dist-tags":  {
-                      "latest":  "1.2.0-beta"
+                      "latest":  "1.2.3-beta"
                   },
-    "modified":  "2026-08-25T21:27:54Z",
+    "modified":  "2026-08-29T09:44:07Z",
     "versions":  {
-                     "1.2.0-beta":  {
+                     "1.2.3-beta":  {
                                         "name":  "airdcpp-sfv-folder-checker",
-                                        "version":  "1.2.0-beta",
+                                        "version":  "1.2.3-beta",
                                         "dist":  {
-                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sfv-folder-checker-v1.2.0-beta/airdcpp-sfv-folder-checker-1.2.0-beta.tgz",
-                                                     "shasum":  "70258ad64cbe51de2e5e9b86a6b66d5ec05ac52b",
-                                                     "integrity":  "sha512-wL2KhuzI+DUqqXLqzVd1xMMT+ekYkhAa6GqMkCTaZK/cuJpPaYmGIIazt8IlvPau8L4yCItPJKDi8/pHyG6x4g==",
-                                                     "size":  44642
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sfv-folder-checker-v1.2.3-beta/airdcpp-sfv-folder-checker-1.2.3-beta.tgz",
+                                                     "shasum":  "2424f070cb01c41aedbfb3105d35324a3dbb334e",
+                                                     "integrity":  "sha512-It9em6hj6sdpRDSHzhY5M/FFdf720/J7hwtcb/VSfCLuO/W8X5znmaualu6XNjeCbwC1FsL7hhDFJELv5x75Rw==",
+                                                     "size":  44313
                                                  }
                                     }
                  }
