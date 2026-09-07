@@ -2,8 +2,8 @@
   "publisher": "Sopor",
   "homepage": "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-tiny-fileserver",
   "repository": "https://github.com/Sopor/airdcpp-extensions",
-  "date": "2026-09-01T19:21:53Z",
-  "source": "https://github.com/Sopor/airdcpp-extensions/raw/2d8203d1281a1288e65962680594b3451aa74861/airdcpp-tiny-fileserver/airdcpp-tiny-fileserver-0.0.11-beta.tgz",
+  "date": "2026-09-04T13:49:00Z",
+  "source": "https://github.com/Sopor/airdcpp-extensions/raw/adc829c6c9f9d7625bb3c6ab38f0cd5eddc96091/airdcpp-tiny-fileserver/airdcpp-tiny-fileserver-0.0.13-beta.tgz",
   "upstream": "github",
   "repacked": "private flag removed from package.json so the catalog can offer updates; every other byte of the package is unchanged"
 }

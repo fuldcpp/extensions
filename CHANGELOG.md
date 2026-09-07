@@ -4,6 +4,24 @@ Changes to the extension catalog served at https://extensions.fuldcpp.net/. The 
 based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions are catalog
 publishing dates, since the catalog itself has no version number.
 
+## [2026-09-07]
+
+### Changed
+- Refreshed three of the five Sopor packages against upstream
+  (github.com/Sopor/airdcpp-extensions, commit `adc829c6`):
+  - `airdcpp-release-fixxer` 1.2.5-beta to 1.2.7-beta: drops the "Log actions to the system
+    log" and "Ignore files/directories that are excluded from share" settings (the actions are
+    now always logged, excluded content is never skipped, both matching the old defaults), and
+    shortens the incomplete-release setting's title so it stops being cut off in the Settings
+    dialog
+  - `airdcpp-sample-proof-checker` 1.2.1-beta to 1.2.4-beta: adds a queue context-menu item for
+    checking a single bundle, and stops retrying a Sample/Proof redownload once the release
+    folder is gone
+  - `airdcpp-tiny-fileserver` 0.0.11-beta to 0.0.13-beta: waits 5 s between consecutive
+    automatic installs, and raises the lowest configurable port from 1024 to 1025
+- `airdcpp-sfv-folder-checker` and `airdcpp-share-backup` are unchanged: upstream still carries
+  the exact bytes we mirrored on 2026-09-01
+
 ## [2026-09-01]
 
 ### Added

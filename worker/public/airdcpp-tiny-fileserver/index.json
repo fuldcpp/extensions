@@ -1,18 +1,18 @@
 {
     "name":  "airdcpp-tiny-fileserver",
     "dist-tags":  {
-                      "latest":  "0.0.11-beta"
+                      "latest":  "0.0.13-beta"
                   },
-    "modified":  "2026-09-01T19:21:53Z",
+    "modified":  "2026-09-04T13:49:00Z",
     "versions":  {
-                     "0.0.11-beta":  {
+                     "0.0.13-beta":  {
                                          "name":  "airdcpp-tiny-fileserver",
-                                         "version":  "0.0.11-beta",
+                                         "version":  "0.0.13-beta",
                                          "dist":  {
-                                                      "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-tiny-fileserver-v0.0.11-beta/airdcpp-tiny-fileserver-0.0.11-beta.tgz",
-                                                      "shasum":  "6052b21a22fa3f6150dfdbbe65c4fb23de9bfe82",
-                                                      "integrity":  "sha512-bMnbo1zR5wVAz3N8qE0/AGSKNgiziniftQBZEUr8WJvbnkWHXFrAKIHyHTXY+eypfZ2wnDd/4VB+c7FCGwHXoQ==",
-                                                      "size":  47175
+                                                      "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-tiny-fileserver-v0.0.13-beta/airdcpp-tiny-fileserver-0.0.13-beta.tgz",
+                                                      "shasum":  "9871e8cd9fd62ae2e2bad73092964128d6f223ae",
+                                                      "integrity":  "sha512-41Xd48yOPmtSaaDdK9S9aCqOnHBXqKuIC8hLFvQtdH81tBrjewOQkb5bCvskfKZBb86BpXK75HKcfFc3j+bS1A==",
+                                                      "size":  47917
                                                   }
                                      }
                  }

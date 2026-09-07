@@ -112,13 +112,13 @@
                     {
                         "package":  {
                                         "name":  "airdcpp-release-fixxer",
-                                        "version":  "1.2.5-beta",
+                                        "version":  "1.2.7-beta",
                                         "description":  "Scans downloaded and shared release directories for missing/extra files (CRC/SFV/NFO) and automatically redownloads what\u0027s broken or missing. Fork of the official airdcpp-release-validator.",
                                         "author":  "ShareFixxers",
                                         "publisher":  {
                                                           "username":  "Sopor"
                                                       },
-                                        "date":  "2026-08-30T16:40:50Z",
+                                        "date":  "2026-09-05T00:22:27Z",
                                         "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-release-fixxer",
                                         "links":  {
                                                       "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-release-fixxer",
@@ -137,10 +137,10 @@
                                                         "minApiFeatureLevel":  4
                                                     },
                                         "dist":  {
-                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-release-fixxer-v1.2.5-beta/airdcpp-release-fixxer-1.2.5-beta.tgz",
-                                                     "shasum":  "4a38cbc32799587b3059e26d8630e056c681819b",
-                                                     "integrity":  "sha512-chjD7Nr1S1f8gdgdHYC12l6edWKub3LdfJX5yoniVP71+0eAdlvTZDqZldTAFKxi9qZWEDlkZo4KHD4jNCw3Iw==",
-                                                     "size":  234378
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-release-fixxer-v1.2.7-beta/airdcpp-release-fixxer-1.2.7-beta.tgz",
+                                                     "shasum":  "02ad0d9600a80be148a3a2e9e7714f8ada867c1c",
+                                                     "integrity":  "sha512-p7UVVrSNAVEl5cJTOM4EzZwAzF9U+Ne+OtViuxjemBzbE83qDpBLzH1ittPSYdBovW5Y7OLqw32LngbdBlk/Cw==",
+                                                     "size":  233493
                                                  }
                                     }
                     },
@@ -219,13 +219,13 @@
                     {
                         "package":  {
                                         "name":  "airdcpp-sample-proof-checker",
-                                        "version":  "1.2.1-beta",
+                                        "version":  "1.2.4-beta",
                                         "description":  "Checks release folders for missing Sample (with mkv) or Proof subfolders, and searches/redownloads just that subfolder if needed.",
                                         "author":  "ShareFixxers",
                                         "publisher":  {
                                                           "username":  "Sopor"
                                                       },
-                                        "date":  "2026-08-29T09:44:07Z",
+                                        "date":  "2026-09-04T13:49:00Z",
                                         "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-sample-proof-checker",
                                         "links":  {
                                                       "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-sample-proof-checker",
@@ -244,10 +244,10 @@
                                                         "minApiFeatureLevel":  4
                                                     },
                                         "dist":  {
-                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sample-proof-checker-v1.2.1-beta/airdcpp-sample-proof-checker-1.2.1-beta.tgz",
-                                                     "shasum":  "85bbb506cd9d5f6dddc15bedf699e9db33a17c45",
-                                                     "integrity":  "sha512-IWbcBzzZLLvwbkddSnNKOOodl+DoqHP3J1TDED0nTeReuyoTnzTb0G90TD1778/p5OuZkLXnryM3lCNJUC+enQ==",
-                                                     "size":  41083
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sample-proof-checker-v1.2.4-beta/airdcpp-sample-proof-checker-1.2.4-beta.tgz",
+                                                     "shasum":  "80d659000cefd61916bbc156b3c7430245c355a7",
+                                                     "integrity":  "sha512-wa3MeVWDO5qbglZZfOTuhfBn9oQDoG3vfUqx/KC+0dN7vpqcT6FoOcdJo2RdwSaOdwtETs6rNs240St7lrZalg==",
+                                                     "size":  41247
                                                  }
                                     }
                     },
@@ -396,13 +396,13 @@
                     {
                         "package":  {
                                         "name":  "airdcpp-tiny-fileserver",
-                                        "version":  "0.0.11-beta",
+                                        "version":  "0.0.13-beta",
                                         "description":  "Local-only (127.0.0.1) static file server for .tgz extension tarballs, so AirDC++\u0027s \"Install extensions from URL\" feature can be pointed at a folder on this machine instead of a remote host.",
                                         "author":  "ShareFixxers",
                                         "publisher":  {
                                                           "username":  "Sopor"
                                                       },
-                                        "date":  "2026-09-01T19:21:53Z",
+                                        "date":  "2026-09-04T13:49:00Z",
                                         "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-tiny-fileserver",
                                         "links":  {
                                                       "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-tiny-fileserver",
@@ -421,10 +421,10 @@
                                                         "minApiFeatureLevel":  0
                                                     },
                                         "dist":  {
-                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-tiny-fileserver-v0.0.11-beta/airdcpp-tiny-fileserver-0.0.11-beta.tgz",
-                                                     "shasum":  "6052b21a22fa3f6150dfdbbe65c4fb23de9bfe82",
-                                                     "integrity":  "sha512-bMnbo1zR5wVAz3N8qE0/AGSKNgiziniftQBZEUr8WJvbnkWHXFrAKIHyHTXY+eypfZ2wnDd/4VB+c7FCGwHXoQ==",
-                                                     "size":  47175
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-tiny-fileserver-v0.0.13-beta/airdcpp-tiny-fileserver-0.0.13-beta.tgz",
+                                                     "shasum":  "9871e8cd9fd62ae2e2bad73092964128d6f223ae",
+                                                     "integrity":  "sha512-41Xd48yOPmtSaaDdK9S9aCqOnHBXqKuIC8hLFvQtdH81tBrjewOQkb5bCvskfKZBb86BpXK75HKcfFc3j+bS1A==",
+                                                     "size":  47917
                                                  }
                                     }
                     },
@@ -466,5 +466,5 @@
                     }
                 ],
     "total":  13,
-    "time":  "2026-09-01T19:21:53Z"
+    "time":  "2026-09-05T00:22:27Z"
 }

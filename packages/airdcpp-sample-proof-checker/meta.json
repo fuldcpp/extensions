@@ -2,8 +2,8 @@
   "publisher": "Sopor",
   "homepage": "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-sample-proof-checker",
   "repository": "https://github.com/Sopor/airdcpp-extensions",
-  "date": "2026-08-29T09:44:07Z",
-  "source": "https://github.com/Sopor/airdcpp-extensions/raw/2d8203d1281a1288e65962680594b3451aa74861/airdcpp-sample-proof-checker/airdcpp-sample-proof-checker-1.2.1-beta.tgz",
+  "date": "2026-09-04T13:49:00Z",
+  "source": "https://github.com/Sopor/airdcpp-extensions/raw/adc829c6c9f9d7625bb3c6ab38f0cd5eddc96091/airdcpp-sample-proof-checker/airdcpp-sample-proof-checker-1.2.4-beta.tgz",
   "upstream": "github",
   "repacked": "private flag removed from package.json so the catalog can offer updates; every other byte of the package is unchanged"
 }

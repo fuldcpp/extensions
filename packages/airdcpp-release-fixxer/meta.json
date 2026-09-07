@@ -2,8 +2,8 @@
   "publisher": "Sopor",
   "homepage": "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-release-fixxer",
   "repository": "https://github.com/Sopor/airdcpp-extensions",
-  "date": "2026-08-30T16:40:50Z",
-  "source": "https://github.com/Sopor/airdcpp-extensions/raw/2d8203d1281a1288e65962680594b3451aa74861/airdcpp-release-fixxer/airdcpp-release-fixxer-1.2.5-beta.tgz",
+  "date": "2026-09-05T00:22:27Z",
+  "source": "https://github.com/Sopor/airdcpp-extensions/raw/adc829c6c9f9d7625bb3c6ab38f0cd5eddc96091/airdcpp-release-fixxer/airdcpp-release-fixxer-1.2.7-beta.tgz",
   "upstream": "github",
   "repacked": "private flag removed from package.json so the catalog can offer updates; every other byte of the package is unchanged"
 }
