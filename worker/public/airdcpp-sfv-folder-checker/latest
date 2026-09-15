@@ -1,24 +1,24 @@
 {
-    "_id":  "airdcpp-sfv-folder-checker@1.2.3-beta",
+    "_id":  "airdcpp-sfv-folder-checker@1.2.9-beta",
     "name":  "airdcpp-sfv-folder-checker",
-    "version":  "1.2.3-beta",
+    "version":  "1.2.9-beta",
     "description":  "Hub command /sfvcheck \u003cfolder\u003e that recursively checks a folder for .sfv files and compares their CRC32 against the real files on disk. Works together with airdcpp-release-fixxer.",
     "author":  {
                    "name":  "ShareFixxers"
                },
-    "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-sfv-folder-checker",
+    "homepage":  "https://www.npmjs.com/package/airdcpp-sfv-folder-checker",
     "license":  "MIT",
     "_npmUser":  {
-                     "name":  "Sopor"
+                     "name":  "sopor"
                  },
     "airdcpp":  {
                     "apiVersion":  1,
                     "minApiFeatureLevel":  0
                 },
     "dist":  {
-                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sfv-folder-checker-v1.2.3-beta/airdcpp-sfv-folder-checker-1.2.3-beta.tgz",
-                 "shasum":  "2424f070cb01c41aedbfb3105d35324a3dbb334e",
-                 "integrity":  "sha512-It9em6hj6sdpRDSHzhY5M/FFdf720/J7hwtcb/VSfCLuO/W8X5znmaualu6XNjeCbwC1FsL7hhDFJELv5x75Rw==",
-                 "size":  44313
+                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sfv-folder-checker-v1.2.9-beta/airdcpp-sfv-folder-checker-1.2.9-beta.tgz",
+                 "shasum":  "a2fcc68dda8799d819062c86fe000e522400dc1e",
+                 "integrity":  "sha512-kce4pEPQi4lzxfhGCh2KwanDTbBZL6OseWt4/JfKiEv2KgSVLf6zWzWATZnxG16SCVw0nhGFQ8OzXaonD0HxLA==",
+                 "size":  46139
              }
 }

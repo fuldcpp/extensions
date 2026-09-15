@@ -1,19 +1,19 @@
 {
     "name":  "airdcpp-release-fixxer",
     "dist-tags":  {
-                      "latest":  "1.2.7-beta"
+                      "latest":  "1.2.20-beta"
                   },
-    "modified":  "2026-09-05T00:22:27Z",
+    "modified":  "2026-09-11T22:59:54.707Z",
     "versions":  {
-                     "1.2.7-beta":  {
-                                        "name":  "airdcpp-release-fixxer",
-                                        "version":  "1.2.7-beta",
-                                        "dist":  {
-                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-release-fixxer-v1.2.7-beta/airdcpp-release-fixxer-1.2.7-beta.tgz",
-                                                     "shasum":  "02ad0d9600a80be148a3a2e9e7714f8ada867c1c",
-                                                     "integrity":  "sha512-p7UVVrSNAVEl5cJTOM4EzZwAzF9U+Ne+OtViuxjemBzbE83qDpBLzH1ittPSYdBovW5Y7OLqw32LngbdBlk/Cw==",
-                                                     "size":  233493
-                                                 }
-                                    }
+                     "1.2.20-beta":  {
+                                         "name":  "airdcpp-release-fixxer",
+                                         "version":  "1.2.20-beta",
+                                         "dist":  {
+                                                      "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-release-fixxer-v1.2.20-beta/airdcpp-release-fixxer-1.2.20-beta.tgz",
+                                                      "shasum":  "4c39670b5a26ba4c0b5520a15fb4373dc9cf02d5",
+                                                      "integrity":  "sha512-wSpWD8m3E2Q6mx9WsYhvT9uA7Y5velyKMaGhoSKEJvF9btz8VqlQ+gPEq8V/Y4GwQEIlb8EIQ46WIBhPmRLgRA==",
+                                                      "size":  239576
+                                                  }
+                                     }
                  }
 }

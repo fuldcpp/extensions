@@ -1,19 +1,19 @@
 {
     "name":  "airdcpp-share-backup",
     "dist-tags":  {
-                      "latest":  "0.1.9-beta"
+                      "latest":  "1.0.5"
                   },
-    "modified":  "2026-08-29T13:39:32Z",
+    "modified":  "2026-09-13T21:33:56.634Z",
     "versions":  {
-                     "0.1.9-beta":  {
-                                        "name":  "airdcpp-share-backup",
-                                        "version":  "0.1.9-beta",
-                                        "dist":  {
-                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-share-backup-v0.1.9-beta/airdcpp-share-backup-0.1.9-beta.tgz",
-                                                     "shasum":  "c0ce40f134bf2d5d62da8c1900289a5539e5522c",
-                                                     "integrity":  "sha512-pcozmsSFIC6pvXuXFpbQW3LVY1BQ0pOXpi5qny8LFptF5CjUXeFiBOgHAAzjiP/JUTgLY2Z+7yRYTRjqjZnn0g==",
-                                                     "size":  66983
-                                                 }
-                                    }
+                     "1.0.5":  {
+                                   "name":  "airdcpp-share-backup",
+                                   "version":  "1.0.5",
+                                   "dist":  {
+                                                "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-share-backup-v1.0.5/airdcpp-share-backup-1.0.5.tgz",
+                                                "shasum":  "3310b4c94473c58d2ca8d53687a303880e95c956",
+                                                "integrity":  "sha512-cesf6jJ3YAn5eDEgQLW+huaRlNkzJXL/FJ5EaVphoqoqdfPt5ToQK+xAUqVVZa6X9cYzTEKg5zwbbPqTR/5vEw==",
+                                                "size":  66522
+                                            }
+                               }
                  }
 }

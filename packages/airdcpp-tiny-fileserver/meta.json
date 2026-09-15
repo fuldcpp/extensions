@@ -1,7 +1,7 @@
 {
   "publisher": "Sopor",
-  "homepage": "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-tiny-fileserver",
-  "repository": "https://github.com/Sopor/airdcpp-extensions",
+  "homepage": "https://github.com/fuldcpp/extensions/releases/tag/airdcpp-tiny-fileserver-v0.0.13-beta",
+  "repository": "https://github.com/fuldcpp/extensions/releases/tag/airdcpp-tiny-fileserver-v0.0.13-beta",
   "date": "2026-09-04T13:49:00Z",
   "source": "https://github.com/Sopor/airdcpp-extensions/raw/adc829c6c9f9d7625bb3c6ab38f0cd5eddc96091/airdcpp-tiny-fileserver/airdcpp-tiny-fileserver-0.0.13-beta.tgz",
   "upstream": "github",

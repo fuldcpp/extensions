@@ -75,6 +75,6 @@ Invoke-Pester .\tests
 ## Licences
 
 Each package carries its own licence inside the tarball (`license` in `package.json`, shown
-in the catalog). The packages mirrored from npm are MIT; the ones from
-[Sopor/airdcpp-extensions](https://github.com/Sopor/airdcpp-extensions) are MIT as well.
+in the catalog). The packages mirrored from npm are MIT, and so is `airdcpp-tiny-fileserver`,
+kept from the now-deleted Sopor/airdcpp-extensions repository.
 The scripts in this repository are GPL-3.0-or-later, like FulDC++ itself.

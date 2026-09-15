@@ -3,8 +3,12 @@
 airdcpp-advanced-sharing
 airdcpp-auto-downloader
 airdcpp-message-emailer
+airdcpp-release-fixxer
 airdcpp-release-validator
 airdcpp-runscript-extension
+airdcpp-sample-proof-checker
 airdcpp-search-sites
+airdcpp-sfv-folder-checker
+airdcpp-share-backup
 airdcpp-share-monitor
 airdcpp-user-commands

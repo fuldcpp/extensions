@@ -1,9 +1,8 @@
 {
-  "publisher": "Sopor",
-  "homepage": "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-sample-proof-checker",
-  "repository": "https://github.com/Sopor/airdcpp-extensions",
-  "date": "2026-09-04T13:49:00Z",
-  "source": "https://github.com/Sopor/airdcpp-extensions/raw/adc829c6c9f9d7625bb3c6ab38f0cd5eddc96091/airdcpp-sample-proof-checker/airdcpp-sample-proof-checker-1.2.4-beta.tgz",
-  "upstream": "github",
-  "repacked": "private flag removed from package.json so the catalog can offer updates; every other byte of the package is unchanged"
+  "publisher": "sopor",
+  "homepage": "https://www.npmjs.com/package/airdcpp-sample-proof-checker",
+  "repository": "https://www.npmjs.com/package/airdcpp-sample-proof-checker",
+  "date": "2026-09-13T21:59:48.026Z",
+  "source": "https://registry.npmjs.org/airdcpp-sample-proof-checker/-/airdcpp-sample-proof-checker-1.2.23-beta.tgz",
+  "upstream": "npm"
 }

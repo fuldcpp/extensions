@@ -4,6 +4,36 @@ Changes to the extension catalog served at https://extensions.fuldcpp.net/. The 
 based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions are catalog
 publishing dates, since the catalog itself has no version number.
 
+## [2026-09-15]
+
+### Changed
+- Sopor's packages are now published on npm (as `sopor`, source under github.com/sharefixxers)
+  and the old github.com/Sopor/airdcpp-extensions repository is gone. Four of them move to
+  `npm-mirror.txt` and are taken byte-for-byte from the registry; npm ships them with
+  `private: false`, so they are no longer repacked:
+  - `airdcpp-release-fixxer` 1.2.7-beta to 1.2.20-beta: `/rvalidator accept|unaccept <path>`
+    exempts a folder from every check, a queue context-menu item accepts a bundle stuck in
+    failed validation and shares it through the native `skip_validation` call,
+    `/rvalidator help` answers again, and the "no SFV" exemption patterns get a non-empty
+    default (fresh installs only)
+  - `airdcpp-sample-proof-checker` 1.2.4-beta to 1.2.23-beta: any recognised video file (not
+    only mkv) counts as the Sample's content, and `<command> help` shows usage instead of
+    being treated as a path
+  - `airdcpp-sfv-folder-checker` 1.2.3-beta to 1.2.9-beta: `/sfvcheck help` shows usage
+    instead of looking for a folder named `help`; help text is one command per line
+  - `airdcpp-share-backup` 0.1.9-beta to 1.0.5, now at github.com/sharefixxers/airdcpp-share-backup:
+    help replies in the window it was typed in, `/sharebackup help` works, and the version in
+    the startup log and the backup's Generator attribute is correct again. This is a major
+    version step, so installed copies are told an update exists but are not updated
+    automatically
+- `airdcpp-tiny-fileserver` stays at 0.0.13-beta: it was not republished and its upstream
+  source no longer exists, so its links now point at the release here
+- Nothing changed in what the packages can reach: old and new builds require the same Node
+  modules, and none of them spawns processes, listens on a port or contacts a new host
+- `airdcpp-dns-leak-test` (new on npm) is not added: it is marked as under development, has no
+  source repository, sends the machine's address to ipleak.net on every start by default, and
+  fails on its own error path
+
 ## [2026-09-07]
 
 ### Changed

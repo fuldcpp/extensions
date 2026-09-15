@@ -6,7 +6,7 @@
     "author":  {
                    "name":  "ShareFixxers"
                },
-    "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-tiny-fileserver",
+    "homepage":  "https://github.com/fuldcpp/extensions/releases/tag/airdcpp-tiny-fileserver-v0.0.13-beta",
     "license":  "MIT",
     "_npmUser":  {
                      "name":  "Sopor"

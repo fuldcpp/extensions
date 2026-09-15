@@ -1,24 +1,24 @@
 {
-    "_id":  "airdcpp-share-backup@0.1.9-beta",
+    "_id":  "airdcpp-share-backup@1.0.5",
     "name":  "airdcpp-share-backup",
-    "version":  "0.1.9-beta",
+    "version":  "1.0.5",
     "description":  "Hub command /sharebackup [path] that saves a self-verified snapshot of your own share (folder names, file names, sizes, TTH) to a local backup file, with optional bz2 compression.",
     "author":  {
                    "name":  "ShareFixxers"
                },
-    "homepage":  "https://github.com/Sopor/airdcpp-extensions/tree/main/airdcpp-share-backup",
+    "homepage":  "https://github.com/sharefixxers/airdcpp-share-backup#readme",
     "license":  "MIT",
     "_npmUser":  {
-                     "name":  "Sopor"
+                     "name":  "sopor"
                  },
     "airdcpp":  {
                     "apiVersion":  1,
                     "minApiFeatureLevel":  9
                 },
     "dist":  {
-                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-share-backup-v0.1.9-beta/airdcpp-share-backup-0.1.9-beta.tgz",
-                 "shasum":  "c0ce40f134bf2d5d62da8c1900289a5539e5522c",
-                 "integrity":  "sha512-pcozmsSFIC6pvXuXFpbQW3LVY1BQ0pOXpi5qny8LFptF5CjUXeFiBOgHAAzjiP/JUTgLY2Z+7yRYTRjqjZnn0g==",
-                 "size":  66983
+                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-share-backup-v1.0.5/airdcpp-share-backup-1.0.5.tgz",
+                 "shasum":  "3310b4c94473c58d2ca8d53687a303880e95c956",
+                 "integrity":  "sha512-cesf6jJ3YAn5eDEgQLW+huaRlNkzJXL/FJ5EaVphoqoqdfPt5ToQK+xAUqVVZa6X9cYzTEKg5zwbbPqTR/5vEw==",
+                 "size":  66522
              }
 }
