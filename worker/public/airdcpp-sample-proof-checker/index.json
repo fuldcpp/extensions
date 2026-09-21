@@ -1,19 +1,19 @@
 {
     "name":  "airdcpp-sample-proof-checker",
     "dist-tags":  {
-                      "latest":  "1.2.23-beta"
+                      "latest":  "1.3.3-beta"
                   },
-    "modified":  "2026-09-13T21:59:48.026Z",
+    "modified":  "2026-09-20T20:18:52.253Z",
     "versions":  {
-                     "1.2.23-beta":  {
-                                         "name":  "airdcpp-sample-proof-checker",
-                                         "version":  "1.2.23-beta",
-                                         "dist":  {
-                                                      "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sample-proof-checker-v1.2.23-beta/airdcpp-sample-proof-checker-1.2.23-beta.tgz",
-                                                      "shasum":  "450ccd5865a3f01aa47a6db87ce0c30eeefebfce",
-                                                      "integrity":  "sha512-0IIsOpePHrt23zRX7yr47X6z1Pu9joD8mbJrFuHPzAy+aJMgZm1ErNC7YMGEYcOhuKMeu0mLs0FHuSlPdSO5fw==",
-                                                      "size":  43976
-                                                  }
-                                     }
+                     "1.3.3-beta":  {
+                                        "name":  "airdcpp-sample-proof-checker",
+                                        "version":  "1.3.3-beta",
+                                        "dist":  {
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sample-proof-checker-v1.3.3-beta/airdcpp-sample-proof-checker-1.3.3-beta.tgz",
+                                                     "shasum":  "c874e17ebcbb60bf58d6df77daa4fde0368426bb",
+                                                     "integrity":  "sha512-WV+znY1RXL/WDp4A+NRUsJE6YXqIH0VckCIjI0incgY1PVXoPABEUxDwEAWHApui88n3vYt7/eVVGZBpwZvmQA==",
+                                                     "size":  45178
+                                                 }
+                                    }
                  }
 }

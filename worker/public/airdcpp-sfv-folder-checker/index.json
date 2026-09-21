@@ -1,19 +1,19 @@
 {
     "name":  "airdcpp-sfv-folder-checker",
     "dist-tags":  {
-                      "latest":  "1.2.9-beta"
+                      "latest":  "1.2.15-beta"
                   },
-    "modified":  "2026-09-10T17:11:39.467Z",
+    "modified":  "2026-09-16T19:55:14.857Z",
     "versions":  {
-                     "1.2.9-beta":  {
-                                        "name":  "airdcpp-sfv-folder-checker",
-                                        "version":  "1.2.9-beta",
-                                        "dist":  {
-                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sfv-folder-checker-v1.2.9-beta/airdcpp-sfv-folder-checker-1.2.9-beta.tgz",
-                                                     "shasum":  "a2fcc68dda8799d819062c86fe000e522400dc1e",
-                                                     "integrity":  "sha512-kce4pEPQi4lzxfhGCh2KwanDTbBZL6OseWt4/JfKiEv2KgSVLf6zWzWATZnxG16SCVw0nhGFQ8OzXaonD0HxLA==",
-                                                     "size":  46139
-                                                 }
-                                    }
+                     "1.2.15-beta":  {
+                                         "name":  "airdcpp-sfv-folder-checker",
+                                         "version":  "1.2.15-beta",
+                                         "dist":  {
+                                                      "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sfv-folder-checker-v1.2.15-beta/airdcpp-sfv-folder-checker-1.2.15-beta.tgz",
+                                                      "shasum":  "28a9997273a2f1f3e2a2c13e7d58440170819ff2",
+                                                      "integrity":  "sha512-9WGwABMsJbmC5meb5wwLF3bnVk3U1TPzl6++x7fGA/dt0JlsZ60tUQyhmZ4b0K5+DetcBDDpHgBNrMHmMv7LjA==",
+                                                      "size":  45846
+                                                  }
+                                     }
                  }
 }

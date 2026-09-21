@@ -4,6 +4,36 @@ Changes to the extension catalog served at https://extensions.fuldcpp.net/. The 
 based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions are catalog
 publishing dates, since the catalog itself has no version number.
 
+## [2026-09-21]
+
+### Changed
+- Refreshed the three ShareFixxers packages that moved again since 2026-09-15. All three stay
+  within their major version, so installed copies update themselves:
+  - `airdcpp-release-fixxer` 1.2.20-beta to 1.2.28-beta: a redownload search that finds nothing
+    is now retried on a timer (`retry_interval_minutes`, `retry_max_hours`) instead of giving up,
+    a search that hits a queue overflow backs off before anything else is searched for,
+    `search_wait_seconds` became a real setting, a result whose name matches the searched folder
+    exactly is preferred over the first result, and the accepted-releases list drops paths that
+    no longer exist
+  - `airdcpp-sample-proof-checker` 1.2.23-beta to 1.3.3-beta: the retry schedule now escalates
+    (1 minute, 5 minutes, 30 minutes, then hourly) and `retry_interval_minutes` is gone, checks
+    for newly queued releases run one at a time rather than all at once, and removing a release
+    from the queue cancels its pending Sample/Proof retries instead of letting them redownload
+    into a release that is no longer wanted
+  - `airdcpp-sfv-folder-checker` 1.2.9-beta to 1.2.15-beta: automatic deletion is capped
+    (`max_auto_delete_count` 50, `max_auto_delete_percent` 25) so a systemic problem cannot mass
+    delete, an `.sfv` with no parseable lines is reported as `unparseable` and handled instead of
+    silently vanishing, old scan reports are pruned (`report_max_age_days` 90), and
+    `min_sources_for_redownload` gates the automatic redownload
+- Their `homepage`/`repository` point back at github.com/sharefixxers: all four repositories are
+  public now, retiring the npmjs.com links used on 2026-09-15 while three of them were private.
+  `airdcpp-sfv-folder-checker` also stops pointing at the sample-proof-checker repository
+- Nothing changed in what the packages can reach: old and new builds require the same Node
+  modules, and none of them spawns processes, listens on a port or contacts a new host
+- `airdcpp-share-backup` stays at 1.0.5, `airdcpp-tiny-fileserver` at 0.0.13-beta (still gone
+  upstream), the eight community packages are current, and `airdcpp-dns-leak-test` remains
+  excluded
+
 ## [2026-09-15]
 
 ### Changed

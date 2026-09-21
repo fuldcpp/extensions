@@ -1,8 +1,8 @@
 {
-  "publisher": "sopor",
-  "homepage": "https://www.npmjs.com/package/airdcpp-release-fixxer",
-  "repository": "https://www.npmjs.com/package/airdcpp-release-fixxer",
-  "date": "2026-09-11T22:59:54.707Z",
-  "source": "https://registry.npmjs.org/airdcpp-release-fixxer/-/airdcpp-release-fixxer-1.2.20-beta.tgz",
-  "upstream": "npm"
+    "publisher":  "sopor",
+    "homepage":  "https://github.com/sharefixxers/airdcpp-release-fixxer#readme",
+    "repository":  "https://github.com/sharefixxers/airdcpp-release-fixxer",
+    "date":  "2026-09-16T18:55:22.308Z",
+    "source":  "https://registry.npmjs.org/airdcpp-release-fixxer/-/airdcpp-release-fixxer-1.2.28-beta.tgz",
+    "upstream":  "npm"
 }

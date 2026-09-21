@@ -1,8 +1,8 @@
 {
-  "publisher": "sopor",
-  "homepage": "https://www.npmjs.com/package/airdcpp-sfv-folder-checker",
-  "repository": "https://www.npmjs.com/package/airdcpp-sfv-folder-checker",
-  "date": "2026-09-10T17:11:39.467Z",
-  "source": "https://registry.npmjs.org/airdcpp-sfv-folder-checker/-/airdcpp-sfv-folder-checker-1.2.9-beta.tgz",
-  "upstream": "npm"
+    "publisher":  "sopor",
+    "homepage":  "https://github.com/sharefixxers/airdcpp-sfv-folder-checker#readme",
+    "repository":  "https://github.com/sharefixxers/airdcpp-sfv-folder-checker",
+    "date":  "2026-09-16T19:55:14.857Z",
+    "source":  "https://registry.npmjs.org/airdcpp-sfv-folder-checker/-/airdcpp-sfv-folder-checker-1.2.15-beta.tgz",
+    "upstream":  "npm"
 }

@@ -1,8 +1,8 @@
 {
-  "publisher": "sopor",
-  "homepage": "https://www.npmjs.com/package/airdcpp-sample-proof-checker",
-  "repository": "https://www.npmjs.com/package/airdcpp-sample-proof-checker",
-  "date": "2026-09-13T21:59:48.026Z",
-  "source": "https://registry.npmjs.org/airdcpp-sample-proof-checker/-/airdcpp-sample-proof-checker-1.2.23-beta.tgz",
-  "upstream": "npm"
+    "publisher":  "sopor",
+    "homepage":  "https://github.com/sharefixxers/airdcpp-sample-proof-checker#readme",
+    "repository":  "https://github.com/sharefixxers/airdcpp-sample-proof-checker",
+    "date":  "2026-09-20T20:18:52.253Z",
+    "source":  "https://registry.npmjs.org/airdcpp-sample-proof-checker/-/airdcpp-sample-proof-checker-1.3.3-beta.tgz",
+    "upstream":  "npm"
 }

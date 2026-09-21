@@ -112,17 +112,17 @@
                     {
                         "package":  {
                                         "name":  "airdcpp-release-fixxer",
-                                        "version":  "1.2.20-beta",
+                                        "version":  "1.2.28-beta",
                                         "description":  "Scans downloaded and shared release directories for missing/extra files (CRC/SFV/NFO) and automatically redownloads what\u0027s broken or missing. Fork of the official airdcpp-release-validator.",
                                         "author":  "ShareFixxers",
                                         "publisher":  {
                                                           "username":  "sopor"
                                                       },
-                                        "date":  "2026-09-11T22:59:54.707Z",
-                                        "homepage":  "https://www.npmjs.com/package/airdcpp-release-fixxer",
+                                        "date":  "2026-09-16T18:55:22.308Z",
+                                        "homepage":  "https://github.com/sharefixxers/airdcpp-release-fixxer#readme",
                                         "links":  {
-                                                      "homepage":  "https://www.npmjs.com/package/airdcpp-release-fixxer",
-                                                      "repository":  "https://www.npmjs.com/package/airdcpp-release-fixxer",
+                                                      "homepage":  "https://github.com/sharefixxers/airdcpp-release-fixxer#readme",
+                                                      "repository":  "https://github.com/sharefixxers/airdcpp-release-fixxer",
                                                       "npm":  "https://www.npmjs.com/package/airdcpp-release-fixxer"
                                                   },
                                         "keywords":  [
@@ -138,10 +138,10 @@
                                                         "minApiFeatureLevel":  4
                                                     },
                                         "dist":  {
-                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-release-fixxer-v1.2.20-beta/airdcpp-release-fixxer-1.2.20-beta.tgz",
-                                                     "shasum":  "4c39670b5a26ba4c0b5520a15fb4373dc9cf02d5",
-                                                     "integrity":  "sha512-wSpWD8m3E2Q6mx9WsYhvT9uA7Y5velyKMaGhoSKEJvF9btz8VqlQ+gPEq8V/Y4GwQEIlb8EIQ46WIBhPmRLgRA==",
-                                                     "size":  239576
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-release-fixxer-v1.2.28-beta/airdcpp-release-fixxer-1.2.28-beta.tgz",
+                                                     "shasum":  "55923bae5b855eacaae701e269b30954bf21a8b0",
+                                                     "integrity":  "sha512-oQ9Lstu0IA6t6WHNOR7xm5IsmAhGCKmCfp0CaN2IDkKCWrC+23V9k9oDHvdk51WGXwXOqkLV2JV+W4/DEhc1oA==",
+                                                     "size":  242335
                                                  }
                                     }
                     },
@@ -220,17 +220,17 @@
                     {
                         "package":  {
                                         "name":  "airdcpp-sample-proof-checker",
-                                        "version":  "1.2.23-beta",
+                                        "version":  "1.3.3-beta",
                                         "description":  "Checks release folders for missing Sample (with a recognized video file) or Proof subfolders, and searches/redownloads just that subfolder if needed.",
                                         "author":  "ShareFixxers",
                                         "publisher":  {
                                                           "username":  "sopor"
                                                       },
-                                        "date":  "2026-09-13T21:59:48.026Z",
-                                        "homepage":  "https://www.npmjs.com/package/airdcpp-sample-proof-checker",
+                                        "date":  "2026-09-20T20:18:52.253Z",
+                                        "homepage":  "https://github.com/sharefixxers/airdcpp-sample-proof-checker#readme",
                                         "links":  {
-                                                      "homepage":  "https://www.npmjs.com/package/airdcpp-sample-proof-checker",
-                                                      "repository":  "https://www.npmjs.com/package/airdcpp-sample-proof-checker",
+                                                      "homepage":  "https://github.com/sharefixxers/airdcpp-sample-proof-checker#readme",
+                                                      "repository":  "https://github.com/sharefixxers/airdcpp-sample-proof-checker",
                                                       "npm":  "https://www.npmjs.com/package/airdcpp-sample-proof-checker"
                                                   },
                                         "keywords":  [
@@ -246,10 +246,10 @@
                                                         "minApiFeatureLevel":  4
                                                     },
                                         "dist":  {
-                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sample-proof-checker-v1.2.23-beta/airdcpp-sample-proof-checker-1.2.23-beta.tgz",
-                                                     "shasum":  "450ccd5865a3f01aa47a6db87ce0c30eeefebfce",
-                                                     "integrity":  "sha512-0IIsOpePHrt23zRX7yr47X6z1Pu9joD8mbJrFuHPzAy+aJMgZm1ErNC7YMGEYcOhuKMeu0mLs0FHuSlPdSO5fw==",
-                                                     "size":  43976
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sample-proof-checker-v1.3.3-beta/airdcpp-sample-proof-checker-1.3.3-beta.tgz",
+                                                     "shasum":  "c874e17ebcbb60bf58d6df77daa4fde0368426bb",
+                                                     "integrity":  "sha512-WV+znY1RXL/WDp4A+NRUsJE6YXqIH0VckCIjI0incgY1PVXoPABEUxDwEAWHApui88n3vYt7/eVVGZBpwZvmQA==",
+                                                     "size":  45178
                                                  }
                                     }
                     },
@@ -292,17 +292,17 @@
                     {
                         "package":  {
                                         "name":  "airdcpp-sfv-folder-checker",
-                                        "version":  "1.2.9-beta",
+                                        "version":  "1.2.15-beta",
                                         "description":  "Hub command /sfvcheck \u003cfolder\u003e that recursively checks a folder for .sfv files and compares their CRC32 against the real files on disk. Works together with airdcpp-release-fixxer.",
                                         "author":  "ShareFixxers",
                                         "publisher":  {
                                                           "username":  "sopor"
                                                       },
-                                        "date":  "2026-09-10T17:11:39.467Z",
-                                        "homepage":  "https://www.npmjs.com/package/airdcpp-sfv-folder-checker",
+                                        "date":  "2026-09-16T19:55:14.857Z",
+                                        "homepage":  "https://github.com/sharefixxers/airdcpp-sfv-folder-checker#readme",
                                         "links":  {
-                                                      "homepage":  "https://www.npmjs.com/package/airdcpp-sfv-folder-checker",
-                                                      "repository":  "https://www.npmjs.com/package/airdcpp-sfv-folder-checker",
+                                                      "homepage":  "https://github.com/sharefixxers/airdcpp-sfv-folder-checker#readme",
+                                                      "repository":  "https://github.com/sharefixxers/airdcpp-sfv-folder-checker",
                                                       "npm":  "https://www.npmjs.com/package/airdcpp-sfv-folder-checker"
                                                   },
                                         "keywords":  [
@@ -318,10 +318,10 @@
                                                         "minApiFeatureLevel":  0
                                                     },
                                         "dist":  {
-                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sfv-folder-checker-v1.2.9-beta/airdcpp-sfv-folder-checker-1.2.9-beta.tgz",
-                                                     "shasum":  "a2fcc68dda8799d819062c86fe000e522400dc1e",
-                                                     "integrity":  "sha512-kce4pEPQi4lzxfhGCh2KwanDTbBZL6OseWt4/JfKiEv2KgSVLf6zWzWATZnxG16SCVw0nhGFQ8OzXaonD0HxLA==",
-                                                     "size":  46139
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sfv-folder-checker-v1.2.15-beta/airdcpp-sfv-folder-checker-1.2.15-beta.tgz",
+                                                     "shasum":  "28a9997273a2f1f3e2a2c13e7d58440170819ff2",
+                                                     "integrity":  "sha512-9WGwABMsJbmC5meb5wwLF3bnVk3U1TPzl6++x7fGA/dt0JlsZ60tUQyhmZ4b0K5+DetcBDDpHgBNrMHmMv7LjA==",
+                                                     "size":  45846
                                                  }
                                     }
                     },
@@ -470,5 +470,5 @@
                     }
                 ],
     "total":  13,
-    "time":  "2026-09-13T21:59:48.026Z"
+    "time":  "2026-09-20T20:18:52.253Z"
 }
