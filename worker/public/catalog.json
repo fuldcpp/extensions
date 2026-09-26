@@ -112,13 +112,13 @@
                     {
                         "package":  {
                                         "name":  "airdcpp-release-fixxer",
-                                        "version":  "1.2.28-beta",
+                                        "version":  "1.3.0",
                                         "description":  "Scans downloaded and shared release directories for missing/extra files (CRC/SFV/NFO) and automatically redownloads what\u0027s broken or missing. Fork of the official airdcpp-release-validator.",
                                         "author":  "ShareFixxers",
                                         "publisher":  {
                                                           "username":  "sopor"
                                                       },
-                                        "date":  "2026-09-16T18:55:22.308Z",
+                                        "date":  "2026-09-22T20:40:17.059Z",
                                         "homepage":  "https://github.com/sharefixxers/airdcpp-release-fixxer#readme",
                                         "links":  {
                                                       "homepage":  "https://github.com/sharefixxers/airdcpp-release-fixxer#readme",
@@ -138,10 +138,10 @@
                                                         "minApiFeatureLevel":  4
                                                     },
                                         "dist":  {
-                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-release-fixxer-v1.2.28-beta/airdcpp-release-fixxer-1.2.28-beta.tgz",
-                                                     "shasum":  "55923bae5b855eacaae701e269b30954bf21a8b0",
-                                                     "integrity":  "sha512-oQ9Lstu0IA6t6WHNOR7xm5IsmAhGCKmCfp0CaN2IDkKCWrC+23V9k9oDHvdk51WGXwXOqkLV2JV+W4/DEhc1oA==",
-                                                     "size":  242335
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-release-fixxer-v1.3.0/airdcpp-release-fixxer-1.3.0.tgz",
+                                                     "shasum":  "72f097c81f9606a185a492363df107b4d8026372",
+                                                     "integrity":  "sha512-FbSHbcnaYvgFTE/tn7Wn4sW2yFTj8AAH7VAJIgdpcjjosvJ39gJAmdYgVPRKXXRGzskeiz+wIrwlivVmhqZ7IA==",
+                                                     "size":  242480
                                                  }
                                     }
                     },
@@ -292,13 +292,13 @@
                     {
                         "package":  {
                                         "name":  "airdcpp-sfv-folder-checker",
-                                        "version":  "1.2.15-beta",
+                                        "version":  "1.3.0",
                                         "description":  "Hub command /sfvcheck \u003cfolder\u003e that recursively checks a folder for .sfv files and compares their CRC32 against the real files on disk. Works together with airdcpp-release-fixxer.",
                                         "author":  "ShareFixxers",
                                         "publisher":  {
                                                           "username":  "sopor"
                                                       },
-                                        "date":  "2026-09-16T19:55:14.857Z",
+                                        "date":  "2026-09-22T20:38:07.585Z",
                                         "homepage":  "https://github.com/sharefixxers/airdcpp-sfv-folder-checker#readme",
                                         "links":  {
                                                       "homepage":  "https://github.com/sharefixxers/airdcpp-sfv-folder-checker#readme",
@@ -318,10 +318,10 @@
                                                         "minApiFeatureLevel":  0
                                                     },
                                         "dist":  {
-                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sfv-folder-checker-v1.2.15-beta/airdcpp-sfv-folder-checker-1.2.15-beta.tgz",
-                                                     "shasum":  "28a9997273a2f1f3e2a2c13e7d58440170819ff2",
-                                                     "integrity":  "sha512-9WGwABMsJbmC5meb5wwLF3bnVk3U1TPzl6++x7fGA/dt0JlsZ60tUQyhmZ4b0K5+DetcBDDpHgBNrMHmMv7LjA==",
-                                                     "size":  45846
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-sfv-folder-checker-v1.3.0/airdcpp-sfv-folder-checker-1.3.0.tgz",
+                                                     "shasum":  "093f08ac864d9c5591e63924a17acbf9accad4db",
+                                                     "integrity":  "sha512-Huq34kDKqKmluLVDU6qISXCub8EJlqvzWKJb3rA5iwjk6nislFVvBII7LnHJcCd24ntM73GgydKjr0oGxMmkMA==",
+                                                     "size":  46680
                                                  }
                                     }
                     },
@@ -470,5 +470,5 @@
                     }
                 ],
     "total":  13,
-    "time":  "2026-09-20T20:18:52.253Z"
+    "time":  "2026-09-22T20:40:17.059Z"
 }

@@ -4,6 +4,19 @@ Changes to the extension catalog served at https://extensions.fuldcpp.net/. The 
 based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions are catalog
 publishing dates, since the catalog itself has no version number.
 
+## [2026-09-26]
+
+### Changed
+- Two ShareFixxers packages left beta. Both stay within major version 1, so installed copies
+  update themselves:
+  - `airdcpp-release-fixxer` 1.2.28-beta to 1.3.0: marked stable, and the changelog was edited;
+    no functional change
+  - `airdcpp-sfv-folder-checker` 1.2.15-beta to 1.3.0: marked stable; setting titles and help
+    texts were reworded ("CRC mismatch" became "CRC error"), and the "(0 = no limit)" note on
+    `max_auto_delete_count`, `max_auto_delete_percent` and `report_max_age_days` moved into
+    the help text so it no longer overlaps the input field; the package's `repository` link
+    points at its own repository
+
 ## [2026-09-21]
 
 ### Changed
