@@ -4,6 +4,29 @@ Changes to the extension catalog served at https://extensions.fuldcpp.net/. The 
 based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions are catalog
 publishing dates, since the catalog itself has no version number.
 
+## [2026-10-14]
+
+### Added
+- Four extensions written for FulDC++, with their sources in `extensions-src/`. Each is a
+  1.0.0 beta that only listens to client events (no hooks), so none can slow down chat,
+  downloads or sharing:
+  - `airdcpp-push-notifier`: sends private messages, mentions, finished or failed downloads
+    and hubs that stay disconnected to ntfy, Gotify, Telegram, Discord, Pushover or a webhook;
+    away-only chat, per-source cooldown, rate limit and quiet hours
+  - `airdcpp-disk-space-guard`: force-pauses downloads on a drive that drops below a
+    free-space limit and gives each its exact priority back once there is room again
+  - `airdcpp-download-sorter`: moves finished downloads into TV (per show and season), movie
+    and music folders or by own rules, keeping hash data so nothing is rehashed; starts in
+    dry-run mode and never overwrites
+  - `airdcpp-seen-tracker`: answers `/seen <nick>` in hubs and private chats; answering
+    `!seen` from other users is optional, off by default and limited to the asking hub
+
+### Changed
+- `airdcpp-release-fixxer` 1.3.0 to 1.3.4 (same major version, installed copies update
+  themselves): the missing-NFO check no longer skips releases that have a Sample/Cover-type
+  subfolder, folders newly added to the share now also get the automatic redownload, and
+  setting titles were reworded
+
 ## [2026-09-26]
 
 ### Changed
