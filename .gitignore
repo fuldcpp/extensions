@@ -5,3 +5,6 @@ air_rsa
 air_rsa.*
 *.pem
 *.key
+# Extension sources: dependencies and the webpack output are rebuilt, the packed tarball lives in packages/
+extensions-src/*/node_modules/
+extensions-src/*/dist/

@@ -1,0 +1,49 @@
+{
+  "name": "airdcpp-download-sorter",
+  "version": "1.0.0-beta.1",
+  "description": "Moves finished downloads into TV, movie and music folders (or your own rules), keeping hash data so nothing is rehashed. Starts in dry-run mode.",
+  "license": "MIT",
+  "author": {
+    "name": "FulDC++"
+  },
+  "keywords": [
+    "airdcpp",
+    "airdcpp-extensions",
+    "airdcpp-extensions-public",
+    "sort",
+    "organize",
+    "tv",
+    "movies",
+    "music"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fuldcpp/extensions/"
+  },
+  "bugs": "https://github.com/fuldcpp/extensions/issues/",
+  "scripts": {
+    "build": "webpack --mode production",
+    "test": "node --test tests/*.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "airdcpp-extension": "1.5.1",
+    "airdcpp-extension-settings": "1.2.2",
+    "source-map-support": "^0.5.21",
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "main": "dist/main.js",
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "airdcpp": {
+    "apiVersion": 1,
+    "minApiFeatureLevel": 0
+  }
+}
