@@ -217,13 +217,13 @@
                     {
                         "package":  {
                                         "name":  "airdcpp-release-fixxer",
-                                        "version":  "1.3.4",
-                                        "description":  "Hub command: /rvalidator [scan [path]|accept \u003cpath\u003e|unaccept \u003cpath\u003e|help] - Scans downloaded and shared release directories for missing/extra files (CRC/SFV/NFO) and automatically redownloads what\u0027s broken or missing. Fork of the official airdcpp-release-validator.",
+                                        "version":  "1.3.5",
+                                        "description":  "Hub command: /rvalidator [scan [path]|accept \u003cpath\u003e|unaccept \u003cpath\u003e|help] - Scans downloaded and shared release directories for missing/extra files (CRC/SFV/NFO) and automatically redownloads what\u0027s broken or missing. Fork of the official airdcpp-release-validator. FulDC++ build of 1.3.4 with safety fixes (no downloads or deletions on guesses).",
                                         "author":  "ShareFixxers",
                                         "publisher":  {
                                                           "username":  "sopor"
                                                       },
-                                        "date":  "2026-09-29T16:27:31.688Z",
+                                        "date":  "2026-10-15T00:00:00Z",
                                         "homepage":  "https://github.com/sharefixxers/airdcpp-release-fixxer#readme",
                                         "links":  {
                                                       "homepage":  "https://github.com/sharefixxers/airdcpp-release-fixxer#readme",
@@ -243,10 +243,10 @@
                                                         "minApiFeatureLevel":  4
                                                     },
                                         "dist":  {
-                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-release-fixxer-v1.3.4/airdcpp-release-fixxer-1.3.4.tgz",
-                                                     "shasum":  "b3fe32f728b5b3172ad1714f46bc4fbd7de114d9",
-                                                     "integrity":  "sha512-tuTd6hiUNJ5TrVAkAmOfVVBnBa6nw0Ujpv6wWAwUI1aFuVs7ZdFpP14CQpatEguzGkmEkHDi1PPe5GrloMVYFw==",
-                                                     "size":  242870
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-release-fixxer-v1.3.5/airdcpp-release-fixxer-1.3.5.tgz",
+                                                     "shasum":  "33f6beb0d107ed3b721ad9090a47bea536b419c9",
+                                                     "integrity":  "sha512-752ZVJ8PvwBAqCJaU8gO/RV05R9gW2YhC0Z9rgyMjPBCAAwI8F6TQWzvj0hlIV/2GxEVRlwmNFTAnpN7UO3F4Q==",
+                                                     "size":  269160
                                                  }
                                     }
                     },
@@ -610,5 +610,5 @@
                     }
                 ],
     "total":  17,
-    "time":  "2026-10-14T21:10:00Z"
+    "time":  "2026-10-15T00:00:00Z"
 }
