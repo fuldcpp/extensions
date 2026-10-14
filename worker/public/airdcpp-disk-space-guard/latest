@@ -1,0 +1,24 @@
+{
+    "_id":  "airdcpp-disk-space-guard@1.0.0-beta.1",
+    "name":  "airdcpp-disk-space-guard",
+    "version":  "1.0.0-beta.1",
+    "description":  "Pauses downloads when a drive runs low on free space and resumes them, at their old priority, once there is room again",
+    "author":  {
+                   "name":  "FulDC++"
+               },
+    "homepage":  "https://github.com/fuldcpp/extensions/tree/main/extensions-src/airdcpp-disk-space-guard",
+    "license":  "MIT",
+    "_npmUser":  {
+                     "name":  "FulDC++"
+                 },
+    "airdcpp":  {
+                    "apiVersion":  1,
+                    "minApiFeatureLevel":  0
+                },
+    "dist":  {
+                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-disk-space-guard-v1.0.0-beta.1/airdcpp-disk-space-guard-1.0.0-beta.1.tgz",
+                 "shasum":  "5712c4a8e5c6bf6c12f935c0b56bb9ec231b8365",
+                 "integrity":  "sha512-5z1N6SSfsUQ2atC0zwar4k80ZsvuaWQjOnksQommupw6pu4rwYh0XpF2fOv2A7712vH2sfPXxgMSKrn1gy+wDA==",
+                 "size":  227200
+             }
+}

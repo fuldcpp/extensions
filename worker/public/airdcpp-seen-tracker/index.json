@@ -1,0 +1,19 @@
+{
+    "name":  "airdcpp-seen-tracker",
+    "dist-tags":  {
+                      "latest":  "1.0.0-beta.1"
+                  },
+    "modified":  "2026-10-14T21:10:00Z",
+    "versions":  {
+                     "1.0.0-beta.1":  {
+                                          "name":  "airdcpp-seen-tracker",
+                                          "version":  "1.0.0-beta.1",
+                                          "dist":  {
+                                                       "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-seen-tracker-v1.0.0-beta.1/airdcpp-seen-tracker-1.0.0-beta.1.tgz",
+                                                       "shasum":  "1be6cc01dce13a37830e6a5c9233ee45b6e56c58",
+                                                       "integrity":  "sha512-uJgUrDl2FXXRclKAH5Oxa9hpdotrRuDU0rTS3APQISh9apnuOXXMKA3ua8+7pK1SyQ9KCy6VxVlZPDk6p4AHJw==",
+                                                       "size":  231252
+                                                   }
+                                      }
+                 }
+}

@@ -1,0 +1,19 @@
+{
+    "name":  "airdcpp-download-sorter",
+    "dist-tags":  {
+                      "latest":  "1.0.0-beta.1"
+                  },
+    "modified":  "2026-10-14T20:50:00Z",
+    "versions":  {
+                     "1.0.0-beta.1":  {
+                                          "name":  "airdcpp-download-sorter",
+                                          "version":  "1.0.0-beta.1",
+                                          "dist":  {
+                                                       "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-download-sorter-v1.0.0-beta.1/airdcpp-download-sorter-1.0.0-beta.1.tgz",
+                                                       "shasum":  "1815ed506fafb072ef08eb6d90ee518f8bc8c88e",
+                                                       "integrity":  "sha512-mz4TthiYOLGXU5V6HbcpRNMyFf4Pr/KSGmvs0rkBAnFKy0YuGuHOz5Aew9frHec9Awi8oMbRC3mgE+SKGzMbPw==",
+                                                       "size":  235538
+                                                   }
+                                      }
+                 }
+}
