@@ -1,0 +1,2518 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index bfd4b09..f7f6825 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -1,3 +1,41 @@
++## Notes (1.3.5, FulDC++ build of 1.3.4)
++
++Not an upstream release: a build of 1.3.4 with safety fixes, published in the FulDC++ extension
++catalog. The behaviour fixes have tests (tests/) that fail on unpatched 1.3.4; the live-setting
++hooks, the menu filter and the error catching in main.ts were checked in a running client.
++
++- Redownloads download only a search result whose folder name matches exactly; they never fall
++  back to "the first result" (which merged unrelated folders into the release under its name).
++- Only proof starts a redownload: a file the SFV lists is missing or failed CRC, or the SFV is
++  unreadable. The "possibly missing" checks (SFV/NFO possibly missing, incomplete) only report.
++  Only real release folders are searched for; CD1/Sample/Subs resolve to their release, and share
++  roots or personal folders are never searched for. (1.3.4 started doing this for every new share
++  folder, so a personal mp3 folder could get someone else's content downloaded into it.)
++- A file that fails CRC is moved out of the share into the extension's "quarantine" folder
++  instead of deleted (this covers the whole share, where a retagged mp3 fails too), kept 30 days
++  with a note of where it came from; at most 20 per hour; accepted releases are left alone.
++- SFV files are never deleted; only an SFV with no valid lines is set aside (quarantine), and
++  only that starts a redownload, once per distinct broken SFV.
++- A release missing both a file and its NFO is still repaired (the proof decides, not the
++  order the checks finished in); lower-case scene names count as releases; symlinked files
++  count as present.
++- ".dctmp" partial files are no longer deleted (paused downloads lost their progress) nor
++  reported as extra files.
++- /rvalidator accept covers subfolders, cancels pending searches, and is respected by the CRC
++  handling and redownloads. Start-up cleanup no longer drops entries on a drive that is not
++  mounted yet. The list is saved atomically and a failed save is reported.
++- At most 30 redownload searches per hour and 200 waiting folders.
++- An unexpected error in a scan hook answers at once instead of making the client wait 60-120 s
++  (and then let the item through anyway). Start-up, command and menu errors are caught.
++- The two scan hooks follow their settings without a restart. The queue menu item's filter
++  answers from memory (the native GUI waits for it when the menu opens).
++- SFV reading: UTF-16 and ANSI (Windows-1252) files, ";" inside names, hexadecimal CRCs,
++  subfolder lines.
++- Scanning: junctions/symlinks are not followed, files vanishing mid-scan are not read errors,
++  Thumbs.db/desktop.ini/.DS_Store are not extra files. A relative or missing path for
++  /rvalidator scan is refused; one manual scan at a time.
++- Setting and menu texts say what actually happens.
++
+ ## Notes (1.3.4)
+ 
+ Settings-screen typo fix: the **Automatically re-search and redownload the
+diff --git a/LICENSE b/LICENSE
+new file mode 100644
+index 0000000..a5c10d8
+--- /dev/null
++++ b/LICENSE
+@@ -0,0 +1,22 @@
++MIT License
++
++Copyright (c) the airdcpp-release-fixxer authors (ShareFixxers), based on
++airdcpp-release-validator by maksis. FulDC++ safety fixes (1.3.5) by the FulDC++ project.
++
++Permission is hereby granted, free of charge, to any person obtaining a copy
++of this software and associated documentation files (the "Software"), to deal
++in the Software without restriction, including without limitation the rights
++to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
++copies of the Software, and to permit persons to whom the Software is
++furnished to do so, subject to the following conditions:
++
++The above copyright notice and this permission notice shall be included in all
++copies or substantial portions of the Software.
++
++THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
++AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
++OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
++SOFTWARE.
+diff --git a/README.md b/README.md
+index 6fb311e..bcd5a5b 100644
+--- a/README.md
++++ b/README.md
+@@ -4,6 +4,12 @@ Fork of the official release validator for the client. Scans downloaded and
+ shared release directories for missing/extra files (CRC/SFV/NFO) and
+ automatically redownloads what is broken or missing.
+ 
++
++> **This is the FulDC++ build (1.3.5) of upstream 1.3.4 with safety fixes.** Automatic
++> redownloads now need proof and an exact folder-name match, nothing is deleted (failed files and
++> unreadable SFVs are moved into the `quarantine` folder in the extension's settings folder and
++> kept 30 days), and partial downloads are left alone. See CHANGELOG.md for the full list.
++
+ ## Detects
+ 
+ Via scan or automatically on new/completed downloads:
+diff --git a/jest.config.cjs b/jest.config.cjs
+new file mode 100644
+index 0000000..22dc11b
+--- /dev/null
++++ b/jest.config.cjs
+@@ -0,0 +1,10 @@
++// Tests for the FulDC++ patch (tests/). ts-jest compiles to CommonJS; "src" is a module root so
++// the bare imports the sources use ('errors/...', 'helpers/...') resolve as in webpack.
++module.exports = {
++  testEnvironment: 'node',
++  roots: ['<rootDir>/tests'],
++  moduleDirectories: ['node_modules', 'src'],
++  transform: {
++    '^.+\\.ts$': ['ts-jest', { tsconfig: { module: 'commonjs', esModuleInterop: true, allowJs: true, isolatedModules: true } }],
++  },
++};
+diff --git a/package.json b/package.json
+index f6824c1..27cf70d 100644
+--- a/package.json
++++ b/package.json
+@@ -1,7 +1,7 @@
+ {
+   "name": "airdcpp-release-fixxer",
+-  "version": "1.3.4",
+-  "description": "Hub command: /rvalidator [scan [path]|accept <path>|unaccept <path>|help] - Scans downloaded and shared release directories for missing/extra files (CRC/SFV/NFO) and automatically redownloads what's broken or missing. Fork of the official airdcpp-release-validator.",
++  "version": "1.3.5",
++  "description": "Hub command: /rvalidator [scan [path]|accept <path>|unaccept <path>|help] - Scans downloaded and shared release directories for missing/extra files (CRC/SFV/NFO) and automatically redownloads what's broken or missing. Fork of the official airdcpp-release-validator. FulDC++ build of 1.3.4 with safety fixes (no downloads or deletions on guesses).",
+   "main": "dist/main.js",
+   "license": "MIT",
+   "private": false,
+@@ -29,7 +29,10 @@
+     "test": "jest"
+   },
+   "files": [
+-    "dist"
++    "dist",
++    "LICENSE",
++    "README.md",
++    "CHANGELOG.md"
+   ],
+   "devDependencies": {
+     "@types/invariant": "^2.2.35",
+diff --git a/src/AcceptedReleases.ts b/src/AcceptedReleases.ts
+index c4f9d0b..a311d94 100644
+--- a/src/AcceptedReleases.ts
++++ b/src/AcceptedReleases.ts
+@@ -1,34 +1,52 @@
+ import * as fs from 'fs/promises';
+ import path from 'node:path';
+ 
++// Case-insensitive only where the file system is (Windows). Resolved first; the trailing
++// separator is stripped only when the path is not a root ("E:\" stays "E:\", the form dirname()
++// gives for its children, so an accepted drive or share root covers what is below it).
+ const normalize = (targetPath: string) => {
+-  return path.resolve(targetPath).replace(/[\\/]+$/, '').toLowerCase();
++  const resolved = path.resolve(targetPath);
++  const stripped = path.parse(resolved).root === resolved ? resolved : resolved.replace(/[\\/]+$/, '');
++  return process.platform === 'win32' ? stripped.toLowerCase() : stripped;
+ };
+ 
+ export interface AcceptedReleasesStore {
+   load: () => Promise<void>;
++  // The path itself or any folder above it was accepted
+   isAccepted: (targetPath: string) => boolean;
+-  // Returns true if this was a new entry (false if it was already accepted).
++  // Returns true if this was a new entry (false if it was already accepted). Throws when the
++  // list could not be saved, so the caller can say so instead of claiming success.
+   accept: (targetPath: string) => Promise<boolean>;
+-  // Returns true if it had been accepted (false if it wasn't on the list).
++  // Returns true if it had been accepted (false if it wasn't on the list). Throws like accept.
+   unaccept: (targetPath: string) => Promise<boolean>;
+   // Drops entries whose path no longer exists on disk. Returns how many were removed.
+   prune: () => Promise<number>;
+ }
+ 
++interface Logger {
++  verbose: (message: string) => void;
++  error?: (message: string) => void;
++}
++
+ const AcceptedReleases = (
+   stateFilePath: string,
+-  logger: { verbose: (message: string) => void },
++  logger: Logger,
+ ): AcceptedReleasesStore => {
+ 
+   const accepted = new Map<string, string>();
+-
+-  const save = async () => {
+-    try {
+-      await fs.writeFile(stateFilePath, JSON.stringify(Array.from(accepted.values()), null, 2), 'utf8');
+-    } catch (e) {
+-      logger.verbose(`Failed to save the accepted releases list: ${e}`);
+-    }
++  let saving: Promise<void> = Promise.resolve();
++
++  // Written to a temporary file and renamed into place: a forced stop (TerminateProcess on
++  // Windows) mid-write can no longer leave a truncated list behind. Saves run one at a time.
++  const save = () => {
++    const run = saving.then(async () => {
++      const tmp = `${stateFilePath}.tmp`;
++      await fs.writeFile(tmp, JSON.stringify(Array.from(accepted.values()), null, 2), 'utf8');
++      await fs.rename(tmp, stateFilePath);
++    });
++
++    saving = run.catch(() => undefined);
++    return run;
+   };
+ 
+   const load = async () => {
+@@ -50,11 +68,28 @@ const AcceptedReleases = (
+         }
+       }
+     } catch (e) {
+-      logger.verbose(`Failed to parse the accepted releases file, starting empty: ${e}`);
++      // Kept aside rather than overwritten by the next save
++      const backup = `${stateFilePath}.corrupt-${Date.now()}`;
++      await fs.copyFile(stateFilePath, backup).catch(() => undefined);
++      (logger.error || logger.verbose)(`Failed to parse the accepted releases file, starting empty (a copy was kept as ${backup}): ${e}`);
+     }
+   };
+ 
+-  const isAccepted = (targetPath: string) => accepted.has(normalize(targetPath));
++  const isAccepted = (targetPath: string) => {
++    let current = normalize(targetPath);
++    for (;;) {
++      if (accepted.has(current)) {
++        return true;
++      }
++
++      const parent = path.dirname(current);
++      if (parent === current) {
++        return false;
++      }
++
++      current = parent;
++    }
++  };
+ 
+   const accept = async (targetPath: string) => {
+     const key = normalize(targetPath);
+@@ -73,9 +108,9 @@ const AcceptedReleases = (
+     return wasAccepted;
+   };
+ 
+-  // An accepted path that's since been deleted (release removed, folder
+-  // renamed by hand, etc.) has no reason to stay on the list forever --
+-  // drops anything that no longer exists on disk, one fs.access per entry.
++  // Drops an accepted path only when it is really gone: its parent folder is reachable and the
++  // path itself is not there. A drive or network share that is not mounted yet at start-up
++  // (parent unreachable too) keeps its entries instead of losing them all silently.
+   const prune = async () => {
+     let removed = 0;
+ 
+@@ -83,13 +118,23 @@ const AcceptedReleases = (
+       try {
+         await fs.access(targetPath);
+       } catch (e) {
++        if ((e as NodeJS.ErrnoException).code !== 'ENOENT') {
++          continue;
++        }
++
++        try {
++          await fs.access(path.dirname(path.resolve(targetPath)));
++        } catch (parentError) {
++          continue;
++        }
++
+         accepted.delete(key);
+         removed++;
+       }
+     }
+ 
+     if (removed > 0) {
+-      await save();
++      await save().catch(e => logger.verbose(`Failed to save the accepted releases list: ${e}`));
+     }
+ 
+     return removed;
+diff --git a/src/CrcRedownload.ts b/src/CrcRedownload.ts
+index c273a6b..638137e 100644
+--- a/src/CrcRedownload.ts
++++ b/src/CrcRedownload.ts
+@@ -1,8 +1,12 @@
+ import path from 'node:path';
+ import fs from 'node:fs';
++import crypto from 'node:crypto';
+ 
+ import { APISocket } from 'airdcpp-apisocket';
+ 
++import SFVReader, { SFV_NO_VALID_LINES } from './helpers/SFVReader';
++import { releaseFolderOf } from './validators/common';
++
+ export interface CrcRedownloadSettings {
+   getDeleteFiles: () => boolean;
+   getRedownload: () => boolean;
+@@ -10,6 +14,19 @@ export interface CrcRedownloadSettings {
+   getOverflowBackoffSeconds: () => number;
+   getRetryIntervalMinutes: () => number;
+   getRetryMaxHours: () => number;
++  // The path or a folder above it was accepted with /rvalidator accept: no automatic fixes
++  isAccepted?: (path: string) => boolean;
++  // Where set-aside files go (outside the share, so the corrupt copy is never hashed and shared
++  // under a searchable name). Without one they are renamed in place.
++  getQuarantineDir?: () => string | undefined;
++}
++
++// Set-aside copies are kept this long, then pruned
++const QUARANTINE_KEEP_DAYS = 30;
++
++export interface CrcRedownloadOptions {
++  now?: () => number;
++  sleep?: (ms: number) => Promise<void>;
+ }
+ 
+ type LogSeverity = 'info' | 'warning' | 'error';
+@@ -24,28 +41,103 @@ interface RetryEntry {
+   timer: ReturnType<typeof setTimeout>;
+ }
+ 
+-const isSubsFolder = (dirPath: string) => {
+-  const name = path.basename(dirPath).toLowerCase();
+-  return name === 'subs' || name === 'sub' || name.includes('subpack');
++// Only findings that PROVE something is missing or broken start a download: the SFV lists a
++// file that is not on disk, or the SFV itself is unreadable. The "possibly missing" heuristics
++// (sfv_missing, nfo_missing, incomplete_*, no_release_files) flag every personal mp3 folder or
++// any "Name-Word" folder; they stay reports and never fetch content into the share.
++export const REDOWNLOAD_ERROR_IDS = ['file_missing', 'invalid_sfv_file'];
++
++// Hub searches are rationed: a whole-share scan must not turn into hundreds of back-to-back
++// automated searches (hubs ban for that).
++const MAX_SEARCHES_PER_HOUR = 30;
++const MAX_PENDING_FOLDERS = 200;
++
++// Files set aside for CRC errors, at most this many per hour (a stale SFV must not sweep a share)
++const MAX_SET_ASIDE_PER_HOUR = 20;
++
++// The result whose name is exactly the searched folder (case-insensitive), or nothing. A loose
++// hub search on a folder name returns other releases (.PROPER, .Subs, other groups) and
++// unrelated folders; downloading "the first one" merged someone else's content into the
++// release under its name.
++export const pickBestResult = <T extends { name?: string }>(results: T[], expectedName: string): T | undefined => {
++  return results.find(r => r.name && r.name.toLowerCase() === expectedName.toLowerCase());
+ };
+ 
+-// Prefer a result whose name matches the searched folder exactly
+-// (case-insensitive) over whatever happens to be first in the list --
+-// a loose hub search on just the folder name can return other, unrelated
+-// results ranked above the actual release. Falls back to the first result
+-// if nothing matches exactly, since something is still better than nothing.
+-export const pickBestResult = <T extends { name?: string }>(results: T[], expectedName: string): T => {
+-  const exactMatch = results.find(r => r.name && r.name.toLowerCase() === expectedName.toLowerCase());
+-  return exactMatch || results[0];
++// Same comparison rules as AcceptedReleases: case-insensitive only on Windows
++const normalizeKey = (folderPath: string) => {
++  const resolved = path.resolve(folderPath).replace(/[\\/]+$/, '');
++  return process.platform === 'win32' ? resolved.toLowerCase() : resolved;
++};
++
++// "<name>.crcfail", or "<name>.crcfail.2" ... when that exists already
++const setAsideName = async (filePath: string, suffix: string) => {
++  for (let n = 1; n < 100; n++) {
++    const candidate = n === 1 ? `${filePath}${suffix}` : `${filePath}${suffix}.${n}`;
++    try {
++      await fs.promises.access(candidate);
++    } catch (e) {
++      return candidate;
++    }
++  }
++
++  throw new Error(`Too many set-aside copies of ${filePath}`);
++};
++
++// Moves a file into <quarantine>/<timestamp>-<n>/<name>.<suffix>, keeping its content: a rename on
++// the same drive, otherwise copy, compare sizes, then remove the original. Returns the new path.
++const moveToQuarantine = async (filePath: string, quarantineDir: string, suffix: string) => {
++  const stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\..+$/, '');
++  let folder = '';
++  for (let n = 1; n < 1000; n++) {
++    folder = path.join(quarantineDir, `${stamp}-${n}`);
++    try {
++      await fs.promises.mkdir(folder, { recursive: false });
++      break;
++    } catch (e: any) {
++      if (e.code === 'ENOENT') {
++        await fs.promises.mkdir(quarantineDir, { recursive: true });
++        n--;
++      } else if (e.code !== 'EEXIST') {
++        throw e;
++      }
++    }
++  }
++
++  const target = path.join(folder, path.basename(filePath) + suffix);
++  await fs.promises.writeFile(path.join(folder, 'origin.txt'), filePath + '\n');
++  try {
++    await fs.promises.rename(filePath, target);
++  } catch (e: any) {
++    if (e.code !== 'EXDEV') {
++      throw e;
++    }
++
++    await fs.promises.copyFile(filePath, target, fs.constants.COPYFILE_EXCL);
++    if ((await fs.promises.stat(target)).size !== (await fs.promises.stat(filePath)).size) {
++      await fs.promises.rm(target, { force: true });
++      throw new Error('the quarantine copy does not match the original');
++    }
++
++    await fs.promises.unlink(filePath);
++  }
++
++  return target;
+ };
+ 
+-const CrcRedownload = (socket: APISocket, settings: CrcRedownloadSettings) => {
++const CrcRedownload = (socket: APISocket, settings: CrcRedownloadSettings, options: CrcRedownloadOptions = {}) => {
++  const now = options.now || (() => Date.now());
++  const sleep = options.sleep || ((ms: number) => new Promise<void>(resolve => setTimeout(resolve, ms)));
++
+   const lastQueuedAt = new Map<string, number>();
+   const pendingPaths = new Set<string>();
+   const queue: QueueItem[] = [];
+   const retryState = new Map<string, RetryEntry>();
++  const searchTimes: number[] = [];
++  const setAsideTimes: number[] = [];
+   let running = false;
+ 
++  const isAccepted = (target: string) => !!settings.isAccepted && settings.isAccepted(target);
++
+   const postLog = async (text: string, severity: LogSeverity = 'info') => {
+     try {
+       await socket.post('events', { text, severity });
+@@ -54,6 +146,15 @@ const CrcRedownload = (socket: APISocket, settings: CrcRedownloadSettings) => {
+     }
+   };
+ 
++  const withinLastHour = (times: number[]) => {
++    const limit = now() - 60 * 60 * 1000;
++    while (times.length && times[0] < limit) {
++      times.shift();
++    }
++
++    return times.length;
++  };
++
+   // Returns whether a source was actually found and queued for download.
+   const searchAndDownload = async (folderPath: string, silentIfNotFound: boolean): Promise<boolean> => {
+     const parentDir = path.dirname(folderPath);
+@@ -79,27 +180,24 @@ const CrcRedownload = (socket: APISocket, settings: CrcRedownloadSettings) => {
+         });
+       } finally {
+ 
+-        await new Promise(resolve => setTimeout(resolve, 1000 * settings.getSearchWaitSeconds()));
++        await sleep(1000 * settings.getSearchWaitSeconds());
+       }
+ 
+-      const results: Array<{ id: string; name?: string }> = await socket.get(`search/${search.id}/results/0/5`);
+-      if (!results || results.length === 0) {
++      const results: Array<{ id: string; name?: string }> = await socket.get(`search/${search.id}/results/0/20`);
++      const best = pickBestResult(results || [], folderName);
++      if (!best) {
+         if (!silentIfNotFound) {
+-          await postLog(`[CRC-redownload] No sources found for folder: ${folderName}`, 'warning');
++          await postLog(`[CRC-redownload] No source with exactly this name found for folder: ${folderName}`, 'warning');
+         }
+         return false;
+       }
+ 
+-      const best = pickBestResult(results, folderName);
+       await socket.post(`search/${search.id}/results/${best.id}/download`, {
+         target_name: folderName,
+         target_directory: parentDir + path.sep,
+       });
+ 
+-      await postLog(
+-        `[CRC-redownload] Re-queued folder for download: ${folderName} (${results.length} source(s) found)`,
+-        'info'
+-      );
++      await postLog(`[CRC-redownload] Re-queued folder for download: ${folderName}`, 'info');
+       return true;
+     } catch (e: any) {
+       await postLog(`[CRC-redownload] Search/download failed for folder ${folderName}: ${e.message}`, 'error');
+@@ -110,7 +208,7 @@ const CrcRedownload = (socket: APISocket, settings: CrcRedownloadSettings) => {
+           `[CRC-redownload] Pausing ${Math.round(backoffMs / 1000)}s after a search queue overflow...`,
+           'warning'
+         );
+-        await new Promise(resolve => setTimeout(resolve, backoffMs));
++        await sleep(backoffMs);
+       }
+ 
+       return false;
+@@ -128,21 +226,49 @@ const CrcRedownload = (socket: APISocket, settings: CrcRedownloadSettings) => {
+   // can never run their searches concurrently with each other (keeping the
+   // "one search at a time" behavior that avoids "Search queue overflow").
+   const enqueue = (folderPath: string, silentIfNotFound: boolean) => {
+-    if (pendingPaths.has(folderPath)) {
++    const key = normalizeKey(folderPath);
++    if (pendingPaths.has(key)) {
++      return;
++    }
++
++    if (pendingPaths.size >= MAX_PENDING_FOLDERS) {
++      postLog(`[CRC-redownload] Too many folders waiting for a redownload search; not adding: ${path.basename(folderPath)}`, 'warning');
+       return;
+     }
+ 
+-    pendingPaths.add(folderPath);
++    pendingPaths.add(key);
+     queue.push({ path: folderPath, silentIfNotFound });
+ 
+-    processQueue();
++    processQueue().catch(e => console.error(`Redownload queue failed: ${e}`));
+   };
+ 
+   const stopRetrying = (folderPath: string) => {
+-    const state = retryState.get(folderPath);
++    const key = normalizeKey(folderPath);
++    const state = retryState.get(key);
+     if (state) {
+       clearTimeout(state.timer);
+-      retryState.delete(folderPath);
++      retryState.delete(key);
++    }
++  };
++
++  // Drops every queued search and retry for this folder and anything below it (used when the
++  // user accepts a release)
++  const cancel = (folderPath: string) => {
++    const base = normalizeKey(folderPath);
++    const inside = (key: string) => key === base || key.startsWith(base + path.sep);
++
++    for (const [key, state] of Array.from(retryState.entries())) {
++      if (inside(key)) {
++        clearTimeout(state.timer);
++        retryState.delete(key);
++      }
++    }
++
++    for (let i = queue.length - 1; i >= 0; i--) {
++      if (inside(normalizeKey(queue[i].path))) {
++        pendingPaths.delete(normalizeKey(queue[i].path));
++        queue.splice(i, 1);
++      }
+     }
+   };
+ 
+@@ -159,14 +285,15 @@ const CrcRedownload = (socket: APISocket, settings: CrcRedownloadSettings) => {
+       return;
+     }
+ 
++    const key = normalizeKey(folderPath);
+     const maxAttempts = Math.max(1, Math.round((maxHours * 60) / intervalMinutes));
+     const intervalMs = 60000 * intervalMinutes;
+ 
+-    const existing = retryState.get(folderPath);
++    const existing = retryState.get(key);
+     const attempts = existing ? existing.attempts : 0;
+ 
+     if (attempts >= maxAttempts) {
+-      retryState.delete(folderPath);
++      retryState.delete(key);
+       postLog(
+         `[CRC-redownload] Giving up searching for folder after ${attempts} attempt(s) (~${maxHours}h): ${path.basename(folderPath)}`,
+         'warning'
+@@ -179,6 +306,11 @@ const CrcRedownload = (socket: APISocket, settings: CrcRedownloadSettings) => {
+     }
+ 
+     const timer = setTimeout(async () => {
++      if (isAccepted(folderPath)) {
++        retryState.delete(key);
++        return;
++      }
++
+       let folderExists = true;
+       try {
+         await fs.promises.access(folderPath);
+@@ -187,7 +319,7 @@ const CrcRedownload = (socket: APISocket, settings: CrcRedownloadSettings) => {
+       }
+ 
+       if (!folderExists) {
+-        retryState.delete(folderPath);
++        retryState.delete(key);
+         await postLog(
+           `[CRC-redownload] Release folder no longer exists -- canceling redownload retry for: ${path.basename(folderPath)}`,
+           'info'
+@@ -198,7 +330,11 @@ const CrcRedownload = (socket: APISocket, settings: CrcRedownloadSettings) => {
+       enqueue(folderPath, silentIfNotFound);
+     }, intervalMs);
+ 
+-    retryState.set(folderPath, { attempts: attempts + 1, timer });
++    if (typeof timer.unref === 'function') {
++      timer.unref();
++    }
++
++    retryState.set(key, { attempts: attempts + 1, timer });
+   };
+ 
+   const processQueue = async () => {
+@@ -207,94 +343,236 @@ const CrcRedownload = (socket: APISocket, settings: CrcRedownloadSettings) => {
+     }
+ 
+     running = true;
+-    while (queue.length > 0) {
+-      const item = queue.shift() as QueueItem;
+-      pendingPaths.delete(item.path);
+-      lastQueuedAt.set(item.path, Date.now());
+-
+-      const found = await searchAndDownload(item.path, item.silentIfNotFound);
+-      if (found) {
+-        stopRetrying(item.path);
+-      } else {
+-        scheduleRetry(item.path, item.silentIfNotFound);
++    try {
++      while (queue.length > 0) {
++        // Search budget: wait for the oldest search of the last hour to age out
++        if (withinLastHour(searchTimes) >= MAX_SEARCHES_PER_HOUR) {
++          await sleep(Math.max(1000, searchTimes[0] + 60 * 60 * 1000 - now()));
++          continue;
++        }
++
++        const item = queue.shift() as QueueItem;
++        const key = normalizeKey(item.path);
++        pendingPaths.delete(key);
++        if (isAccepted(item.path)) {
++          continue;
++        }
++
++        lastQueuedAt.set(key, now());
++        searchTimes.push(now());
++
++        const found = await searchAndDownload(item.path, item.silentIfNotFound);
++        if (found) {
++          stopRetrying(item.path);
++        } else {
++          scheduleRetry(item.path, item.silentIfNotFound);
++        }
+       }
++    } finally {
++      running = false;
+     }
+-    running = false;
+   };
+ 
++  // Redownloads the RELEASE a folder belongs to. A disc/Sample/Subs folder resolves to its
++  // release; a folder that is not inside a release (a share root, a personal folder) is never
++  // searched for by name.
+   const redownloadFolder = (folderPath: string) => {
+-    const normalized = folderPath.replace(/[\\/]+$/, '');
++    const release = releaseFolderOf(folderPath);
++    if (!release) {
++      return false;
++    }
++
++    if (isAccepted(release)) {
++      return false;
++    }
+ 
+-    const lastAt = lastQueuedAt.get(normalized);
+-    if (lastAt && Date.now() - lastAt < 5 * 60 * 1000) {
++    const lastAt = lastQueuedAt.get(normalizeKey(release));
++    if (lastAt && now() - lastAt < 5 * 60 * 1000) {
+       // Already (re)queued this exact folder in the last 5 minutes
+-      return;
++      return false;
+     }
+ 
+-    enqueue(normalized, isSubsFolder(normalized));
++    enqueue(release, false);
++    return true;
+   };
+ 
+-  // Hook: a file failed hashing/verification
++  // Sets a file aside: into the quarantine folder (outside the share) when there is one, otherwise
++  // renamed in place with the suffix. Content is always kept.
++  const setAside = async (filePath: string, suffix: string) => {
++    const quarantineDir = settings.getQuarantineDir ? settings.getQuarantineDir() : undefined;
++    if (quarantineDir) {
++      return moveToQuarantine(filePath, quarantineDir, suffix);
++    }
++
++    const target = await setAsideName(filePath, suffix);
++    await fs.promises.rename(filePath, target);
++    return target;
++  };
++
++  // Set-aside copies older than QUARANTINE_KEEP_DAYS are removed: by then the release was either
++  // repaired or the copy is of no use. Only folders this extension created (a timestamp name with
++  // an origin.txt) are touched.
++  const pruneQuarantine = async () => {
++    const quarantineDir = settings.getQuarantineDir ? settings.getQuarantineDir() : undefined;
++    if (!quarantineDir) {
++      return 0;
++    }
++
++    let entries: fs.Dirent[];
++    try {
++      entries = await fs.promises.readdir(quarantineDir, { withFileTypes: true });
++    } catch (e) {
++      return 0;
++    }
++
++    let removed = 0;
++    const limit = now() - QUARANTINE_KEEP_DAYS * 24 * 60 * 60 * 1000;
++    for (const entry of entries) {
++      if (!entry.isDirectory() || !/^\d{8}T\d{6}-\d+$/.test(entry.name)) {
++        continue;
++      }
++
++      const folder = path.join(quarantineDir, entry.name);
++      try {
++        const marker = await fs.promises.stat(path.join(folder, 'origin.txt'));
++        if (marker.mtimeMs < limit) {
++          await fs.promises.rm(folder, { recursive: true, force: true });
++          removed++;
++        }
++      } catch (e) {
++        // not one of ours
++      }
++    }
++
++    return removed;
++  };
++
++  // A file failed CRC verification against its folder's SFV while being hashed. This fires for
++  // the whole share, not only for downloads: a retagged mp3 or a stale second SFV fails too. So the
++  // file is set aside (moved out of the share into the quarantine folder), never deleted; accepted
++  // releases are left alone; and only so many files are set aside per hour.
+   const onHasherFileFailed = async (data: { error_id: string; path: string }) => {
+     if (data.error_id !== 'crc_error') {
+       return;
+     }
+ 
+-    if (settings.getDeleteFiles()) {
+-      try {
+-        await fs.promises.unlink(data.path);
+-        await postLog(`[CRC-redownload] Deleted due to CRC error: ${data.path}`, 'warning');
+-      } catch (e: any) {
+-        await postLog(`[CRC-redownload] Could not delete file (${data.path}): ${e.message}`, 'error');
+-        return;
+-      }
++    if (isAccepted(data.path)) {
++      await postLog(`[CRC-redownload] CRC error in an accepted release, left alone: ${data.path}`, 'info');
++      return;
++    }
++
++    if (!settings.getDeleteFiles()) {
++      await postLog(`[CRC-redownload] CRC error detected (not moved aside, disabled in settings): ${data.path}`, 'warning');
++      return;
++    }
++
++    // The slot is taken before the first await: a burst of failures (small files under a stale
++    // SFV hash in milliseconds) must not all pass the check before any of them is counted
++    if (withinLastHour(setAsideTimes) >= MAX_SET_ASIDE_PER_HOUR) {
++      await postLog(`[CRC-redownload] CRC error detected; not moved aside (more than ${MAX_SET_ASIDE_PER_HOUR} this hour -- check the release's SFV): ${data.path}`, 'warning');
++      return;
++    }
+ 
+-      if (settings.getRedownload()) {
+-        redownloadFolder(path.dirname(data.path));
++    const slot = now();
++    setAsideTimes.push(slot);
++    try {
++      const target = await setAside(data.path, '.crcfail');
++      await postLog(`[CRC-redownload] Moved aside due to CRC error: ${data.path} -> ${target}`, 'warning');
++    } catch (e: any) {
++      const index = setAsideTimes.indexOf(slot);
++      if (index >= 0) {
++        setAsideTimes.splice(index, 1);
+       }
+-    } else {
+-      await postLog(`[CRC-redownload] CRC error detected (not deleted, disabled in settings): ${data.path}`, 'warning');
++
++      await postLog(`[CRC-redownload] Could not move aside the file (${data.path}): ${e.message}`, 'error');
++      return;
++    }
++
++    if (settings.getRedownload()) {
++      redownloadFolder(path.dirname(data.path));
+     }
+   };
+ 
+-  const onFileMissing = async (folderPath: string, errorId: string) => {
+-    if (!settings.getRedownload()) {
+-      return;
++  // SFV contents already set aside: if every source has the same broken SFV, downloading it again
++  // would set it aside again, forever
++  const setAsideSfvHashes = new Set<string>();
++
++  // An SFV that parses to zero valid lines is set aside (".bad") so a fresh copy can be downloaded.
++  // Never deleted, never on an I/O error (unreadable is not broken), and not again for content
++  // that was set aside before. Returns how many were set aside.
++  const setAsideBrokenSfvs = async (folderPath: string) => {
++    let entries: fs.Dirent[];
++    try {
++      entries = await fs.promises.readdir(folderPath, { withFileTypes: true });
++    } catch (e: any) {
++      await postLog(`[CRC-redownload] Could not read folder to check its SFV files (${folderPath}): ${e.message}`, 'error');
++      return 0;
+     }
+ 
+-    if (errorId === 'invalid_sfv_file') {
++    let setAsideCount = 0;
++    for (const entry of entries) {
++      if (!entry.isFile() || !entry.name.toLowerCase().endsWith('.sfv')) {
++        continue;
++      }
+ 
+-      let entries: fs.Dirent[] | undefined;
+       try {
+-        entries = await fs.promises.readdir(folderPath, { withFileTypes: true });
++        await SFVReader(folderPath).load(entry.name);
+       } catch (e: any) {
+-        await postLog(`[CRC-redownload] Could not read folder to delete broken SFV (${folderPath}): ${e.message}`, 'error');
+-      }
++        if (!e || e.code !== SFV_NO_VALID_LINES) {
++          continue;
++        }
+ 
+-      if (entries) {
+-        for (const entry of entries) {
+-          if (entry.isFile() && entry.name.toLowerCase().endsWith('.sfv')) {
+-            const sfvPath = path.join(folderPath, entry.name);
+-            try {
+-              await fs.promises.unlink(sfvPath);
+-              await postLog(`[CRC-redownload] Deleted broken SFV (no valid lines): ${sfvPath}`, 'warning');
+-            } catch (e: any) {
+-              await postLog(`[CRC-redownload] Could not delete broken SFV (${sfvPath}): ${e.message}`, 'error');
+-            }
++        const sfvPath = path.join(folderPath, entry.name);
++        try {
++          const hash = crypto.createHash('sha1').update(await fs.promises.readFile(sfvPath)).digest('hex');
++          if (setAsideSfvHashes.has(hash)) {
++            await postLog(`[CRC-redownload] The SFV ${sfvPath} has no valid lines again (the same file as before); not redownloading it again`, 'warning');
++            continue;
+           }
++
++          const target = await setAside(sfvPath, '.bad');
++          setAsideSfvHashes.add(hash);
++          setAsideCount++;
++          await postLog(`[CRC-redownload] Set aside an SFV with no valid lines: ${sfvPath} -> ${target}`, 'warning');
++        } catch (renameError: any) {
++          await postLog(`[CRC-redownload] Could not set aside the SFV (${sfvPath}): ${renameError.message}`, 'error');
+         }
+       }
+     }
+ 
++    return setAsideCount;
++  };
++
++  const onFileMissing = async (folderPath: string, errorId: string) => {
++    if (!settings.getRedownload() || !REDOWNLOAD_ERROR_IDS.includes(errorId)) {
++      return;
++    }
++
++    if (!releaseFolderOf(folderPath) || isAccepted(folderPath)) {
++      return;
++    }
++
++    // A broken SFV is only worth a redownload when one was actually set aside (a too large or
++    // unreadable SFV, or the same broken one again, is not)
++    if (errorId === 'invalid_sfv_file' && (await setAsideBrokenSfvs(folderPath)) === 0) {
++      return;
++    }
++
+     redownloadFolder(folderPath);
+   };
+ 
+   return {
+     start: () => {
+-      socket.addListener('hash', 'hasher_file_failed', onHasherFileFailed);
++      socket.addListener('hash', 'hasher_file_failed', (data: { error_id: string; path: string }) => {
++        onHasherFileFailed(data).catch(e => console.error(`CRC failure handling failed: ${e}`));
++      });
++      pruneQuarantine().catch(e => console.error(`Pruning the quarantine failed: ${e}`));
+     },
+     onFileMissing,
+     redownloadFolder,
++    onHasherFileFailed,
++    cancel,
++    pruneQuarantine,
+   };
+ };
+ 
+diff --git a/src/ScanRunners.ts b/src/ScanRunners.ts
+index fdd4994..17523ef 100644
+--- a/src/ScanRunners.ts
++++ b/src/ScanRunners.ts
+@@ -18,9 +18,10 @@ const ScanRunners = function (context: Context) {
+   };
+ 
+   const logCompletedDebug = (scanner: ScannerType, message: string) => {
++    const perItem = (count: number) => (count > 0 ? (scanner.stats.duration / count).toFixed(2) : '-');
+     let text = message;
+     text += `: scanned ${scanner.stats.scannedDirectories} directories and ${scanner.stats.scannedFiles} files, took ${scanner.stats.duration} ms`;
+-    text += ` (${(scanner.stats.duration / scanner.stats.scannedDirectories).toFixed(2)} ms per directory, ${(scanner.stats.duration / scanner.stats.scannedFiles).toFixed(2)} ms per file)`;
++    text += ` (${perItem(scanner.stats.scannedDirectories)} ms per directory, ${perItem(scanner.stats.scannedFiles)} ms per file)`;
+     if (scanner.stats.ignoredFiles > 0 || scanner.stats.ignoredDirectories > 0) {
+       text += `, ignored ${scanner.stats.ignoredDirectories} directories and ${scanner.stats.ignoredFiles} files`;
+     }
+@@ -97,12 +98,25 @@ const ScanRunners = function (context: Context) {
+     return scanner;
+   };
+ 
++  // One manual scan at a time: two overlapping scans of the same folders race each other's
++  // fixes (set-aside files, redownload searches)
++  let manualScanRunning = false;
++
+   const scanPathsManual = async (paths: string[]) => {
+-    const text = paths.length === 1 ? `Scanning the path ${paths[0]}` : `Scanning ${paths.length} paths...`;
+-    api.postEvent(text, SeverityEnum.INFO);
++    if (manualScanRunning) {
++      api.postEvent('A scan is already running; wait for it to finish before starting another one.', SeverityEnum.WARNING);
++      return getEmptyScanner();
++    }
+ 
+-    const scanner = doManualScan(paths);
+-    return scanner;
++    manualScanRunning = true;
++    try {
++      const text = paths.length === 1 ? `Scanning the path ${paths[0]}` : `Scanning ${paths.length} paths...`;
++      api.postEvent(text, SeverityEnum.INFO);
++
++      return await doManualScan(paths);
++    } finally {
++      manualScanRunning = false;
++    }
+   };
+ 
+   const scanPath = async (targetPath: string) => {
+@@ -113,11 +127,43 @@ const ScanRunners = function (context: Context) {
+     const groupedDirectories = await api.getGroupedShareRoots();
+     api.postEvent('Scanning shared releases...', SeverityEnum.INFO);
+ 
+-    const scanner = await doManualScan(groupedDirectories.reduce((accumulator, element) => reduceGroupedPath(accumulator, element), []));
+-    return scanner;
++    return scanPathsManual(groupedDirectories.reduce((accumulator, element) => reduceGroupedPath(accumulator, element), []));
+   };
+ 
+-  const onBundleFinished: HookCallback<Bundle> = async (bundle, accept, reject) => {
++  // A hook handler that throws sends no answer at all: the client then waits its full hook
++  // timeout (bundle 120 s, share folder 60 s) and lets the item through anyway. Answer at once
++  // instead, the same way, and say why.
++  const guardHook = <T extends object>(name: string, handler: HookCallback<T>): HookCallback<T> => async (data, accept, reject) => {
++    // Answered once only: a throw after the handler already accepted or rejected must not answer
++    // a second time
++    let answered = false;
++    const acceptOnce: typeof accept = (completionData) => {
++      if (!answered) {
++        answered = true;
++        accept(completionData);
++      }
++    };
++    const rejectOnce: typeof reject = (rejectId, message) => {
++      if (!answered) {
++        answered = true;
++        reject(rejectId, message);
++      }
++    };
++
++    try {
++      return await handler(data, acceptOnce, rejectOnce);
++    } catch (e: any) {
++      logger.error(`${name} failed: ${e && e.stack ? e.stack : e}`);
++      if (!answered) {
++        api.postEvent(`${name} failed (${e && e.message ? e.message : e}); the item was let through unchecked`, SeverityEnum.ERROR);
++        acceptOnce(undefined);
++      }
++
++      return null;
++    }
++  };
++
++  const onBundleFinishedUnguarded: HookCallback<Bundle> = async (bundle, accept, reject) => {
+     if (bundle.type.id === 'file') {
+       accept(undefined);
+       return null;
+@@ -151,17 +197,17 @@ const ScanRunners = function (context: Context) {
+     return scanner;
+   };
+ 
++  const onBundleFinished = guardHook('Bundle scan', onBundleFinishedUnguarded);
++
+   const getShareDirectoryAddedHandler = (postEventApi: boolean) => {
+     const onShareDirectoryAdded: HookCallback<SharePathHookData> = async ({ path, new_parent }, accept, reject) => {
+ 
+       const errorLogger = getMemoryErrorLogger(false);
+ 
+-      // The 5th argument wires up the same per-directory "search and
+-      // redownload" action already used for a manual/share scan (see
+-      // doManualScan above) -- without it, a missing SFV/NFO found on a
+-      // freshly-added share directory was only ever logged/rejected, never
+-      // actually redownloaded, even though the README has documented this
+-      // scan type as covered since 1.2.25-beta.
++      // The 5th argument wires up the per-directory redownload, as for a manual scan. It acts only
++      // on hard evidence inside a real release folder (CrcRedownload.REDOWNLOAD_ERROR_IDS,
++      // releaseFolderOf) and on exact-name search results: a personal folder that merely looks
++      // like it lacks an SFV is reported, never filled with someone else's content.
+       const scanner = Scanner(configGetter().validators, errorLogger.logger, pathValidator(false), context.isPathAccepted, context.onFileMissing);
+       await scanner.scanPath(path, false);
+ 
+@@ -185,7 +231,7 @@ const ScanRunners = function (context: Context) {
+       return scanner;
+     };
+ 
+-    return onShareDirectoryAdded;
++    return guardHook('New share directory scan', onShareDirectoryAdded);
+   };
+ 
+   const scanShareRoots = async (ids: string[]) => {
+@@ -243,6 +289,7 @@ const ScanRunners = function (context: Context) {
+     getShareDirectoryAddedHandler,
+ 
+     stop,
++    isScanRunning: () => manualScanRunning,
+   };
+ };
+ 
+diff --git a/src/Scanner.ts b/src/Scanner.ts
+index 62b85e1..dcece4e 100644
+--- a/src/Scanner.ts
++++ b/src/Scanner.ts
+@@ -6,6 +6,8 @@ import { TotalErrorCounter, ValidatorErrorReporter, pickMissingErrorId } from '.
+ import { DirectoryInfo, ErrorLogger, ErrorType, Validator } from './types';
+ 
+ export type PathValidator = (path: string) => Promise<boolean> | boolean;
++
++const SYSTEM_FILES = new Set(['thumbs.db', 'desktop.ini', '.ds_store']);
+ export type DirectoryMissingItemsCallback = (directoryPath: string, errorId: string) => void;
+ 
+ const Scanner = (
+@@ -23,11 +25,42 @@ const Scanner = (
+   const parseFile = async (directoryInfo: DirectoryInfo, name: string) => {
+     const fullPath = path.join(directoryInfo.path, name);
+ 
++    // System metadata the OS drops into folders is never release content
++    if (SYSTEM_FILES.has(name.toLowerCase())) {
++      return false;
++    }
++
+     let stat;
+     try {
+-      stat = await fs.stat(fullPath);
++      // lstat: a junction or symlink is not followed (a loop would recurse until the path is too
++      // long, and a link out of the share would get "fixed" by the redownload)
++      stat = await fs.lstat(fullPath);
+     } catch (e) {
+-      errors.add('disk_read_error', `Failed to read file: ${e}`, ErrorType.INVALID_CONTENT);
++      // A file renamed or removed between the listing and here (a ".dctmp" finishing) is not
++      // a read error of the release
++      if ((e as NodeJS.ErrnoException).code !== 'ENOENT') {
++        errors.add('disk_read_error', `Failed to read file: ${e}`, ErrorType.INVALID_CONTENT);
++      }
++
++      return false;
++    }
++
++    if (stat.isSymbolicLink()) {
++      // A linked FILE is content (symlink farms, cross-seeding): counted as present, or the SFV
++      // check would call it missing and start a redownload. A linked folder is not followed.
++      let target;
++      try {
++        target = await fs.stat(fullPath);
++      } catch (e) {
++        return false;
++      }
++
++      if (!target.isFile()) {
++        return false;
++      }
++
++      stat = target;
++    } else if (!stat.isFile() && !stat.isDirectory()) {
+       return false;
+     }
+ 
+diff --git a/src/errors/pickMissingErrorId.ts b/src/errors/pickMissingErrorId.ts
+index eb22324..af4ff8d 100644
+--- a/src/errors/pickMissingErrorId.ts
++++ b/src/errors/pickMissingErrorId.ts
+@@ -3,14 +3,20 @@ import { ErrorType } from '../types';
+ // Shared with ScanRunners (whole-scan level, for a just-finished bundle) and
+ // Scanner (per-directory level, for manual/share scans) -- picks which
+ // single error ID, if any, should trigger a "redownload this folder" action.
+-// Prefers "invalid_sfv_file" (a broken SFV itself needs redownloading before
+-// anything else can be checked against it), otherwise the first
+-// ITEMS_MISSING-type error found, if any.
++//
++// Proof first: "invalid_sfv_file" (a broken SFV itself needs redownloading before anything else
++// can be checked against it), then "file_missing" (the SFV lists a file that is not there). Only
++// these start a redownload, so they must win over a "possibly missing" finding of the same folder
++// whatever order the validators finished in (an NFO check finishing first used to hide a missing
++// file). Otherwise the first ITEMS_MISSING-type error found, if any (reported, not acted on).
++const PROOF_IDS = ['invalid_sfv_file', 'file_missing'];
++
+ export const pickMissingErrorId = (errors: { [key in string]: { type: ErrorType } }): string | null => {
+   const ids = Object.keys(errors);
+ 
+-  if (ids.includes('invalid_sfv_file')) {
+-    return 'invalid_sfv_file';
++  const proof = PROOF_IDS.find(id => ids.includes(id));
++  if (proof) {
++    return proof;
+   }
+ 
+   return ids.find(id => errors[id].type === ErrorType.ITEMS_MISSING) || null;
+diff --git a/src/helpers/SFVReader.ts b/src/helpers/SFVReader.ts
+index bf32fb1..2136187 100644
+--- a/src/helpers/SFVReader.ts
++++ b/src/helpers/SFVReader.ts
+@@ -3,25 +3,74 @@ import eol from 'eol';
+ 
+ import path from 'node:path';
+ 
+-const crc32Reg = /\s(\w{8})$/;
++// "name CRC32": the name may contain spaces; the CRC is 8 hex digits at the end of the line
++const lineReg = /^(.+?)\s+([0-9A-Fa-f]{8})$/;
+ 
+-const reduceContent = (reduced: { [key in string]: string }, line: string) => {
+-  const tokens = line.split(crc32Reg);
+-  if (tokens[0] && tokens.length > 1) {
+-    let name = tokens[0].trim();
++// Raised when an SFV parses to zero valid lines. Only this means "the SFV itself is broken";
++// any other failure (I/O, too large) says nothing about the file's content.
++export const SFV_NO_VALID_LINES = 'SFV_NO_VALID_LINES';
+ 
+-    if (name.startsWith('"') && name.endsWith('"')) {
+-      name = name.substring(1, name.length - 1);
+-    }
++// Text as the client reads it: UTF-16 (with a BOM), UTF-8 with or without BOM, otherwise ANSI
++export const decodeSfv = (buffer: Buffer): string => {
++  if (buffer.length >= 2 && buffer[0] === 0xff && buffer[1] === 0xfe) {
++    return buffer.subarray(2).toString('utf16le');
++  }
+ 
+-    reduced[name] = tokens[1];
++  if (buffer.length >= 2 && buffer[0] === 0xfe && buffer[1] === 0xff) {
++    const swapped = Buffer.from(buffer.subarray(2));
++    swapped.swap16();
++    return swapped.toString('utf16le');
+   }
+ 
+-  return reduced;
++  if (buffer.length >= 3 && buffer[0] === 0xef && buffer[1] === 0xbb && buffer[2] === 0xbf) {
++    return buffer.subarray(3).toString('utf8');
++  }
++
++  // Valid UTF-8 as such; anything else is ANSI, decoded as Windows-1252 (latin1 would turn
++  // 0x80-0x9F, e.g. curly quotes and dashes in names, into control characters)
++  try {
++    return new TextDecoder('utf-8', { fatal: true }).decode(buffer);
++  } catch (e) {
++    return new TextDecoder('windows-1252').decode(buffer);
++  }
+ };
+ 
+-const filterLines = (line: string) => {
+-  return line && !line.includes(';') && !line.includes('\\');
++// { content: name -> crc for the entries of this folder, validLines: every well-formed line }
++// Entries naming a subfolder ("CD1\a.rar", "CD1/a.rar") or a parent ("..") are valid lines but
++// are not checked here: they are not files of this folder.
++export const parseSfv = (text: string) => {
++  const content: { [key in string]: string } = {};
++  let validLines = 0;
++
++  for (const raw of eol.split(text)) {
++    const line = raw.trim();
++    if (!line || line.startsWith(';')) {
++      continue;
++    }
++
++    const match = lineReg.exec(line);
++    if (!match) {
++      continue;
++    }
++
++    let name = match[1].trim();
++    if (name.startsWith('"') && name.endsWith('"') && name.length >= 2) {
++      name = name.substring(1, name.length - 1);
++    }
++
++    if (!name) {
++      continue;
++    }
++
++    validLines++;
++    if (name.includes('/') || name.includes('\\') || name.split(/[\\/]/).includes('..')) {
++      continue;
++    }
++
++    content[name] = match[2];
++  }
++
++  return { content, validLines };
+ };
+ 
+ const SFVReader = (directoryPath: string) => {
+@@ -36,16 +85,12 @@ const SFVReader = (directoryPath: string) => {
+       throw new Error(`SFV file is too large (${sizeMb} MiB)`);
+     }
+ 
+-    const file = await fs.readFile(filePath, 'utf8');
+-    const loaded = eol.split(file)
+-      .filter(filterLines)
+-      .reduce((accumulator, element) => reduceContent(accumulator, element), {});
+-
+-    if (!Object.keys(loaded).length) {
+-      throw new Error(`No valid lines were parsed from the SFV file`);
++    const parsed = parseSfv(decodeSfv(await fs.readFile(filePath)));
++    if (!parsed.validLines) {
++      throw Object.assign(new Error(`No valid lines were parsed from the SFV file`), { code: SFV_NO_VALID_LINES });
+     }
+ 
+-    Object.assign(content, loaded);
++    Object.assign(content, parsed.content);
+   };
+ 
+   return {
+diff --git a/src/index.ts b/src/index.ts
+index f533fa2..40a6a15 100644
+--- a/src/index.ts
++++ b/src/index.ts
+@@ -11,6 +11,11 @@ process.on('warning', (warning: any) => {
+   console.error(warning.stack || `${warning.name}: ${warning.message}`);
+ });
+ 
++// Last resort: an async error nobody awaited is logged instead of ending the process
++process.on('unhandledRejection', (reason: any) => {
++  console.error(`Unhandled rejection: ${reason && reason.stack ? reason.stack : reason}`);
++});
++
+ ManagedExtension(Entry, {
+ 
+ });
+diff --git a/src/main.ts b/src/main.ts
+index f2f34ff..baf3b9a 100644
+--- a/src/main.ts
++++ b/src/main.ts
+@@ -1,5 +1,8 @@
+ 'use strict';
+ 
++import fs from 'node:fs';
++import path from 'node:path';
++
+ const CONFIG_VERSION = 1;
+ 
+ import { addContextMenuItems, APISocket } from 'airdcpp-apisocket';
+@@ -69,7 +72,7 @@ export default function (socket: APISocket, extension: ExtensionEntryData) {
+   let runners: ReturnType<typeof ScanRunners>;
+ 
+   
+-  extension.onStart = async (sessionInfo: SessionInfo) => {
++  const start = async (sessionInfo: SessionInfo) => {
+     
+     const settings = SettingsManager(socket, {
+       extensionName: extension.name, 
+@@ -116,6 +119,8 @@ export default function (socket: APISocket, extension: ExtensionEntryData) {
+       getOverflowBackoffSeconds: () => settings.getValue('overflow_backoff_seconds'),
+       getRetryIntervalMinutes: () => settings.getValue('retry_interval_minutes'),
+       getRetryMaxHours: () => settings.getValue('retry_max_hours'),
++      isAccepted: acceptedReleases.isAccepted,
++      getQuarantineDir: () => extension.configPath + 'quarantine',
+     });
+     crcRedownload.start();
+ 
+@@ -158,6 +163,29 @@ export default function (socket: APISocket, extension: ExtensionEntryData) {
+ 
+     runners = ScanRunners(context);
+ 
++    const logError = (what: string, e: any) => {
++      socket.logger.error(`${what} failed: ${e && e.stack ? e.stack : e}`);
++      api.postEvent(`${what} failed: ${e && e.message ? e.message : e}`, SeverityEnum.ERROR).catch(() => undefined);
++    };
++
++    // A manual scan path must be a full path to an existing folder
++    const checkScanPath = async (targetPath: string): Promise<string | null> => {
++      if (!path.isAbsolute(targetPath) || /^[A-Za-z]:(?![\\/])/.test(targetPath)) {
++        return `"${targetPath}" is not a full path (for example D:\\Downloads\\Some.Release-GRP).`;
++      }
++
++      try {
++        const stat = await fs.promises.stat(targetPath);
++        if (!stat.isDirectory()) {
++          return `"${targetPath}" is not a folder.`;
++        }
++      } catch (e) {
++        return `"${targetPath}" does not exist.`;
++      }
++
++      return null;
++    };
++
+     
+     const checkChatCommand = async (data: ChatCommandData) => {
+       const { command, args, permissions } = data;
+@@ -182,7 +210,7 @@ export default function (socket: APISocket, extension: ExtensionEntryData) {
+ 
+   /rvalidator scan - Scan the entire share for invalid content
+   /rvalidator scan <path> - Scan only that specific folder (real disk path, not the share name)
+-  /rvalidator accept <path> - Accept that folder as final; no check will flag it again
++  /rvalidator accept <path> - Accept that folder (and its subfolders) as final: no check flags it and no automatic fix touches it
+   /rvalidator unaccept <path> - Undo /rvalidator accept for that folder
+ `
+             };
+@@ -191,7 +219,26 @@ export default function (socket: APISocket, extension: ExtensionEntryData) {
+           if (args[0] === 'scan') {
+             const targetPath = args.slice(1).join(' ').trim();
+             if (targetPath) {
+-              runners.scanPath(targetPath);
++              // A scan can set files aside and start redownloads: only a real, existing folder
++              // given as a full path (a relative one would resolve against the extension's folder)
++              const problem = await checkScanPath(targetPath);
++              if (problem) {
++                return {
++                  severity: 'error',
++                  type: 'system',
++                  text: problem,
++                };
++              }
++
++              if (runners.isScanRunning()) {
++                return {
++                  severity: 'warning',
++                  type: 'system',
++                  text: 'A scan is already running; wait for it to finish before starting another one.',
++                };
++              }
++
++              runners.scanPath(targetPath).catch(e => logError('Scan', e));
+               return {
+                 severity: 'info',
+                 type: 'system',
+@@ -199,7 +246,15 @@ export default function (socket: APISocket, extension: ExtensionEntryData) {
+               };
+             }
+ 
+-            runners.scanShare();
++            if (runners.isScanRunning()) {
++              return {
++                severity: 'warning',
++                type: 'system',
++                text: 'A scan is already running; wait for it to finish before starting another one.',
++              };
++            }
++
++            runners.scanShare().catch(e => logError('Share scan', e));
+             return {
+               severity: 'info',
+               type: 'system',
+@@ -220,18 +275,40 @@ export default function (socket: APISocket, extension: ExtensionEntryData) {
+             }
+ 
+             if (args[0] === 'accept') {
+-              const isNew = await acceptedReleases.accept(targetPath);
++              let isNew;
++              try {
++                isNew = await acceptedReleases.accept(targetPath);
++              } catch (e: any) {
++                return {
++                  severity: 'error',
++                  type: 'system',
++                  text: `Could not save the accepted releases list (${e.message}); "${targetPath}" is accepted for this session only.`
++                };
++              }
++
++              crcRedownload.cancel(targetPath);
+               return {
+                 severity: 'info',
+                 type: 'system',
+                 text: isNew
+-                  ? `Accepted "${targetPath}" -- no check will flag it again, and no further automatic ` +
+-                    `redownload will be triggered for it. Use /rvalidator unaccept to undo.`
++                  ? `Accepted "${targetPath}" -- no check will flag it or its subfolders again, pending ` +
++                    `redownload searches for it were canceled, and no automatic fix will touch it. ` +
++                    `Use /rvalidator unaccept to undo.`
+                   : `"${targetPath}" was already accepted.`
+               };
+             }
+ 
+-            const wasAccepted = await acceptedReleases.unaccept(targetPath);
++            let wasAccepted;
++            try {
++              wasAccepted = await acceptedReleases.unaccept(targetPath);
++            } catch (e: any) {
++              return {
++                severity: 'error',
++                type: 'system',
++                text: `Could not save the accepted releases list (${e.message}).`
++              };
++            }
++
+             return {
+               severity: 'info',
+               type: 'system',
+@@ -240,19 +317,29 @@ export default function (socket: APISocket, extension: ExtensionEntryData) {
+                 : `"${targetPath}" was not on the accepted list.`
+             };
+           }
++
++          return {
++            severity: 'error',
++            type: 'system',
++            text: `Unknown subcommand "${args[0]}". Type /rvalidator help for usage.`
++          };
+         }
+       }
+-  
++
+       return null;
+     };
+   
+     const onChatCommand = async (type: 'hub' | 'private_chat', data: ChatCommandData, entityId: string | number) => {
+-      const statusMessageData = await checkChatCommand(data);
+-      if (statusMessageData) {
+-        socket.post(`${type}/${entityId}/status_message`, {
+-          ...statusMessageData,
+-          owner: data.owner,
+-        });
++      try {
++        const statusMessageData = await checkChatCommand(data);
++        if (statusMessageData) {
++          await socket.post(`${type}/${entityId}/status_message`, {
++            ...statusMessageData,
++            owner: data.owner,
++          });
++        }
++      } catch (e) {
++        logError('Chat command', e);
+       }
+     };
+ 
+@@ -261,17 +348,92 @@ export default function (socket: APISocket, extension: ExtensionEntryData) {
+       name: 'Release validator',
+     };
+ 
+-    if (settings.getValue('scan_finished_bundles')) {
+-      await socket.addHook('queue', 'queue_bundle_finished_hook', runners.onBundleFinished, subscriberInfo);
++    // The two scan hooks follow their settings live: added or removed when the setting changes,
++    // instead of applying only after a restart
++    const postEventLog = sessionInfo.system_info.api_feature_level <= 4;
++    const hookDefinitions: { [key in string]: { module: string; event: string; callback: any } } = {
++      scan_finished_bundles: { module: 'queue', event: 'queue_bundle_finished_hook', callback: runners.onBundleFinished },
++      scan_new_share_directories: { module: 'share', event: 'new_share_directory_validation_hook', callback: runners.getShareDirectoryAddedHandler(postEventLog) },
++    };
++
++    const hookRemovers: { [key in string]: (() => Promise<void>) | undefined } = {};
++    const hookUpdates: { [key in string]: Promise<void> } = {};
++
++    // One update at a time per hook, and repeated until the hook matches the setting as it is
++    // now: a quick on/off toggle must not leave a hook registered while its setting is off
++    const syncHook = (settingKey: string) => {
++      const definition = hookDefinitions[settingKey];
++      const run = async () => {
++        for (let round = 0; round < 5; round++) {
++          const wanted = !!settings.getValue(settingKey);
++          if (wanted === !!hookRemovers[settingKey]) {
++            return;
++          }
++
++          if (wanted) {
++            hookRemovers[settingKey] = await socket.addHook(definition.module, definition.event, definition.callback, subscriberInfo);
++          } else {
++            const remove = hookRemovers[settingKey] as () => Promise<void>;
++            hookRemovers[settingKey] = undefined;
++            await remove();
++          }
++        }
++      };
++
++      hookUpdates[settingKey] = (hookUpdates[settingKey] || Promise.resolve())
++        .then(run)
++        .catch(e => logError(`Updating the ${definition.event}`, e));
++      return hookUpdates[settingKey];
++    };
++
++    for (const settingKey of Object.keys(hookDefinitions)) {
++      await syncHook(settingKey);
+     }
+-    
+-    if (settings.getValue('scan_new_share_directories')) {
+-      
+-      const postEventLog = sessionInfo.system_info.api_feature_level <= 4;
+-      const onShareDirectoryAdded = runners.getShareDirectoryAddedHandler(postEventLog);
+-      await socket.addHook('share', 'new_share_directory_validation_hook', onShareDirectoryAdded, subscriberInfo);
++
++    settings.onValuesUpdated = (updatedValues: { [key in string]: any }) => {
++      for (const settingKey of Object.keys(hookDefinitions)) {
++        if (Object.prototype.hasOwnProperty.call(updatedValues, settingKey)) {
++          syncHook(settingKey);
++        }
++      }
++    };
++
++    // Bundle statuses for the queue menu filter. The native GUI asks for menu items on its UI
++    // thread and waits for every extension (1 s menu hook timeout): the filter must answer from
++    // memory, not with one API request per selected bundle.
++    const bundleStatuses = new Map<number, string>();
++
++    // Subscribed before the queue is read, so no status change falls between the two (an event
++    // arriving first is not overwritten by the older snapshot)
++    const seenByEvent = new Set<number>();
++    await socket.addListener('queue', 'queue_bundle_status', (bundle: { id: number; status?: { id: string } }) => {
++      seenByEvent.add(bundle.id);
++      bundleStatuses.set(bundle.id, bundle.status ? bundle.status.id : '');
++    });
++    await socket.addListener('queue', 'queue_bundle_removed', (bundle: { id: number }) => {
++      seenByEvent.add(bundle.id);
++      bundleStatuses.delete(bundle.id);
++    });
++
++    try {
++      for (const bundle of await socket.get<Array<{ id: number; status?: { id: string } }>>('queue/bundles/0/100000')) {
++        if (!seenByEvent.has(bundle.id)) {
++          bundleStatuses.set(bundle.id, bundle.status ? bundle.status.id : '');
++        }
++      }
++    } catch (e) {
++      logError('Reading the queue', e);
+     }
+-    
++
++    // Context menu clicks: a rejected promise there is not caught by the library
++    const guardClick = <T>(what: string, handler: (data: T) => Promise<any>) => async (data: T) => {
++      try {
++        await handler(data);
++      } catch (e) {
++        logError(what, e);
++      }
++    };
++
+     await socket.addListener('hubs', 'hub_text_command', onChatCommand.bind(null, 'hubs'));
+     await socket.addListener('private_chat', 'private_chat_text_command', onChatCommand.bind(null, 'private_chat'));
+ 
+@@ -280,12 +442,12 @@ export default function (socket: APISocket, extension: ExtensionEntryData) {
+       [
+         {
+           id: 'scan_missing_extra',
+-          title: `Scan for missing/extra files`,
++          title: `Scan and fix missing/extra files`,
+           icon: {
+             semantic: 'yellow broom'
+           },
+           access: SCAN_ACCESS,
+-          onClick: ({ selectedIds }) => runners.scanShareRoots(selectedIds),
++          onClick: guardClick('Share root scan', ({ selectedIds }: { selectedIds: string[] }) => runners.scanShareRoots(selectedIds)),
+         }
+       ],
+       'share_root',
+@@ -299,7 +461,7 @@ export default function (socket: APISocket, extension: ExtensionEntryData) {
+         [
+           {
+             id: 'scan_missing_extra',
+-            title: `Scan for missing/extra files`,
++            title: `Scan and fix missing/extra files`,
+             icon: {
+               semantic: 'yellow broom'
+             },
+@@ -307,7 +469,7 @@ export default function (socket: APISocket, extension: ExtensionEntryData) {
+               return entityId === context.application.cid
+             },
+             access: SCAN_ACCESS,
+-            onClick: ({ selectedIds, entityId }) => runners.scanOwnFilelistDirectories(selectedIds, entityId),
++            onClick: guardClick('File list scan', ({ selectedIds, entityId }: { selectedIds: number[]; entityId: string }) => runners.scanOwnFilelistDirectories(selectedIds, entityId)),
+           }
+         ],
+         'filelist_item',
+@@ -320,14 +482,12 @@ export default function (socket: APISocket, extension: ExtensionEntryData) {
+       [
+         {
+           id: 'scan_missing_extra',
+-          title: `Scan share for missing/extra files`,
++          title: `Scan and fix the share (missing/extra files)`,
+           icon: {
+             semantic: 'yellow broom'
+           },
+           access: SCAN_ACCESS,
+-          onClick: async () => {
+-            await runners.scanShare();
+-          },
++          onClick: guardClick('Share scan', () => runners.scanShare()),
+           filter: ({ selectedIds }) => selectedIds.includes(extension.name)
+         }
+       ],
+@@ -354,22 +514,8 @@ export default function (socket: APISocket, extension: ExtensionEntryData) {
+             semantic: 'yellow warning circle'
+           },
+           access: SCAN_ACCESS,
+-          filter: async ({ selectedIds }) => {
+-            for (const token of selectedIds) {
+-              try {
+-                const bundle = await api.getQueueBundle(token);
+-                if (bundle.status?.id === 'completion_validation_error') {
+-                  return true;
+-                }
+-              } catch (e) {
+-                
+-                
+-              }
+-            }
+-
+-            return false;
+-          },
+-          onClick: async ({ selectedIds }) => {
++          filter: ({ selectedIds }) => selectedIds.some(token => bundleStatuses.get(token) === 'completion_validation_error'),
++          onClick: guardClick('Accept and force into share', async ({ selectedIds }: { selectedIds: number[] }) => {
+             for (const token of selectedIds) {
+               let bundle;
+               try {
+@@ -387,20 +533,27 @@ export default function (socket: APISocket, extension: ExtensionEntryData) {
+                 continue;
+               }
+ 
+-              await acceptedReleases.accept(bundle.target);
++              let saved = true;
++              try {
++                await acceptedReleases.accept(bundle.target);
++              } catch (e) {
++                saved = false;
++              }
++
++              crcRedownload.cancel(bundle.target);
+ 
+               try {
+                 await api.shareBundle(token, true);
+                 await api.postEvent(
+                   `Accepted "${bundle.target}" and forced it into the share, bypassing validation. No check will ` +
+-                    `flag it again.`,
+-                  SeverityEnum.INFO,
++                    `flag it or its subfolders again` + (saved ? '.' : ' in this session (the accepted list could not be saved).'),
++                  saved ? SeverityEnum.INFO : SeverityEnum.WARNING,
+                 );
+               } catch (e) {
+                 await api.postEvent(`Failed to force "${bundle.target}" into the share: ${e.message}`, SeverityEnum.ERROR);
+               }
+             }
+-          },
++          }),
+         }
+       ],
+       'queue_bundle',
+@@ -418,6 +571,17 @@ export default function (socket: APISocket, extension: ExtensionEntryData) {
+     );
+   };
+ 
++  // A failure while starting used to become an unhandled rejection (the extension library does
++  // not catch it): logged and reported instead
++  extension.onStart = async (sessionInfo: SessionInfo) => {
++    try {
++      await start(sessionInfo);
++    } catch (e: any) {
++      socket.logger.error(`Starting failed: ${e && e.stack ? e.stack : e}`);
++      socket.post('events', { text: `${extension.name}: starting failed (${e && e.message ? e.message : e})`, severity: 'error' }).catch(() => undefined);
++    }
++  };
++
+   extension.onStop = () => {
+     
+     if (runners) {
+diff --git a/src/settings.ts b/src/settings.ts
+index e9f59c8..ca6fd72 100644
+--- a/src/settings.ts
++++ b/src/settings.ts
+@@ -20,11 +20,13 @@ export const getSettingDefinitions = (sessionInfo: SessionInfo) => {
+     {
+       key: 'scan_finished_bundles',
+       title: 'Scan finished bundles',
++      help: 'A finished download with problems is held back (validation error) instead of being shared. Applies immediately.',
+       default_value: true,
+       type: 'boolean'
+     }, {
+       key: 'scan_new_share_directories',
+       title: 'Scan new share directories',
++      help: 'A new folder with problems is left out of the share until fixed or accepted. Applies immediately.',
+       default_value: true,
+       type: 'boolean'
+     },
+@@ -43,12 +45,14 @@ export const getSettingDefinitions = (sessionInfo: SessionInfo) => {
+   SettingDefinitions.push(
+     {
+       key: 'crc_delete_files',
+-      title: 'Delete files that fail CRC verification',
++      title: 'Move files that fail CRC verification out of the share (quarantine)',
++      help: 'Covers every file the client hashes against an SFV, including your own share (a retagged mp3 fails too). Files are moved into the "quarantine" folder in this extension\'s settings folder (with a note of where they came from) and kept for 30 days; at most 20 per hour; accepted releases are left alone.',
+       default_value: true,
+       type: 'boolean'
+     }, {
+       key: 'crc_redownload',
+       title: 'Automatically re-search and redownload the release folder',
++      help: 'Only for proven problems (a file the SFV lists is missing or failed CRC, or the SFV is unreadable) in a real release folder, and only from a source with exactly the same folder name. At most 30 searches per hour.',
+       default_value: true,
+       type: 'boolean'
+     }, {
+@@ -94,7 +98,7 @@ export const getSettingDefinitions = (sessionInfo: SessionInfo) => {
+     }, {
+       key: 'delete_junk_extra_files',
+       title: 'Automatically delete known junk files found as "extra" in a release directory',
+-      help: 'Covers the client\'s own ".dctmp" partial-download leftovers and any file ending in "-missing". A genuinely still-downloading ".dctmp" file is left alone.',
++      help: 'Covers files ending in "-missing". The client\'s own ".dctmp" partial files are never touched (a paused download keeps its progress).',
+       default_value: true,
+       type: 'boolean'
+     },
+diff --git a/src/validators/MissingNfo.ts b/src/validators/MissingNfo.ts
+index 8073d3b..6b126d5 100644
+--- a/src/validators/MissingNfo.ts
++++ b/src/validators/MissingNfo.ts
+@@ -2,11 +2,9 @@ import * as fs from 'fs/promises';
+ import path from 'node:path';
+ import { DirectoryInfo, ErrorType, Validate, ValidateCondition } from '../types';
+ 
+-import { isReleaseName, isExemptReleaseName } from './common';
++import { isReleaseName, isExemptReleaseName, isReleaseSubfolder } from './common';
+ 
+-const subDirReg = /^(((DVD|CD|DIS(K|C)).?([0-9](0-9)?))|Sample|Cover(s)?|.{0,5}Sub(s)?)$/i;
+-
+-const isSubdir = (name: string) => subDirReg.test(name);
++const isSubdir = isReleaseSubfolder;
+ 
+ const isNfo = (name: string) => path.extname(name).toLowerCase() === '.nfo';
+ 
+diff --git a/src/validators/SFVChecker.ts b/src/validators/SFVChecker.ts
+index f4ab14b..c863d0d 100644
+--- a/src/validators/SFVChecker.ts
++++ b/src/validators/SFVChecker.ts
+@@ -23,30 +23,29 @@ const getExtrasReg = (name: string) => {
+ const validateCondition: ValidateCondition = directory => !!directory.sfvFiles.length;
+ 
+ const isSfvOrNfo = (name: string) => {
+-  const ext = path.extname(name);
++  const ext = path.extname(name).toLowerCase();
+   return ext === '.nfo' || ext === '.sfv';
+ };
+ 
+-// Known junk-marker suffixes that are never real release content, however
+-// they got there:
+-// - ".dctmp" is the client's own suffix for a file that's still being
+-//   downloaded (renamed away automatically once the transfer finishes), so
+-//   its presence in a completed release just means some *other*, unrelated
+-//   transfer touching the same folder hasn't finished yet, or a leftover
+-//   fragment from an interrupted/replaced download never got cleaned up.
+-// - a bare "-missing" suffix appended directly onto an otherwise normal
+-//   filename (origin outside this extension family, but unambiguously not
+-//   real release content whenever it's seen).
+-const JUNK_EXTRA_PATTERNS = [/\.dctmp$/i, /-missing$/i];
++// Known junk-marker suffixes that are never real release content: a bare "-missing" suffix
++// appended onto an otherwise normal filename.
++//
++// ".dctmp" is NOT junk: it is the client's partial file of a download, and a paused, slot-waiting
++// or sourceless download keeps an old modification time for hours. Deleting it by age threw away
++// download progress (often of the very redownload this extension had just queued). The client
++// owns its partial files.
++const JUNK_EXTRA_PATTERNS = [/-missing$/i];
+ 
+ const isJunkExtraFile = (name: string) => JUNK_EXTRA_PATTERNS.some(reg => reg.test(name));
+ 
+-// Safety margin before a matched junk file is actually deleted: a client
+-// ".dctmp" file that's genuinely still downloading has its mtime updated
+-// continuously as data arrives, so anything modified more recently than
+-// this is left alone this run rather than risking an active transfer --
+-// it'll be picked up (and by then almost certainly be untouched long
+-// enough) on a later scan if it's really still there.
++// Not "extra files" of the release: the client's partial files of a download still in progress
++// (reporting them failed every release with a download running), and anything this extension set
++// aside in older builds.
++const SET_ASIDE_PATTERNS = [/\.dctmp$/i, /\.crcfail(\.\d+)?$/i, /\.sfv\.bad(\.\d+)?$/i];
++
++const isSetAsideFile = (name: string) => SET_ASIDE_PATTERNS.some(reg => reg.test(name));
++
++// Safety margin before a matched junk file is actually deleted
+ const JUNK_MIN_AGE_MS = 2 * 60 * 1000;
+ 
+ let deleteJunkExtraFiles = true;
+@@ -95,6 +94,10 @@ const validate: Validate = async (directory, reporter) => {
+   if (Object.keys(diskFiles).length > 0) {
+     const extrasReg = getExtrasReg(directory.name);
+     await Promise.all(Object.values(diskFiles).map(async (diskFile) => {
++      if (isSetAsideFile(diskFile)) {
++        return;
++      }
++
+       if (deleteJunkExtraFiles && isJunkExtraFile(diskFile)) {
+         const fullPath = path.join(directory.path, diskFile);
+         try {
+diff --git a/src/validators/common.ts b/src/validators/common.ts
+index f21fb1f..b0c8f34 100644
+--- a/src/validators/common.ts
++++ b/src/validators/common.ts
+@@ -1,7 +1,46 @@
++import path from 'node:path';
++
+ const simpleReleaseReg = /^[A-Z0-9]\S{3,}-[A-Za-z0-9_]{2,}$/;
+ 
+ export const isReleaseName = (name: string) => simpleReleaseReg.test(name);
+ 
++// Folders that belong to a release rather than being one: CD1/CD01/DVD2/Disc 1, Sample, Proof,
++// Covers, Subs, and the VIDEO_TS/AUDIO_TS folders of a DVD.
++const releaseSubfolderReg = /^(((DVD|CD|DIS(K|C)).?([0-9]{1,2}))|Sample|Proof|Cover(s)?|.{0,5}Sub(s)?|VIDEO_TS|AUDIO_TS)$/i;
++
++export const isReleaseSubfolder = (name: string) => releaseSubfolderReg.test(name);
++
++// Scene names in lower case (the.show.s01e01.720p.hdtv.x264-grp) are releases too; a lower-case
++// name must contain a dot or an underscore so plain "holiday-photos" folders stay out
++const lowerCaseReleaseReg = /^[a-z0-9]\S*[._]\S*-[A-Za-z0-9_]{2,}$/;
++
++const isRedownloadableReleaseName = (name: string) => isReleaseName(name) || lowerCaseReleaseReg.test(name);
++
++// Resolved first, separator stripped only when the path is not a root ("D:\" must not become
++// "D:", which means the current folder of drive D)
++const resolveFolder = (dirPath: string) => {
++  const resolved = path.resolve(dirPath);
++  return path.parse(resolved).root === resolved ? resolved : resolved.replace(/[\\/]+$/, '');
++};
++
++// The release folder a path belongs to, or null when it is not inside one. A disc/Sample/Subs
++// folder resolves to its parent release; anything whose name is not a release name (a share root,
++// a personal folder) gives null. Used before any automatic search: a hub search for "CD1",
++// "Sample" or a share root's name would match unrelated folders of other users.
++export const releaseFolderOf = (dirPath: string): string | null => {
++  let current = resolveFolder(dirPath);
++  for (let depth = 0; depth < 3 && isReleaseSubfolder(path.basename(current)); depth++) {
++    const parent = path.dirname(current);
++    if (parent === current) {
++      return null;
++    }
++
++    current = parent;
++  }
++
++  return isRedownloadableReleaseName(path.basename(current)) ? current : null;
++};
++
+ // Shared "release names allowed to have no SFV/NFO" exemption list (the
+ // "no_sfv_exempt_patterns" setting) -- originally only wired into
+ // IncompleteRelease, moved here so MissingSfv/MissingNfo respect it too. A
+diff --git a/tests/accepted.test.ts b/tests/accepted.test.ts
+new file mode 100644
+index 0000000..a167bd3
+--- /dev/null
++++ b/tests/accepted.test.ts
+@@ -0,0 +1,52 @@
++import fs from 'node:fs';
++import path from 'node:path';
++
++import AcceptedReleases from '../src/AcceptedReleases';
++import { tmpDir, write } from './helpers';
++
++const logger = { verbose: () => undefined, error: () => undefined };
++
++test('accepting a release covers its subfolders', async () => {
++  const dir = tmpDir();
++  const store = AcceptedReleases(path.join(dir, 'accepted.json'), logger);
++  await store.accept(path.join(dir, 'Some.Release-GRP'));
++  expect(store.isAccepted(path.join(dir, 'Some.Release-GRP', 'CD1'))).toBe(true);
++  expect(store.isAccepted(path.join(dir, 'Some.Release-GRP', 'CD1', 'a.rar'))).toBe(true);
++  expect(store.isAccepted(path.join(dir, 'Some.Release-GRP2'))).toBe(false);
++});
++
++test('start-up cleanup keeps entries on a drive that is not reachable, drops ones really gone', async () => {
++  const dir = tmpDir();
++  const file = path.join(dir, 'accepted.json');
++  const present = path.join(dir, 'Present-GRP');
++  fs.mkdirSync(present);
++  const gone = path.join(dir, 'Gone-GRP');
++  const unreachable = path.join(dir, 'not-mounted', 'share', 'Rel-GRP');
++  write(file, JSON.stringify([present, gone, unreachable]));
++  const store = AcceptedReleases(file, logger);
++  await store.load();
++  expect(await store.prune()).toBe(1);
++  expect(store.isAccepted(present)).toBe(true);
++  expect(store.isAccepted(unreachable)).toBe(true);
++  expect(store.isAccepted(gone)).toBe(false);
++});
++
++test('saving is atomic and a failed save is reported to the caller', async () => {
++  const dir = tmpDir();
++  const file = path.join(dir, 'accepted.json');
++  const store = AcceptedReleases(file, logger);
++  await store.accept(path.join(dir, 'A-GRP'));
++  expect(JSON.parse(fs.readFileSync(file, 'utf8'))).toEqual([path.join(dir, 'A-GRP')]);
++  expect(fs.existsSync(file + '.tmp')).toBe(false);
++
++  const blocked = AcceptedReleases(path.join(dir, 'no-such-folder', 'accepted.json'), logger);
++  await expect(blocked.accept(path.join(dir, 'B-GRP'))).rejects.toBeTruthy();
++});
++
++test('a corrupt list is kept aside instead of being overwritten', async () => {
++  const dir = tmpDir();
++  const file = write(path.join(dir, 'accepted.json'), '{ broken');
++  const store = AcceptedReleases(file, logger);
++  await store.load();
++  expect(fs.readdirSync(dir).some(name => name.startsWith('accepted.json.corrupt-'))).toBe(true);
++});
+diff --git a/tests/helpers.ts b/tests/helpers.ts
+new file mode 100644
+index 0000000..7c7312b
+--- /dev/null
++++ b/tests/helpers.ts
+@@ -0,0 +1,91 @@
++import fs from 'node:fs';
++import os from 'node:os';
++import path from 'node:path';
++
++export const tmpDir = () => fs.mkdtempSync(path.join(os.tmpdir(), 'rfx-'));
++
++export const write = (file: string, content: string | Buffer = 'x') => {
++  fs.mkdirSync(path.dirname(file), { recursive: true });
++  fs.writeFileSync(file, content);
++  return file;
++};
++
++// A fake API socket for CrcRedownload: records searches, downloads and events; search results
++// come from `results(pattern)`
++export const fakeSocket = (results: (pattern: string) => Array<{ id: string; name: string }> = () => []) => {
++  const searches: string[] = [];
++  const downloads: Array<{ resultId: string; body: any }> = [];
++  const events: Array<{ text: string; severity: string }> = [];
++  const listeners: { [key in string]: (data: any) => any } = {};
++  let lastPattern = '';
++  const socket: any = {
++    post: async (url: string, body: any) => {
++      if (url === 'events') {
++        events.push(body);
++        return;
++      }
++
++      if (url === 'search') {
++        return { id: 's1' };
++      }
++
++      if (url.endsWith('/hub_search')) {
++        lastPattern = body.query.pattern;
++        searches.push(lastPattern);
++        return;
++      }
++
++      const download = /results\/([^/]+)\/download$/.exec(url);
++      if (download) {
++        downloads.push({ resultId: download[1], body });
++        return;
++      }
++
++      throw new Error(`unexpected POST ${url}`);
++    },
++    get: async (url: string) => {
++      if (/\/results\//.test(url)) {
++        return results(lastPattern);
++      }
++
++      throw new Error(`unexpected GET ${url}`);
++    },
++    delete: async () => undefined,
++    addListener: async (module: string, event: string, callback: (data: any) => any) => {
++      listeners[`${module}/${event}`] = callback;
++    },
++  };
++
++  // The client reporting a CRC failure, through the listener the extension registers in start()
++  // (the listener does not await its handler, and the handler does real file I/O)
++  const hasherFileFailed = async (data: { error_id: string; path: string }) => {
++    await listeners['hash/hasher_file_failed'](data);
++    await settle();
++    await new Promise(resolve => setTimeout(resolve, 100));
++    await settle();
++  };
++
++  return { socket, searches, downloads, events, hasherFileFailed };
++};
++
++export const settings = (overrides: any = {}) => ({
++  getDeleteFiles: () => true,
++  getRedownload: () => true,
++  getSearchWaitSeconds: () => 0,
++  getOverflowBackoffSeconds: () => 0,
++  getRetryIntervalMinutes: () => 60,
++  getRetryMaxHours: () => 0,
++  ...overrides,
++});
++
++// Lets queued async work (the serialized search queue) run to completion, including timers of
++// 0 ms and real file I/O in between
++export const settle = async () => {
++  for (let round = 0; round < 3; round++) {
++    for (let i = 0; i < 50; i++) {
++      await new Promise(resolve => setImmediate(resolve));
++    }
++
++    await new Promise(resolve => setTimeout(resolve, 30));
++  }
++};
+diff --git a/tests/hooks.test.ts b/tests/hooks.test.ts
+new file mode 100644
+index 0000000..67d3b0b
+--- /dev/null
++++ b/tests/hooks.test.ts
+@@ -0,0 +1,33 @@
++import path from 'node:path';
++
++import ScanRunners from '../src/ScanRunners';
++import { tmpDir, write } from './helpers';
++
++const context = (validators: any[], onFileMissing = jest.fn()) => ({
++  api: { postEvent: async () => undefined },
++  logger: { info: () => undefined, verbose: () => undefined, error: () => undefined },
++  configGetter: () => ({ validators, ignoreExcluded: false, separateLogFile: false }),
++  isPathAccepted: () => false,
++  onFileMissing,
++} as any);
++
++const throwing = { validate: async () => { throw new Error('boom'); } };
++
++test('a throwing bundle scan answers at once (accept) instead of leaving the client waiting', async () => {
++  const dir = path.join(tmpDir(), 'Some.Release-GRP');
++  write(path.join(dir, 'a.rar'));
++  const accept = jest.fn();
++  const reject = jest.fn();
++  await ScanRunners(context([throwing])).onBundleFinished({ type: { id: 'directory' }, target: dir, name: 'x' } as any, accept, reject);
++  expect(accept).toHaveBeenCalledTimes(1);
++  expect(reject).not.toHaveBeenCalled();
++});
++
++test('a throwing new-share-directory scan answers at once too', async () => {
++  const dir = path.join(tmpDir(), 'Some.Release-GRP');
++  write(path.join(dir, 'a.rar'));
++  const accept = jest.fn();
++  const handler = ScanRunners(context([throwing])).getShareDirectoryAddedHandler(false);
++  await handler({ path: dir, new_parent: false } as any, accept, jest.fn());
++  expect(accept).toHaveBeenCalledTimes(1);
++});
+diff --git a/tests/redownload.test.ts b/tests/redownload.test.ts
+new file mode 100644
+index 0000000..e34826b
+--- /dev/null
++++ b/tests/redownload.test.ts
+@@ -0,0 +1,182 @@
++import fs from 'node:fs';
++import path from 'node:path';
++
++import CrcRedownload, { pickBestResult } from '../src/CrcRedownload';
++import { fakeSocket, settings, settle, tmpDir, write } from './helpers';
++
++const noSleep = { sleep: async () => undefined };
++
++describe('which search result is downloaded', () => {
++  test('only an exact (case-insensitive) name match, never "the first result"', () => {
++    const results = [{ id: 'a', name: 'Some.Release.PROPER-GRP' }, { id: 'b', name: 'some.release-grp' }];
++    expect(pickBestResult(results, 'Some.Release-GRP')).toEqual({ id: 'b', name: 'some.release-grp' });
++    expect(pickBestResult([{ id: 'a', name: 'Other.Release-XYZ' }], 'Some.Release-GRP')).toBeUndefined();
++  });
++
++  test('no exact match: nothing is downloaded into the folder', async () => {
++    const root = tmpDir();
++    const release = path.join(root, 'Some.Release-GRP');
++    write(path.join(release, 'a.rar'));
++    const fake = fakeSocket(() => [{ id: 'r1', name: 'Unrelated.Folder-ABC' }]);
++    const crc = CrcRedownload(fake.socket, settings(), noSleep);
++    await crc.onFileMissing(release, 'file_missing');
++    await settle();
++    expect(fake.searches).toEqual(['Some.Release-GRP']);
++    expect(fake.downloads).toEqual([]);
++  });
++});
++
++describe('what may start a download', () => {
++  test('"possibly missing" heuristics never search', async () => {
++    const root = tmpDir();
++    const release = path.join(root, 'Some.Release-GRP');
++    write(path.join(release, 'a.mp3'));
++    const fake = fakeSocket(() => [{ id: 'r1', name: 'Some.Release-GRP' }]);
++    const crc = CrcRedownload(fake.socket, settings(), noSleep);
++    for (const id of ['sfv_missing', 'nfo_missing', 'incomplete_no_sfv', 'no_release_files']) {
++      await crc.onFileMissing(release, id);
++    }
++
++    await settle();
++    expect(fake.searches).toEqual([]);
++  });
++
++  test('a personal folder or a share root is never searched for by name', async () => {
++    const root = tmpDir();
++    const personal = path.join(root, 'Holiday 2019');
++    write(path.join(personal, 'track.mp3'));
++    const fake = fakeSocket(() => [{ id: 'r1', name: 'Holiday 2019' }]);
++    const crc = CrcRedownload(fake.socket, settings(), noSleep);
++    await crc.onFileMissing(personal, 'file_missing');
++    await crc.onFileMissing(root, 'file_missing');
++    await settle();
++    expect(fake.searches).toEqual([]);
++  });
++
++  test('a disc/Sample/Subs folder resolves to its release: the release is searched, not "CD1"', async () => {
++    const root = tmpDir();
++    const release = path.join(root, 'Some.Album-GRP');
++    write(path.join(release, 'CD1', 'a.flac'));
++    const fake = fakeSocket(() => [{ id: 'r1', name: 'Some.Album-GRP' }]);
++    const crc = CrcRedownload(fake.socket, settings(), noSleep);
++    await crc.onFileMissing(path.join(release, 'CD1'), 'file_missing');
++    await settle();
++    expect(fake.searches).toEqual(['Some.Album-GRP']);
++    expect(fake.downloads[0].body).toEqual({ target_name: 'Some.Album-GRP', target_directory: root + path.sep });
++  });
++
++  test('accepted releases are left alone', async () => {
++    const root = tmpDir();
++    const release = path.join(root, 'Some.Release-GRP');
++    write(path.join(release, 'a.rar'));
++    const fake = fakeSocket(() => [{ id: 'r1', name: 'Some.Release-GRP' }]);
++    const crc = CrcRedownload(fake.socket, settings({ isAccepted: (p: string) => p.startsWith(release) }), noSleep);
++    await crc.onFileMissing(release, 'file_missing');
++    await settle();
++    expect(fake.searches).toEqual([]);
++  });
++});
++
++describe('nothing is deleted', () => {
++  test('a CRC failure renames the file to .crcfail and starts a redownload of the release', async () => {
++    const root = tmpDir();
++    const release = path.join(root, 'Some.Release-GRP');
++    const file = write(path.join(release, 'a.r00'), 'data');
++    const fake = fakeSocket(() => [{ id: 'r1', name: 'Some.Release-GRP' }]);
++    const crc = CrcRedownload(fake.socket, settings(), noSleep);
++    crc.start();
++    await fake.hasherFileFailed({ error_id: 'crc_error', path: file });
++    expect(fs.existsSync(file)).toBe(false);
++    expect(fs.readFileSync(file + '.crcfail', 'utf8')).toBe('data');
++    expect(fake.searches).toEqual(['Some.Release-GRP']);
++  });
++
++  test('a second failure of the same name gets .crcfail.2, the first copy is kept', async () => {
++    const root = tmpDir();
++    const file = write(path.join(root, 'Rel-GRP', 'a.r00'), 'one');
++    const fake = fakeSocket();
++    CrcRedownload(fake.socket, settings({ getRedownload: () => false }), noSleep).start();
++    await fake.hasherFileFailed({ error_id: 'crc_error', path: file });
++    write(file, 'two');
++    await fake.hasherFileFailed({ error_id: 'crc_error', path: file });
++    expect(fs.readFileSync(file + '.crcfail', 'utf8')).toBe('one');
++    expect(fs.readFileSync(file + '.crcfail.2', 'utf8')).toBe('two');
++  });
++
++  test('CRC failures in an accepted release are left untouched', async () => {
++    const root = tmpDir();
++    const file = write(path.join(root, 'Rel-GRP', 'a.mp3'), 'retagged');
++    const fake = fakeSocket();
++    CrcRedownload(fake.socket, settings({ isAccepted: () => true }), noSleep).start();
++    await fake.hasherFileFailed({ error_id: 'crc_error', path: file });
++    expect(fs.readFileSync(file, 'utf8')).toBe('retagged');
++  });
++
++  test('at most 20 files are set aside per hour', async () => {
++    const root = tmpDir();
++    const fake = fakeSocket();
++    CrcRedownload(fake.socket, settings({ getRedownload: () => false }), noSleep).start();
++    const files = Array.from({ length: 25 }, (_, i) => write(path.join(root, 'Rel-GRP', `f${i}.mp3`)));
++    for (const file of files) {
++      await fake.hasherFileFailed({ error_id: 'crc_error', path: file });
++    }
++
++    expect(files.filter(f => fs.existsSync(f + '.crcfail')).length).toBe(20);
++    expect(files.filter(f => fs.existsSync(f)).length).toBe(5);
++  }, 30000);
++
++  test('an invalid SFV is renamed to .sfv.bad only when it has no valid lines; valid SFVs stay', async () => {
++    const root = tmpDir();
++    const release = path.join(root, 'Some.Release-GRP');
++    write(path.join(release, 'broken.sfv'), 'garbage only\n');
++    write(path.join(release, 'good.sfv'), 'a.rar 1234ABCD\n');
++    const crc = CrcRedownload(fakeSocket().socket, settings(), noSleep);
++    await crc.onFileMissing(release, 'invalid_sfv_file');
++    await settle();
++    expect(fs.existsSync(path.join(release, 'broken.sfv'))).toBe(false);
++    expect(fs.existsSync(path.join(release, 'broken.sfv.bad'))).toBe(true);
++    expect(fs.existsSync(path.join(release, 'good.sfv'))).toBe(true);
++  });
++});
++
++describe('search budget and cancel', () => {
++  test('at most 30 searches per hour; the next waits for the budget', async () => {
++    const root = tmpDir();
++    let clock = 1_000_000;
++    const sleeps: number[] = [];
++    const fake = fakeSocket(() => []);
++    const crc = CrcRedownload(fake.socket, settings(), {
++      now: () => clock,
++      sleep: async (ms: number) => { sleeps.push(ms); clock += ms; },
++    });
++    for (let i = 0; i < 31; i++) {
++      const release = path.join(root, `Release.Number${i}-GRP`);
++      write(path.join(release, 'a.rar'));
++      crc.redownloadFolder(release);
++    }
++
++    await settle();
++    expect(fake.searches.length).toBe(31);
++    expect(Math.max(...sleeps)).toBeGreaterThan(59 * 60 * 1000);
++  });
++
++  test('accepting cancels a queued search', async () => {
++    const root = tmpDir();
++    const blocker = path.join(root, 'First.Release-GRP');
++    const target = path.join(root, 'Second.Release-GRP');
++    write(path.join(blocker, 'a.rar'));
++    write(path.join(target, 'a.rar'));
++    let release: () => void = () => undefined;
++    const fake = fakeSocket(() => []);
++    const crc = CrcRedownload(fake.socket, settings({ getSearchWaitSeconds: () => 1 }), {
++      sleep: () => new Promise<void>(resolve => { release = resolve; }),
++    });
++    crc.redownloadFolder(blocker);
++    crc.redownloadFolder(target);
++    await settle();
++    crc.cancel(target);
++    release();
++    await settle();
++    expect(fake.searches).toEqual(['First.Release-GRP']);
++  });
++});
+diff --git a/tests/review2.test.ts b/tests/review2.test.ts
+new file mode 100644
+index 0000000..ca1882d
+--- /dev/null
++++ b/tests/review2.test.ts
+@@ -0,0 +1,158 @@
++// Tests for the findings of the independent review of the patch itself (second round)
++import fs from 'node:fs';
++import path from 'node:path';
++
++import Scanner from '../src/Scanner';
++import validators from '../src/validators';
++import CrcRedownload from '../src/CrcRedownload';
++import AcceptedReleases from '../src/AcceptedReleases';
++import ScanRunners from '../src/ScanRunners';
++import { releaseFolderOf } from '../src/validators/common';
++import SFVReader from '../src/helpers/SFVReader';
++import { fakeSocket, settings, settle, tmpDir, write } from './helpers';
++
++const noSleep = { sleep: async () => undefined };
++const quietLogger: any = () => undefined;
++
++test('a release missing both a file and its NFO is still repaired (proof wins over the order validators finish in)', async () => {
++  const dir = path.join(tmpDir(), 'Some.Release-GRP');
++  write(path.join(dir, 'a.rar'));
++  write(path.join(dir, 'release.sfv'), 'a.rar 1234ABCD\nb.r00 1234ABCD\n');
++  const calls: Array<[string, string]> = [];
++  const scanner = Scanner(validators as any, quietLogger, () => true, () => false, (folder, id) => { calls.push([folder, id]); });
++  await scanner.scanPath(dir);
++  expect(Object.keys(scanner.errors.getErrors())).toEqual(expect.arrayContaining(['nfo_missing', 'file_missing']));
++  expect(calls.map(c => c[1])).toEqual(['file_missing']);
++});
++
++test('lower-case scene names are releases; plain dashed folder names are not', () => {
++  const root = tmpDir();
++  expect(releaseFolderOf(path.join(root, 'the.show.s01e01.720p.hdtv.x264-killers'))).toBe(path.join(root, 'the.show.s01e01.720p.hdtv.x264-killers'));
++  expect(releaseFolderOf(path.join(root, 'holiday-photos'))).toBeNull();
++  expect(releaseFolderOf(path.join(root, 'Some.Movie.DVDR-GRP', 'VIDEO_TS'))).toBe(path.join(root, 'Some.Movie.DVDR-GRP'));
++});
++
++test('a symlinked release file counts as present (no false "missing")', async () => {
++  const root = tmpDir();
++  const real = write(path.join(root, 'store', 'b.rar'));
++  const dir = path.join(root, 'Some.Release-GRP');
++  write(path.join(dir, 'a.rar'));
++  write(path.join(dir, 'release.sfv'), 'a.rar 1234ABCD\nb.rar 1234ABCD\n');
++  try {
++    fs.symlinkSync(real, path.join(dir, 'b.rar'), 'file');
++  } catch (e) {
++    return; // file symlinks need a privilege on Windows
++  }
++
++  const scanner = Scanner(validators as any, quietLogger, () => true);
++  await scanner.scanPath(dir);
++  expect(Object.keys(scanner.errors.getErrors())).not.toContain('file_missing');
++});
++
++test('a burst of CRC failures sets aside at most 20 (the slot is taken before any await)', async () => {
++  const root = tmpDir();
++  const fake = fakeSocket();
++  CrcRedownload(fake.socket, settings({ getRedownload: () => false }), noSleep).start();
++  const files = Array.from({ length: 30 }, (_, i) => write(path.join(root, 'Rel-GRP', `f${i}.mp3`)));
++  await Promise.all(files.map(file => fake.hasherFileFailed({ error_id: 'crc_error', path: file })));
++  await settle();
++  expect(files.filter(f => fs.existsSync(f)).length).toBe(10);
++}, 30000);
++
++test('with a quarantine folder, the failed file leaves the share (content kept, origin noted)', async () => {
++  const root = tmpDir();
++  const quarantine = path.join(root, 'quarantine');
++  const file = write(path.join(root, 'share', 'Some.Release-GRP', 'b.rar'), 'bad copy');
++  const fake = fakeSocket();
++  CrcRedownload(fake.socket, settings({ getRedownload: () => false, getQuarantineDir: () => quarantine }), noSleep).start();
++  await fake.hasherFileFailed({ error_id: 'crc_error', path: file });
++  expect(fs.existsSync(file)).toBe(false);
++  expect(fs.readdirSync(path.join(root, 'share', 'Some.Release-GRP'))).toEqual([]);
++  const [folder] = fs.readdirSync(quarantine);
++  expect(fs.readFileSync(path.join(quarantine, folder, 'b.rar.crcfail'), 'utf8')).toBe('bad copy');
++  expect(fs.readFileSync(path.join(quarantine, folder, 'origin.txt'), 'utf8').trim()).toBe(file);
++});
++
++test('quarantine copies older than 30 days are pruned; other folders are never touched', async () => {
++  const root = tmpDir();
++  const quarantine = path.join(root, 'quarantine');
++  const old = write(path.join(quarantine, '20200101T000000-1', 'origin.txt'), 'x');
++  const oldTime = new Date(Date.now() - 40 * 24 * 3600 * 1000);
++  fs.utimesSync(old, oldTime, oldTime);
++  write(path.join(quarantine, '20990101T000000-1', 'origin.txt'), 'x');
++  write(path.join(quarantine, 'my-own-folder', 'keep.txt'), 'x');
++  const crc = CrcRedownload(fakeSocket().socket, settings({ getQuarantineDir: () => quarantine }), noSleep);
++  expect(await crc.pruneQuarantine()).toBe(1);
++  expect(fs.readdirSync(quarantine).sort()).toEqual(['20990101T000000-1', 'my-own-folder']);
++});
++
++test('ANSI names are decoded as Windows-1252 (curly quote 0x92)', async () => {
++  const dir = tmpDir();
++  write(path.join(dir, 'r.sfv'), Buffer.concat([Buffer.from('it'), Buffer.from([0x92]), Buffer.from('s.mp3 1234ABCD\n')]));
++  const reader = SFVReader(dir);
++  await reader.load('r.sfv');
++  expect(reader.content).toEqual({ 'it’s.mp3': '1234ABCD' });
++});
++
++test('an unreadable or too large SFV does not start a redownload; the same broken SFV only once', async () => {
++  const root = tmpDir();
++  const big = path.join(root, 'Big.Release-GRP');
++  write(path.join(big, 'huge.sfv'), Buffer.alloc(1100 * 1024, 0x41));
++  const broken = path.join(root, 'Broken.Release-GRP');
++  const fake = fakeSocket(() => []);
++  const crc = CrcRedownload(fake.socket, settings(), noSleep);
++  await crc.onFileMissing(big, 'invalid_sfv_file');
++  await settle();
++  expect(fake.searches).toEqual([]);
++
++  write(path.join(broken, 'release.sfv'), 'garbage\n');
++  await crc.onFileMissing(broken, 'invalid_sfv_file');
++  await settle();
++  expect(fake.searches).toEqual(['Broken.Release-GRP']);
++
++  // Every source had the same broken SFV: downloaded again, it is not set aside and searched again
++  write(path.join(broken, 'release.sfv'), 'garbage\n');
++  (crc as any).cancel(broken);
++  await new Promise(resolve => setTimeout(resolve, 10));
++  await crc.onFileMissing(broken, 'invalid_sfv_file');
++  await settle();
++  expect(fake.searches).toEqual(['Broken.Release-GRP']);
++  expect(fs.existsSync(path.join(broken, 'release.sfv'))).toBe(true);
++});
++
++test('an accepted drive root covers what is below it', async () => {
++  const dir = tmpDir();
++  const store = AcceptedReleases(path.join(dir, 'accepted.json'), { verbose: () => undefined });
++  const root = path.parse(dir).root;
++  await store.accept(root);
++  expect(store.isAccepted(path.join(root, 'Some', 'Release-GRP'))).toBe(true);
++});
++
++test('a .dctmp partial file is not reported as an extra file', async () => {
++  const dir = path.join(tmpDir(), 'Some.Release-GRP');
++  write(path.join(dir, 'a.rar'));
++  write(path.join(dir, 'a.nfo'));
++  write(path.join(dir, 'release.sfv'), 'a.rar 1234ABCD\n');
++  write(path.join(dir, 'b.rar.dctmp'));
++  const scanner = Scanner(validators as any, quietLogger, () => true);
++  await scanner.scanPath(dir);
++  expect(Object.keys(scanner.errors.getErrors())).not.toContain('extra_files');
++});
++
++test('a hook handler that rejects and then throws is answered once (the rejection stands)', async () => {
++  const dir = path.join(tmpDir(), 'Some.Release-GRP');
++  write(path.join(dir, 'a.rar'));
++  const accept = jest.fn();
++  // The rejection is sent, then the socket call throws (connection closing)
++  const reject = jest.fn(() => { throw new Error('socket closed'); });
++  const reportsAProblem = { validate: async (directory: any, reporter: any) => { reporter.addFolder(directory.path, 'nfo_missing', 'NFO possibly missing', 0); } };
++  const context: any = {
++    api: { postEvent: async () => undefined },
++    logger: { info: () => undefined, verbose: () => undefined, error: () => undefined },
++    configGetter: () => ({ validators: [reportsAProblem], ignoreExcluded: false, separateLogFile: false }),
++    isPathAccepted: () => false,
++  };
++  await ScanRunners(context).onBundleFinished({ type: { id: 'directory' }, target: dir, name: 'x' } as any, accept, reject);
++  expect(reject).toHaveBeenCalledTimes(1);
++  expect(accept).not.toHaveBeenCalled();
++});
+diff --git a/tests/scanner.test.ts b/tests/scanner.test.ts
+new file mode 100644
+index 0000000..a0b7bbc
+--- /dev/null
++++ b/tests/scanner.test.ts
+@@ -0,0 +1,78 @@
++import fs from 'node:fs';
++import path from 'node:path';
++
++import Scanner from '../src/Scanner';
++import SFVChecker from '../src/validators/SFVChecker';
++import MissingNfo from '../src/validators/MissingNfo';
++import { releaseFolderOf } from '../src/validators/common';
++import { tmpDir, write } from './helpers';
++
++const quietLogger: any = () => undefined;
++
++const scan = async (dir: string, validators: any[]) => {
++  const scanner = Scanner(validators, quietLogger, () => true);
++  await scanner.scanPath(dir);
++  return scanner.errors.getErrors();
++};
++
++test('Thumbs.db / desktop.ini are not extra files of a release', async () => {
++  const dir = path.join(tmpDir(), 'Some.Release-GRP');
++  write(path.join(dir, 'a.rar'));
++  write(path.join(dir, 'release.sfv'), 'a.rar 1234ABCD\n');
++  write(path.join(dir, 'Thumbs.db'));
++  write(path.join(dir, 'desktop.ini'));
++  expect(Object.keys(await scan(dir, [SFVChecker]))).toEqual([]);
++});
++
++test('files set aside by this extension are not reported as extra files', async () => {
++  const dir = path.join(tmpDir(), 'Some.Release-GRP');
++  write(path.join(dir, 'a.rar'));
++  write(path.join(dir, 'a.r00.crcfail'));
++  write(path.join(dir, 'old.sfv.bad'));
++  write(path.join(dir, 'release.sfv'), 'a.rar 1234ABCD\n');
++  expect(Object.keys(await scan(dir, [SFVChecker]))).toEqual([]);
++});
++
++test('a .dctmp partial file is never deleted, however old', async () => {
++  const dir = path.join(tmpDir(), 'Some.Release-GRP');
++  write(path.join(dir, 'a.rar'));
++  write(path.join(dir, 'release.sfv'), 'a.rar 1234ABCD\nb.rar 1234ABCD\n');
++  const partial = write(path.join(dir, 'b.rar.dctmp'), 'progress');
++  const old = new Date(Date.now() - 24 * 3600 * 1000);
++  fs.utimesSync(partial, old, old);
++  await scan(dir, [SFVChecker]);
++  expect(fs.readFileSync(partial, 'utf8')).toBe('progress');
++});
++
++test('a junction inside a release is not followed', async () => {
++  const root = tmpDir();
++  const outside = path.join(root, 'outside');
++  write(path.join(outside, 'secret.txt'));
++  const dir = path.join(root, 'Some.Release-GRP');
++  write(path.join(dir, 'a.rar'));
++  try {
++    fs.symlinkSync(outside, path.join(dir, 'link'), 'junction');
++  } catch (e) {
++    return; // links not available on this machine
++  }
++
++  const scanner = Scanner([], quietLogger, () => true);
++  await scanner.scanPath(dir);
++  expect(scanner.stats.scannedDirectories).toBe(1);
++});
++
++test('CD01..CD99 are disc folders (the NFO is looked for inside them)', async () => {
++  const dir = path.join(tmpDir(), 'Some.Album-GRP');
++  write(path.join(dir, 'CD01', 'album.nfo'));
++  write(path.join(dir, 'CD02', 'a.flac'));
++  expect(Object.keys(await scan(dir, [MissingNfo]))).not.toContain('nfo_missing');
++});
++
++test('releaseFolderOf: release, its subfolders, and non-releases', () => {
++  const root = tmpDir();
++  expect(releaseFolderOf(path.join(root, 'Some.Album-GRP'))).toBe(path.join(root, 'Some.Album-GRP'));
++  expect(releaseFolderOf(path.join(root, 'Some.Album-GRP', 'CD1'))).toBe(path.join(root, 'Some.Album-GRP'));
++  expect(releaseFolderOf(path.join(root, 'Some.Movie-GRP', 'Sample') + path.sep)).toBe(path.join(root, 'Some.Movie-GRP'));
++  expect(releaseFolderOf(path.join(root, 'Holiday 2019'))).toBeNull();
++  expect(releaseFolderOf(path.join(root, 'Music', 'CD1'))).toBeNull();
++});
+diff --git a/tests/sfv.test.ts b/tests/sfv.test.ts
+new file mode 100644
+index 0000000..b3d05a1
+--- /dev/null
++++ b/tests/sfv.test.ts
+@@ -0,0 +1,48 @@
++import path from 'node:path';
++
++import SFVReader from '../src/helpers/SFVReader';
++import { tmpDir, write } from './helpers';
++
++// Loads an SFV file with these bytes the way the validators do and returns what it read
++const load = async (bytes: Buffer | string) => {
++  const dir = tmpDir();
++  write(path.join(dir, 'release.sfv'), bytes);
++  const reader = SFVReader(dir);
++  await reader.load('release.sfv');
++  return reader.content;
++};
++
++test('a UTF-8 BOM does not become part of the first name', async () => {
++  const bytes = Buffer.concat([Buffer.from([0xef, 0xbb, 0xbf]), Buffer.from('first.rar 1234ABCD\n')]);
++  expect(await load(bytes)).toEqual({ 'first.rar': '1234ABCD' });
++});
++
++test('UTF-16 SFVs (as the client reads them) are parsed', async () => {
++  const bytes = Buffer.concat([Buffer.from([0xff, 0xfe]), Buffer.from('a.rar 0000ffff\r\n', 'utf16le')]);
++  expect(await load(bytes)).toEqual({ 'a.rar': '0000ffff' });
++});
++
++test('ANSI (cp1252) names are not turned into replacement characters', async () => {
++  const bytes = Buffer.from([0x63, 0x61, 0x66, 0xe9, 0x2e, 0x6d, 0x70, 0x33, 0x20, 0x31, 0x32, 0x33, 0x34, 0x41, 0x42, 0x43, 0x44]);
++  expect(await load(bytes)).toEqual({ 'café.mp3': '1234ABCD' });
++});
++
++test('only lines starting with ";" are comments; ";" inside a name is fine', async () => {
++  expect(await load('; generated by tool\nlive;edit.mp3 1234ABCD\n')).toEqual({ 'live;edit.mp3': '1234ABCD' });
++});
++
++test('trailing whitespace, quotes and spaces in names', async () => {
++  expect(await load('"my file.rar" 1234abcd   \n')).toEqual({ 'my file.rar': '1234abcd' });
++});
++
++test('a CRC must be hexadecimal', async () => {
++  await expect(load('a.rar NOTAHEX1\n')).rejects.toThrow(/No valid lines/);
++});
++
++test('an SFV of only subfolder lines is valid (nothing of this folder to check)', async () => {
++  expect(await load('CD1\\a.rar 1234ABCD\nCD2/b.rar 1234ABCD\n')).toEqual({});
++});
++
++test('an SFV with no valid lines is rejected with its own error code', async () => {
++  await expect(load('nothing useful\n')).rejects.toMatchObject({ code: 'SFV_NO_VALID_LINES' });
++});
+diff --git a/tests/smoke.test.ts b/tests/smoke.test.ts
+new file mode 100644
+index 0000000..6fca6d7
+--- /dev/null
++++ b/tests/smoke.test.ts
+@@ -0,0 +1,5 @@
++import { pickBestResult } from '../src/CrcRedownload';
++
++test('the harness compiles and runs the sources', () => {
++  expect(typeof pickBestResult).toBe('function');
++});

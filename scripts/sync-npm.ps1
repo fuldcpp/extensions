@@ -7,11 +7,17 @@
 #
 # The tarball is verified against the shasum npm publishes for it before it is kept, and
 # the catalog itself is regenerated separately (build-catalog.ps1) from the stored file.
+#
+# A package whose meta.json has "patched" is our own fixed build of an upstream release. It is
+# never replaced by -Apply alone: an upstream release with the same version number is reported
+# as a conflict (not "up to date"), and a newer one only replaces ours with -ReplacePatched,
+# after checking that upstream fixed what the patch fixes (see the "patched" note).
 
 [CmdletBinding()]
 param(
     [string[]] $Name,
     [switch] $Apply,
+    [switch] $ReplacePatched,
     [string] $Registry = 'https://registry.npmjs.org/'
 )
 
@@ -24,6 +30,19 @@ $packagesDir = Join-Path $root 'packages'
 
 if (-not $Name) {
     $Name = @(Get-Content (Join-Path $root 'npm-mirror.txt') | Where-Object { $_ -and $_ -notmatch '^\s*#' } | ForEach-Object { $_.Trim() })
+}
+
+# X.Y.Z[-pre] ordering as the client sees it: higher X.Y.Z wins; for equal X.Y.Z a release beats a
+# prerelease, and prereleases compare as text
+function Test-NewerVersion([string] $Candidate, [string] $Current) {
+    $c = $Candidate -split '-', 2
+    $o = $Current -split '-', 2
+    $cv = [version] $c[0]
+    $ov = [version] $o[0]
+    if ($cv -ne $ov) { return $cv -gt $ov }
+    if ($c.Count -eq 1 -and $o.Count -eq 2) { return $true }
+    if ($c.Count -eq 2 -and $o.Count -eq 2) { return [string]::CompareOrdinal($c[1], $o[1]) -gt 0 }
+    return $false
 }
 
 function Get-LocalTarball([string] $PackageName) {
@@ -60,6 +79,32 @@ foreach ($pkgName in $Name) {
 
     $local = Get-LocalTarball $pkgName
     $localVersion = if ($local) { $local.Name -replace "^$([regex]::Escape($pkgName))-", '' -replace '\.tgz$', '' } else { $null }
+
+    $patched = $null
+    $metaPath = Join-Path (Join-Path $packagesDir $pkgName) 'meta.json'
+    if ($local -and (Test-Path $metaPath)) {
+        $localMeta = [IO.File]::ReadAllText($metaPath) | ConvertFrom-Json
+        if ($localMeta.PSObject.Properties.Name -contains 'patched' -and $localMeta.patched) { $patched = [string] $localMeta.patched }
+    }
+
+    if ($patched) {
+        $localSha = (Get-FileHash -Path $local.FullName -Algorithm SHA1).Hash.ToLowerInvariant()
+        if ($localVersion -eq $latest -and $localSha -ne $release.dist.shasum) {
+            Write-Output "$pkgName CONFLICT: upstream published its own $latest; ours is a patched build with the same number. Review upstream ($patched) before deciding."
+            continue
+        }
+
+        if ($localVersion -eq $latest -or -not (Test-NewerVersion $latest $localVersion)) {
+            Write-Output "$pkgName patched build $localVersion is current (upstream latest: $latest)"
+            continue
+        }
+
+        Write-Output "$pkgName upstream $latest is newer than our patched $localVersion. Check that it fixes what the patch fixes ($patched), then re-run with -Apply -ReplacePatched."
+        if (-not $ReplacePatched) {
+            continue
+        }
+    }
+
     if ($localVersion -eq $latest) {
         Write-Output "$pkgName $latest is up to date"
         continue

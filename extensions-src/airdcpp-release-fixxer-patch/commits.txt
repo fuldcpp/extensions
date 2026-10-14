@@ -1,0 +1,4 @@
+1ee97a3 Fix the findings of the patch review
+6e22f08 FulDC++ build 1.3.5: version, LICENSE, changelog and README note
+01155a2 FulDC++ patch: no automatic downloads or deletions on guesses
+d4150fc Test harness: ts-jest config and a smoke test

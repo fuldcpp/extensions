@@ -4,6 +4,24 @@ Changes to the extension catalog served at https://extensions.fuldcpp.net/. The 
 based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions are catalog
 publishing dates, since the catalog itself has no version number.
 
+## [2026-10-15]
+
+### Fixed
+- `airdcpp-release-fixxer` 1.3.4 to 1.3.5, a FulDC++ build of upstream 1.3.4 (installed copies
+  update themselves). 1.3.4 could download unrelated content into a user's share (a personal
+  mp3 folder got another user's similarly named folder merged in), deleted files that failed a
+  CRC check anywhere in the share (even in accepted releases), deleted SFV files and partial
+  downloads, and made the queue right-click menu wait on one request per selected download.
+  1.3.5 redownloads only on proof and only from an exact-name source, moves failed files into a
+  quarantine folder outside the share instead of deleting them, leaves partial downloads alone,
+  respects accepted releases, and limits automatic searches. Patch, reasons and tests:
+  `extensions-src/airdcpp-release-fixxer-patch/`.
+
+### Changed
+- `scripts/sync-npm.ps1` never replaces a patched package by itself: an upstream release with
+  the same number is reported as a conflict, and a newer one replaces ours only with
+  `-ReplacePatched`.
+
 ## [2026-10-14]
 
 ### Added
