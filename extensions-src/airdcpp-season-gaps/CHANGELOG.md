@@ -18,3 +18,6 @@
   identified (no TMDB id: metadata off or no key in the media server) is listed under "Not fully
   checked", the report gets a note saying how to fix it, and the summary counts it. Before, such
   a library read "0 show(s) with gaps" although nothing could be compared.
+- When a release folder and the loose video file of the same release both match, the folder is
+  queued: it carries the .nfo/.sfv the client checks a release with, and the download sorter
+  files it whole. Before, whichever more users shared won.

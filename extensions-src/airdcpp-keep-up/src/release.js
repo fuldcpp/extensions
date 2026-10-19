@@ -213,13 +213,17 @@ const rankResults = (results, identity, season, episode, prefs = {}) => {
       parsed,
       groupRank,
       qualityHit: quality && parsed.resolution === quality ? 0 : 1,
+      isDirectory: result.type.id === 'directory' ? 1 : 0,
       users: Number(result.users && result.users.count) || Number(result.hits) || 0,
       freeSlots: Number(result.slots && result.slots.free) || 0,
     });
   }
 
+  // The release folder before a loose video of the same release: it carries the .nfo/.sfv the
+  // client checks a release with, and the download sorter files a folder whole
   accepted.sort((a, b) => (a.groupRank - b.groupRank)
     || (a.qualityHit - b.qualityHit)
+    || (b.isDirectory - a.isDirectory)
     || (b.users - a.users)
     || (b.freeSlots - a.freeSlots)
     || (a.result.name < b.result.name ? -1 : a.result.name > b.result.name ? 1 : 0));

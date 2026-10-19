@@ -21,3 +21,6 @@
 - Live-test fix: the settings load at every start was handled as a settings change before the
   state was loaded, which wrote "Settings update failed: Cannot set properties of null" to the
   error log on each start (and would have dropped the stored sign-in once the order changed).
+- When a release folder and the loose video file of the same release both match, the folder is
+  queued: it carries the .nfo/.sfv the client checks a release with, and the download sorter
+  files it whole. Before, whichever more users shared won.

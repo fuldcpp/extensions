@@ -60,6 +60,19 @@ test('pickBest: a preferred group wins over more sources; required groups filter
   assert.equal(pickBest(files, w, {}).result.id, 3);
 });
 
+test('pickBest: the release folder wins over its loose video file, whichever more users have', () => {
+  const w = wanted('Show Name', 1, 3);
+  const results = [
+    file(1, 'Show.Name.S01E03.1080p.WEB-DL.x264-GRP.mkv', { hits: 5 }),
+    dir(2, 'Show.Name.S01E03.1080p.WEB-DL.x264-GRP', { hits: 2 }),
+  ];
+  assert.equal(pickBest(results, w, { quality: '1080p' }).result.id, 2);
+  assert.equal(pickBest([ ...results ].reverse(), w, { quality: '1080p' }).result.id, 2);
+  // A preferred group still comes first: a liked group's file beats another group's folder
+  const liked = [ dir(3, 'Show.Name.S01E03.1080p-OTHER', { hits: 9 }), file(4, 'Show.Name.S01E03.1080p-LIKED.mkv') ];
+  assert.equal(pickBest(liked, w, { groups: 'liked' }).result.id, 4);
+});
+
 test('the query is words, the code and the quality', () => {
   assert.equal(buildQuery("Marvel's Agents of S.H.I.E.L.D. (2013)", 2, 5, '1080p'), 'Marvels Agents of S H I E L D S02E05 1080p');
   assert.equal(buildQuery('Show', 10, 12, ''), 'Show S10E12');

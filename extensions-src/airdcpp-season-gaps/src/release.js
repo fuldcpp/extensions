@@ -210,10 +210,13 @@ const pickBest = (results, wanted, prefs = {}) => {
     const groupRank = groups.indexOf(parsed.group.toLowerCase());
     if (prefs.requireGroup && groups.length > 0 && groupRank < 0) continue;
 
-    candidates.push({ result, parsed, groupRank: groupRank < 0 ? groups.length : groupRank, hits: hitsOf(result) });
+    candidates.push({ result, parsed, groupRank: groupRank < 0 ? groups.length : groupRank, isDirectory, hits: hitsOf(result) });
   }
 
-  candidates.sort((a, b) => (a.groupRank - b.groupRank) || (b.hits - a.hits) || a.result.name.localeCompare(b.result.name));
+  // The release folder before a loose video of the same release: it carries the .nfo/.sfv the
+  // client checks a release with, and the download sorter files a folder whole
+  candidates.sort((a, b) => (a.groupRank - b.groupRank) || (b.isDirectory - a.isDirectory)
+    || (b.hits - a.hits) || a.result.name.localeCompare(b.result.name));
   return candidates.length > 0 ? { result: candidates[0].result, parsed: candidates[0].parsed, considered: candidates.length } : null;
 };
 

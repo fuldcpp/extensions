@@ -68,6 +68,17 @@ test('a video file result is accepted, unsafe names never', () => {
   assert.deepEqual(ranked.map((x) => x.result.name), [ 'The.Show.S01E02.1080p-GRP.mkv' ]);
 });
 
+test('the release folder ranks before its loose video file, whichever more users have', () => {
+  const loose = result('The.Show.S01E02.1080p.WEB-DL.x264-GRP.mkv', { type: { id: 'file' }, users: { count: 6 } });
+  const folder = result('The.Show.S01E02.1080p.WEB-DL.x264-GRP', { users: { count: 2 } });
+  for (const order of [ [ loose, folder ], [ folder, loose ] ]) {
+    assert.equal(r.rankResults(order, show, 1, 2, {})[0].result, folder);
+  }
+  // A preferred group still comes first
+  const liked = result('The.Show.S01E02.1080p-LIKED.mkv', { type: { id: 'file' } });
+  assert.equal(r.rankResults([ folder, liked ], show, 1, 2, { preferredGroups: [ 'liked' ] })[0].result, liked);
+});
+
 test('a queued bundle covers its episode, a pack of its season or a double episode holding it', () => {
   assert.equal(r.bundleCovers('The.Show.S01E02.720p-X', show, 1, 2), true);
   assert.equal(r.bundleCovers('The.Show.S01.1080p-X', show, 1, 5), true);
