@@ -1,0 +1,24 @@
+{
+    "_id":  "airdcpp-hub-rules-guard@1.0.0-beta.1",
+    "name":  "airdcpp-hub-rules-guard",
+    "version":  "1.0.0-beta.1",
+    "description":  "Learns each hub\u0027s rules (minimum share, slots, hub count, slot ratio) and warns you in the hub window before the hub kicks you",
+    "author":  {
+                   "name":  "FulDC++"
+               },
+    "homepage":  "https://github.com/fuldcpp/extensions/tree/main/extensions-src/airdcpp-hub-rules-guard",
+    "license":  "MIT",
+    "_npmUser":  {
+                     "name":  "FulDC++"
+                 },
+    "airdcpp":  {
+                    "apiVersion":  1,
+                    "minApiFeatureLevel":  0
+                },
+    "dist":  {
+                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-hub-rules-guard-v1.0.0-beta.1/airdcpp-hub-rules-guard-1.0.0-beta.1.tgz",
+                 "shasum":  "0655d20fd079a14eb758a6db6f7d3c5f542520c7",
+                 "integrity":  "sha512-gcIwpOOG8EBFIkgTjpZlQW8aFpZTjfDnpfH/+bhVDAXN4VNAU3S1E7O1j86vVSZ53ExyIlyvjYVIyms8z42a2w==",
+                 "size":  251265
+             }
+}

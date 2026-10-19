@@ -1,0 +1,19 @@
+{
+    "name":  "airdcpp-season-gaps",
+    "dist-tags":  {
+                      "latest":  "1.0.0-beta.1"
+                  },
+    "modified":  "2026-10-18T23:16:00Z",
+    "versions":  {
+                     "1.0.0-beta.1":  {
+                                          "name":  "airdcpp-season-gaps",
+                                          "version":  "1.0.0-beta.1",
+                                          "dist":  {
+                                                       "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-season-gaps-v1.0.0-beta.1/airdcpp-season-gaps-1.0.0-beta.1.tgz",
+                                                       "shasum":  "14846c4005dc1d23b850b7fe4560a4293536fa7a",
+                                                       "integrity":  "sha512-EVZlNmE4YQil50rn9PXnBNPPHj9w/H1k3Wh43IyC/GDrqW7R48r1GmeD79Bcqwf+3JqbLl1lq1lsPrFR2B88gA==",
+                                                       "size":  273531
+                                                   }
+                                      }
+                 }
+}

@@ -1,0 +1,19 @@
+{
+    "name":  "airdcpp-keep-up",
+    "dist-tags":  {
+                      "latest":  "1.0.0-beta.1"
+                  },
+    "modified":  "2026-10-18T23:16:00Z",
+    "versions":  {
+                     "1.0.0-beta.1":  {
+                                          "name":  "airdcpp-keep-up",
+                                          "version":  "1.0.0-beta.1",
+                                          "dist":  {
+                                                       "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-keep-up-v1.0.0-beta.1/airdcpp-keep-up-1.0.0-beta.1.tgz",
+                                                       "shasum":  "0eda495b47ad85c2724741d88960ef8f0568a385",
+                                                       "integrity":  "sha512-Dn8OlAmxJfSZf3o5AK4FFZseof6zy5jWbml2LWl3xgiRxmMFdG8oiJ+Y43d7S7OOr1wzAgi6zRYgJlm3GVPkVg==",
+                                                       "size":  263269
+                                                   }
+                                      }
+                 }
+}

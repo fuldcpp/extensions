@@ -1,0 +1,24 @@
+{
+    "_id":  "airdcpp-watched-cleanup@1.0.0-beta.1",
+    "name":  "airdcpp-watched-cleanup",
+    "version":  "1.0.0-beta.1",
+    "description":  "Lists films and episodes that everyone has watched in the built-in media server, and on request moves them to the Windows Recycle Bin",
+    "author":  {
+                   "name":  "FulDC++"
+               },
+    "homepage":  "https://github.com/fuldcpp/extensions/tree/main/extensions-src/airdcpp-watched-cleanup",
+    "license":  "MIT",
+    "_npmUser":  {
+                     "name":  "FulDC++"
+                 },
+    "airdcpp":  {
+                    "apiVersion":  1,
+                    "minApiFeatureLevel":  0
+                },
+    "dist":  {
+                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-watched-cleanup-v1.0.0-beta.1/airdcpp-watched-cleanup-1.0.0-beta.1.tgz",
+                 "shasum":  "150f0e2a7865127cf1a932cd0695b0e35c6a5582",
+                 "integrity":  "sha512-urPijuNVN6WC85nsmuRDSgGYPGdSCJa9lMUMba9t+AaYH1JBpEF/sk1StatidgR6+8UUMd3nI3mfU0psUntE/Q==",
+                 "size":  262088
+             }
+}

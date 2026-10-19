@@ -1,0 +1,24 @@
+{
+    "_id":  "airdcpp-release-unpacker@1.0.0-beta.1",
+    "name":  "airdcpp-release-unpacker",
+    "version":  "1.0.0-beta.1",
+    "description":  "Unpacks finished RAR, ZIP and 7z releases next to the archives so the media server can play them; never overwrites, never deletes unless asked",
+    "author":  {
+                   "name":  "FulDC++"
+               },
+    "homepage":  "https://github.com/fuldcpp/extensions/tree/main/extensions-src/airdcpp-release-unpacker",
+    "license":  "MIT",
+    "_npmUser":  {
+                     "name":  "FulDC++"
+                 },
+    "airdcpp":  {
+                    "apiVersion":  1,
+                    "minApiFeatureLevel":  0
+                },
+    "dist":  {
+                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-release-unpacker-v1.0.0-beta.1/airdcpp-release-unpacker-1.0.0-beta.1.tgz",
+                 "shasum":  "fce96d1a59818f4e8498d412db6b66988631aad8",
+                 "integrity":  "sha512-MojTLBzo/em8+UknHMc9qGDof/17CwtV/Bg6THHYoMRMCvnbC7lAhFvhKQJY0sLjKY3X/cdsO2wSrdY5WBx+6A==",
+                 "size":  1098261
+             }
+}

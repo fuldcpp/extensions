@@ -1,0 +1,24 @@
+{
+    "_id":  "airdcpp-quality-upgrader@1.0.0-beta.1",
+    "name":  "airdcpp-quality-upgrader",
+    "version":  "1.0.0-beta.1",
+    "description":  "Finds better copies (higher resolution, or a PROPER/REPACK of the same release) of the films and episodes you already have. Reports only, unless you turn on automatic replacing.",
+    "author":  {
+                   "name":  "FulDC++"
+               },
+    "homepage":  "https://github.com/fuldcpp/extensions/tree/main/extensions-src/airdcpp-quality-upgrader",
+    "license":  "MIT",
+    "_npmUser":  {
+                     "name":  "FulDC++"
+                 },
+    "airdcpp":  {
+                    "apiVersion":  1,
+                    "minApiFeatureLevel":  0
+                },
+    "dist":  {
+                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-quality-upgrader-v1.0.0-beta.1/airdcpp-quality-upgrader-1.0.0-beta.1.tgz",
+                 "shasum":  "a9001087a510348ff5fe46cfa901bb680c84da28",
+                 "integrity":  "sha512-mplsbPwLglGgxOvvC4zYuBkt0z2pnS6rJGa2+Uvnh78KUq3j26iFLwJlGLXUPNOTb29tP3O48JG8VGFjVpio5Q==",
+                 "size":  277432
+             }
+}

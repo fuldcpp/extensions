@@ -1,0 +1,19 @@
+{
+    "name":  "airdcpp-release-unpacker",
+    "dist-tags":  {
+                      "latest":  "1.0.0-beta.1"
+                  },
+    "modified":  "2026-10-18T23:16:00Z",
+    "versions":  {
+                     "1.0.0-beta.1":  {
+                                          "name":  "airdcpp-release-unpacker",
+                                          "version":  "1.0.0-beta.1",
+                                          "dist":  {
+                                                       "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-release-unpacker-v1.0.0-beta.1/airdcpp-release-unpacker-1.0.0-beta.1.tgz",
+                                                       "shasum":  "fce96d1a59818f4e8498d412db6b66988631aad8",
+                                                       "integrity":  "sha512-MojTLBzo/em8+UknHMc9qGDof/17CwtV/Bg6THHYoMRMCvnbC7lAhFvhKQJY0sLjKY3X/cdsO2wSrdY5WBx+6A==",
+                                                       "size":  1098261
+                                                   }
+                                      }
+                 }
+}

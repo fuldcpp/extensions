@@ -1,0 +1,19 @@
+{
+    "name":  "airdcpp-quality-upgrader",
+    "dist-tags":  {
+                      "latest":  "1.0.0-beta.1"
+                  },
+    "modified":  "2026-10-18T23:16:00Z",
+    "versions":  {
+                     "1.0.0-beta.1":  {
+                                          "name":  "airdcpp-quality-upgrader",
+                                          "version":  "1.0.0-beta.1",
+                                          "dist":  {
+                                                       "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-quality-upgrader-v1.0.0-beta.1/airdcpp-quality-upgrader-1.0.0-beta.1.tgz",
+                                                       "shasum":  "a9001087a510348ff5fe46cfa901bb680c84da28",
+                                                       "integrity":  "sha512-mplsbPwLglGgxOvvC4zYuBkt0z2pnS6rJGa2+Uvnh78KUq3j26iFLwJlGLXUPNOTb29tP3O48JG8VGFjVpio5Q==",
+                                                       "size":  277432
+                                                   }
+                                      }
+                 }
+}

@@ -145,6 +145,76 @@
                     },
                     {
                         "package":  {
+                                        "name":  "airdcpp-hub-rules-guard",
+                                        "version":  "1.0.0-beta.1",
+                                        "description":  "Learns each hub\u0027s rules (minimum share, slots, hub count, slot ratio) and warns you in the hub window before the hub kicks you",
+                                        "author":  "FulDC++",
+                                        "publisher":  {
+                                                          "username":  "FulDC++"
+                                                      },
+                                        "date":  "2026-10-18T23:16:00Z",
+                                        "homepage":  "https://github.com/fuldcpp/extensions/tree/main/extensions-src/airdcpp-hub-rules-guard",
+                                        "links":  {
+                                                      "homepage":  "https://github.com/fuldcpp/extensions/tree/main/extensions-src/airdcpp-hub-rules-guard",
+                                                      "repository":  "https://github.com/fuldcpp/extensions/tree/main/extensions-src/airdcpp-hub-rules-guard"
+                                                  },
+                                        "keywords":  [
+                                                         "airdcpp-extensions",
+                                                         "airdcpp-extensions-public"
+                                                     ],
+                                        "license":  "MIT",
+                                        "engines":  [
+                                                        "node"
+                                                    ],
+                                        "airdcpp":  {
+                                                        "apiVersion":  1,
+                                                        "minApiFeatureLevel":  0
+                                                    },
+                                        "dist":  {
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-hub-rules-guard-v1.0.0-beta.1/airdcpp-hub-rules-guard-1.0.0-beta.1.tgz",
+                                                     "shasum":  "0655d20fd079a14eb758a6db6f7d3c5f542520c7",
+                                                     "integrity":  "sha512-gcIwpOOG8EBFIkgTjpZlQW8aFpZTjfDnpfH/+bhVDAXN4VNAU3S1E7O1j86vVSZ53ExyIlyvjYVIyms8z42a2w==",
+                                                     "size":  251265
+                                                 }
+                                    }
+                    },
+                    {
+                        "package":  {
+                                        "name":  "airdcpp-keep-up",
+                                        "version":  "1.0.0-beta.1",
+                                        "description":  "Downloads the next episodes of the shows you are watching on the built-in media server: strict release matching, an hourly search budget and queue caps. Starts in dry-run mode.",
+                                        "author":  "FulDC++",
+                                        "publisher":  {
+                                                          "username":  "FulDC++"
+                                                      },
+                                        "date":  "2026-10-18T23:16:00Z",
+                                        "homepage":  "https://github.com/fuldcpp/extensions/tree/main/extensions-src/airdcpp-keep-up",
+                                        "links":  {
+                                                      "homepage":  "https://github.com/fuldcpp/extensions/tree/main/extensions-src/airdcpp-keep-up",
+                                                      "repository":  "https://github.com/fuldcpp/extensions/tree/main/extensions-src/airdcpp-keep-up"
+                                                  },
+                                        "keywords":  [
+                                                         "airdcpp-extensions",
+                                                         "airdcpp-extensions-public"
+                                                     ],
+                                        "license":  "MIT",
+                                        "engines":  [
+                                                        "node"
+                                                    ],
+                                        "airdcpp":  {
+                                                        "apiVersion":  1,
+                                                        "minApiFeatureLevel":  0
+                                                    },
+                                        "dist":  {
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-keep-up-v1.0.0-beta.1/airdcpp-keep-up-1.0.0-beta.1.tgz",
+                                                     "shasum":  "0eda495b47ad85c2724741d88960ef8f0568a385",
+                                                     "integrity":  "sha512-Dn8OlAmxJfSZf3o5AK4FFZseof6zy5jWbml2LWl3xgiRxmMFdG8oiJ+Y43d7S7OOr1wzAgi6zRYgJlm3GVPkVg==",
+                                                     "size":  263269
+                                                 }
+                                    }
+                    },
+                    {
+                        "package":  {
                                         "name":  "airdcpp-message-emailer",
                                         "version":  "1.0.5",
                                         "description":  "Sends email summaries with unread hub/private messages",
@@ -216,6 +286,41 @@
                     },
                     {
                         "package":  {
+                                        "name":  "airdcpp-quality-upgrader",
+                                        "version":  "1.0.0-beta.1",
+                                        "description":  "Finds better copies (higher resolution, or a PROPER/REPACK of the same release) of the films and episodes you already have. Reports only, unless you turn on automatic replacing.",
+                                        "author":  "FulDC++",
+                                        "publisher":  {
+                                                          "username":  "FulDC++"
+                                                      },
+                                        "date":  "2026-10-18T23:16:00Z",
+                                        "homepage":  "https://github.com/fuldcpp/extensions/tree/main/extensions-src/airdcpp-quality-upgrader",
+                                        "links":  {
+                                                      "homepage":  "https://github.com/fuldcpp/extensions/tree/main/extensions-src/airdcpp-quality-upgrader",
+                                                      "repository":  "https://github.com/fuldcpp/extensions/tree/main/extensions-src/airdcpp-quality-upgrader"
+                                                  },
+                                        "keywords":  [
+                                                         "airdcpp-extensions",
+                                                         "airdcpp-extensions-public"
+                                                     ],
+                                        "license":  "MIT",
+                                        "engines":  [
+                                                        "node"
+                                                    ],
+                                        "airdcpp":  {
+                                                        "apiVersion":  1,
+                                                        "minApiFeatureLevel":  0
+                                                    },
+                                        "dist":  {
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-quality-upgrader-v1.0.0-beta.1/airdcpp-quality-upgrader-1.0.0-beta.1.tgz",
+                                                     "shasum":  "a9001087a510348ff5fe46cfa901bb680c84da28",
+                                                     "integrity":  "sha512-mplsbPwLglGgxOvvC4zYuBkt0z2pnS6rJGa2+Uvnh78KUq3j26iFLwJlGLXUPNOTb29tP3O48JG8VGFjVpio5Q==",
+                                                     "size":  277432
+                                                 }
+                                    }
+                    },
+                    {
+                        "package":  {
                                         "name":  "airdcpp-release-fixxer",
                                         "version":  "1.3.5",
                                         "description":  "Hub command: /rvalidator [scan [path]|accept \u003cpath\u003e|unaccept \u003cpath\u003e|help] - Scans downloaded and shared release directories for missing/extra files (CRC/SFV/NFO) and automatically redownloads what\u0027s broken or missing. Fork of the official airdcpp-release-validator. FulDC++ build of 1.3.4 with safety fixes (no downloads or deletions on guesses).",
@@ -247,6 +352,41 @@
                                                      "shasum":  "33f6beb0d107ed3b721ad9090a47bea536b419c9",
                                                      "integrity":  "sha512-752ZVJ8PvwBAqCJaU8gO/RV05R9gW2YhC0Z9rgyMjPBCAAwI8F6TQWzvj0hlIV/2GxEVRlwmNFTAnpN7UO3F4Q==",
                                                      "size":  269160
+                                                 }
+                                    }
+                    },
+                    {
+                        "package":  {
+                                        "name":  "airdcpp-release-unpacker",
+                                        "version":  "1.0.0-beta.1",
+                                        "description":  "Unpacks finished RAR, ZIP and 7z releases next to the archives so the media server can play them; never overwrites, never deletes unless asked",
+                                        "author":  "FulDC++",
+                                        "publisher":  {
+                                                          "username":  "FulDC++"
+                                                      },
+                                        "date":  "2026-10-18T23:16:00Z",
+                                        "homepage":  "https://github.com/fuldcpp/extensions/tree/main/extensions-src/airdcpp-release-unpacker",
+                                        "links":  {
+                                                      "homepage":  "https://github.com/fuldcpp/extensions/tree/main/extensions-src/airdcpp-release-unpacker",
+                                                      "repository":  "https://github.com/fuldcpp/extensions/tree/main/extensions-src/airdcpp-release-unpacker"
+                                                  },
+                                        "keywords":  [
+                                                         "airdcpp-extensions",
+                                                         "airdcpp-extensions-public"
+                                                     ],
+                                        "license":  "MIT",
+                                        "engines":  [
+                                                        "node"
+                                                    ],
+                                        "airdcpp":  {
+                                                        "apiVersion":  1,
+                                                        "minApiFeatureLevel":  0
+                                                    },
+                                        "dist":  {
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-release-unpacker-v1.0.0-beta.1/airdcpp-release-unpacker-1.0.0-beta.1.tgz",
+                                                     "shasum":  "fce96d1a59818f4e8498d412db6b66988631aad8",
+                                                     "integrity":  "sha512-MojTLBzo/em8+UknHMc9qGDof/17CwtV/Bg6THHYoMRMCvnbC7lAhFvhKQJY0sLjKY3X/cdsO2wSrdY5WBx+6A==",
+                                                     "size":  1098261
                                                  }
                                     }
                     },
@@ -391,6 +531,41 @@
                                                      "shasum":  "640f8a4c504329de1d00f3828b0c2170b27472be",
                                                      "integrity":  "sha512-WufK2mPns9LNyqCiISm9+OlcHR2+8vZDmJs0kvLvAsm+aSolcvn8owE4oemNdSagYaJ/hRl16ebN451dMmU0nw==",
                                                      "size":  238628
+                                                 }
+                                    }
+                    },
+                    {
+                        "package":  {
+                                        "name":  "airdcpp-season-gaps",
+                                        "version":  "1.0.0-beta.1",
+                                        "description":  "Finds the aired episodes missing from the TV series in your media library and, on request, searches the hubs for exactly those episodes",
+                                        "author":  "FulDC++",
+                                        "publisher":  {
+                                                          "username":  "FulDC++"
+                                                      },
+                                        "date":  "2026-10-18T23:16:00Z",
+                                        "homepage":  "https://github.com/fuldcpp/extensions/tree/main/extensions-src/airdcpp-season-gaps",
+                                        "links":  {
+                                                      "homepage":  "https://github.com/fuldcpp/extensions/tree/main/extensions-src/airdcpp-season-gaps",
+                                                      "repository":  "https://github.com/fuldcpp/extensions/tree/main/extensions-src/airdcpp-season-gaps"
+                                                  },
+                                        "keywords":  [
+                                                         "airdcpp-extensions",
+                                                         "airdcpp-extensions-public"
+                                                     ],
+                                        "license":  "MIT",
+                                        "engines":  [
+                                                        "node"
+                                                    ],
+                                        "airdcpp":  {
+                                                        "apiVersion":  1,
+                                                        "minApiFeatureLevel":  0
+                                                    },
+                                        "dist":  {
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-season-gaps-v1.0.0-beta.1/airdcpp-season-gaps-1.0.0-beta.1.tgz",
+                                                     "shasum":  "14846c4005dc1d23b850b7fe4560a4293536fa7a",
+                                                     "integrity":  "sha512-EVZlNmE4YQil50rn9PXnBNPPHj9w/H1k3Wh43IyC/GDrqW7R48r1GmeD79Bcqwf+3JqbLl1lq1lsPrFR2B88gA==",
+                                                     "size":  273531
                                                  }
                                     }
                     },
@@ -607,8 +782,43 @@
                                                      "size":  256199
                                                  }
                                     }
+                    },
+                    {
+                        "package":  {
+                                        "name":  "airdcpp-watched-cleanup",
+                                        "version":  "1.0.0-beta.1",
+                                        "description":  "Lists films and episodes that everyone has watched in the built-in media server, and on request moves them to the Windows Recycle Bin",
+                                        "author":  "FulDC++",
+                                        "publisher":  {
+                                                          "username":  "FulDC++"
+                                                      },
+                                        "date":  "2026-10-18T23:16:00Z",
+                                        "homepage":  "https://github.com/fuldcpp/extensions/tree/main/extensions-src/airdcpp-watched-cleanup",
+                                        "links":  {
+                                                      "homepage":  "https://github.com/fuldcpp/extensions/tree/main/extensions-src/airdcpp-watched-cleanup",
+                                                      "repository":  "https://github.com/fuldcpp/extensions/tree/main/extensions-src/airdcpp-watched-cleanup"
+                                                  },
+                                        "keywords":  [
+                                                         "airdcpp-extensions",
+                                                         "airdcpp-extensions-public"
+                                                     ],
+                                        "license":  "MIT",
+                                        "engines":  [
+                                                        "node"
+                                                    ],
+                                        "airdcpp":  {
+                                                        "apiVersion":  1,
+                                                        "minApiFeatureLevel":  0
+                                                    },
+                                        "dist":  {
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-watched-cleanup-v1.0.0-beta.1/airdcpp-watched-cleanup-1.0.0-beta.1.tgz",
+                                                     "shasum":  "150f0e2a7865127cf1a932cd0695b0e35c6a5582",
+                                                     "integrity":  "sha512-urPijuNVN6WC85nsmuRDSgGYPGdSCJa9lMUMba9t+AaYH1JBpEF/sk1StatidgR6+8UUMd3nI3mfU0psUntE/Q==",
+                                                     "size":  262088
+                                                 }
+                                    }
                     }
                 ],
-    "total":  17,
-    "time":  "2026-10-15T00:00:00Z"
+    "total":  23,
+    "time":  "2026-10-18T23:16:00Z"
 }

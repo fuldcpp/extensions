@@ -4,7 +4,7 @@ Changes to the extension catalog served at https://extensions.fuldcpp.net/. The 
 based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions are catalog
 publishing dates, since the catalog itself has no version number.
 
-## [Unreleased]
+## [2026-10-19]
 
 ### Added
 - Six more extensions written for FulDC++, with their sources in `extensions-src/`. Each is a

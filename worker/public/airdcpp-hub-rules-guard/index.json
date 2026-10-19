@@ -1,0 +1,19 @@
+{
+    "name":  "airdcpp-hub-rules-guard",
+    "dist-tags":  {
+                      "latest":  "1.0.0-beta.1"
+                  },
+    "modified":  "2026-10-18T23:16:00Z",
+    "versions":  {
+                     "1.0.0-beta.1":  {
+                                          "name":  "airdcpp-hub-rules-guard",
+                                          "version":  "1.0.0-beta.1",
+                                          "dist":  {
+                                                       "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-hub-rules-guard-v1.0.0-beta.1/airdcpp-hub-rules-guard-1.0.0-beta.1.tgz",
+                                                       "shasum":  "0655d20fd079a14eb758a6db6f7d3c5f542520c7",
+                                                       "integrity":  "sha512-gcIwpOOG8EBFIkgTjpZlQW8aFpZTjfDnpfH/+bhVDAXN4VNAU3S1E7O1j86vVSZ53ExyIlyvjYVIyms8z42a2w==",
+                                                       "size":  251265
+                                                   }
+                                      }
+                 }
+}

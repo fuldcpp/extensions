@@ -1,0 +1,19 @@
+{
+    "name":  "airdcpp-watched-cleanup",
+    "dist-tags":  {
+                      "latest":  "1.0.0-beta.1"
+                  },
+    "modified":  "2026-10-18T23:16:00Z",
+    "versions":  {
+                     "1.0.0-beta.1":  {
+                                          "name":  "airdcpp-watched-cleanup",
+                                          "version":  "1.0.0-beta.1",
+                                          "dist":  {
+                                                       "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-watched-cleanup-v1.0.0-beta.1/airdcpp-watched-cleanup-1.0.0-beta.1.tgz",
+                                                       "shasum":  "150f0e2a7865127cf1a932cd0695b0e35c6a5582",
+                                                       "integrity":  "sha512-urPijuNVN6WC85nsmuRDSgGYPGdSCJa9lMUMba9t+AaYH1JBpEF/sk1StatidgR6+8UUMd3nI3mfU0psUntE/Q==",
+                                                       "size":  262088
+                                                   }
+                                      }
+                 }
+}
