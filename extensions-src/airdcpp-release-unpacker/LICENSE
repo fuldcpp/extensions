@@ -1,0 +1,43 @@
+MIT License
+
+Copyright (c) 2026 FulDC++
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+--------------------------------------------------------------------------------
+THIRD-PARTY NOTICES
+
+The MIT licence above covers this extension's own code. The package also carries
+the following components, under their own licences:
+
+1. node-unrar-js 2.0.2 (bundled into dist/main.js; its WASM is dist/vendor/unrar.wasm)
+   Copyright (c) 2017 Jianrong Yu. MIT licence (dist/vendor/node-unrar-js-LICENSE.md).
+   It contains the unRAR library by Alexander Roshal, under the unRAR licence:
+   the unRAR sources may be used in any software to handle RAR archives free of
+   charge, but cannot be used to re-create the RAR compression algorithm, which
+   is proprietary. THE CODE MAY NOT BE USED TO DEVELOP A RAR (WinRAR) COMPATIBLE
+   ARCHIVER. unRAR may be freely distributed; nobody may charge a fee for its
+   distribution without written permission. It is distributed "as is", with no
+   warranty of any kind. The full text is in dist/vendor/7z-wasm/unRarLicense.txt.
+
+2. 7z-wasm 1.2.0 (dist/vendor/7z-wasm/7zz.umd.js and 7zz.wasm, kept as separate,
+   replaceable files and loaded as they are)
+   7-Zip Copyright (C) 1999-2024 Igor Pavlov. GNU LGPL 2.1 or later, plus the
+   unRAR restriction above for its RAR decoder (dist/vendor/7z-wasm/License.txt).
+   Source: https://github.com/use-strict/7z-wasm and https://www.7-zip.org/

@@ -4,6 +4,32 @@ Changes to the extension catalog served at https://extensions.fuldcpp.net/. The 
 based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions are catalog
 publishing dates, since the catalog itself has no version number.
 
+## [Unreleased]
+
+### Added
+- Six more extensions written for FulDC++, with their sources in `extensions-src/`. Each is a
+  1.0.0 beta. They act only on client events and timers. The release unpacker, season gaps and
+  quality upgrader add a menu item; the client asks for it through a menu hook that answers
+  from memory, so a slow extension only hides the item. Each was reviewed independently and
+  tested live in real clients; `REVIEW.md` and `LIVE-TEST.md` beside each source record how.
+  - `airdcpp-release-unpacker`: unpacks finished releases packed as compressed RAR, ZIP or 7z
+    (the media server only plays stored RAR sets), so they appear in the library. It checks
+    every file's size and CRC, never overwrites, survives being killed mid-unpack, and keeps
+    the archives unless asked to send them to the Recycle Bin.
+  - `airdcpp-season-gaps`: lists aired episodes missing from the shows in the media library,
+    and on request fills them from the hubs, taking only exact releases. Automatic fill is off.
+  - `airdcpp-keep-up`: keeps the next few episodes of the shows you are watching queued.
+    Starts in dry run.
+  - `airdcpp-quality-upgrader`: finds PROPER/REPACK or higher-resolution copies of what you
+    own and reports them. With replacing turned on, the old copy goes to a holding folder,
+    never deleted.
+  - `airdcpp-watched-cleanup`: lists media every chosen account watched long ago, and moves it
+    to the Recycle Bin on `/cleanup run`. It never deletes outright and refuses drives where
+    Windows would.
+  - `airdcpp-hub-rules-guard`: learns a hub's minimum share, slot and hub-count rules from the
+    hub and its operators, and warns in that hub's window before you break one. It never sends
+    anything to the hub.
+
 ## [2026-10-15]
 
 ### Fixed

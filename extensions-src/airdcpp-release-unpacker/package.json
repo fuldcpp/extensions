@@ -1,0 +1,50 @@
+{
+  "name": "airdcpp-release-unpacker",
+  "version": "1.0.0-beta.1",
+  "description": "Unpacks finished RAR, ZIP and 7z releases next to the archives so the media server can play them; never overwrites, never deletes unless asked",
+  "license": "MIT",
+  "author": {
+    "name": "FulDC++"
+  },
+  "keywords": [
+    "airdcpp",
+    "airdcpp-extensions",
+    "airdcpp-extensions-public",
+    "rar",
+    "unpack",
+    "extract",
+    "media server"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fuldcpp/extensions/"
+  },
+  "bugs": "https://github.com/fuldcpp/extensions/issues/",
+  "scripts": {
+    "build": "webpack --mode production && node scripts/copy-vendor.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "7z-wasm": "1.2.0",
+    "airdcpp-extension": "1.5.1",
+    "airdcpp-extension-settings": "1.2.2",
+    "node-unrar-js": "2.0.2",
+    "source-map-support": "^0.5.21",
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "main": "dist/main.js",
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "airdcpp": {
+    "apiVersion": 1,
+    "minApiFeatureLevel": 0
+  }
+}
