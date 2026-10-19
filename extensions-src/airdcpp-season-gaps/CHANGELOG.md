@@ -21,3 +21,8 @@
 - When a release folder and the loose video file of the same release both match, the folder is
   queued: it carries the .nfo/.sfv the client checks a release with, and the download sorter
   files it whole. Before, whichever more users shared won.
+- Live-test fix (real TMDB run): a release the client already shares or queues is not fetched
+  again as its loose video file beside the folder (or as the folder of a known loose file).
+- Live-test fix (real TMDB run): a season whose missing-episode list the media server had not
+  built yet is asked once more after a 10 s pause, so the first check of a newly identified show
+  or season no longer reads "0 show(s) with gaps".

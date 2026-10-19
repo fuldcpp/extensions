@@ -37,6 +37,8 @@ const FILL_POLL_MS = 5 * 1000;
 const MAX_CHAT_LINES = 20;
 const MENU_ITEM_ID = 'check_now';
 const RETRY_FAILED_MS = 60 * 60 * 1000;
+// The media server fills a season's missing list in the background after the first question
+const NATIVE_RECHECK_MS = 10 * 1000;
 
 const HELP = [
   '/gaps: missing episodes of the series in your media library (airdcpp-season-gaps)',
@@ -209,6 +211,7 @@ module.exports = function (socket, extension, { now = () => Date.now(), fetchImp
       tmdb,
       now: now(),
       log: (text) => socket.logger.info(text),
+      ...(sleep ? { sleep } : {}),
       options: {
         graceDays: v.grace_days,
         includeSpecials: v.include_specials,
@@ -218,6 +221,7 @@ module.exports = function (socket, extension, { now = () => Date.now(), fetchImp
         identifyByName: v.identify_by_name,
         setDisplayMissing: v.set_display_missing,
         ignoredShows: v.ignored_shows,
+        recheckDelayMs: NATIVE_RECHECK_MS,
       },
     });
 

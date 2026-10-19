@@ -108,3 +108,29 @@ the media server has not identified is flagged, not reported clean" (failed befo
 - When both a release folder and the video file inside it match exactly, the pick may take the
   loose file (live: E03 came as `fawlty.towers.s01e03...mkv`, E05 as the folder). Same video; the
   folder's nfo/subs are left behind.
+
+## Live test 2026-10-19, second run with a real TMDB key (1.1123 rig)
+
+### L2. should-fix: a release already shared was fetched again as its loose video (FIXED)
+`src/release.js` pickBest. A result the client already shares or queues (`dupe`) was skipped one
+by one, so when the exact release folder was a dupe, the loose `.mkv` of the same release beside
+it (not a dupe) won. Live: client 1 still shared `Fawlty.Towers.S01E03.1080p.WEB-DL.x264-GRP/`
+from an earlier run (share index not refreshed, so the media library missed E03), and `/gaps fill`
+queued `Fawlty.Towers.S01E03.1080p.WEB-DL.x264-GRP.mkv`, a second copy of the release.
+Fix: the release names of all dupe results (folder name, or file name without the video
+extension, case-insensitive) are collected first; a candidate with one of those names is skipped.
+Another release of the same episode is still taken. Test: release.test "pickBest: a release
+already shared or queued is not fetched again as its loose video or folder" (failed before the
+fix). Live after the fix, same state: E03 "no exact match", nothing queued.
+
+### L3. should-fix: the first check of a season said "0 with gaps" (FIXED)
+`src/checker.js`. The media server builds a season's missing list in the background on the first
+IsMissing question and answers that question empty (JellyfinApi withMissingEpisodes returns the
+held listing while `lookup()` has nothing yet). Live: the first `/gaps check` after the show was
+identified reported "0 show(s) with gaps"; the second, 30 s later, E03 and E05.
+Fix: seasons of identified shows whose native list came back empty (and that TMDB did not fill)
+are asked once more after one pause per check (10 s, NATIVE_RECHECK_MS in main.js). Test:
+checker.test "native lists: a season that came back empty is asked once more after a pause"
+(failed before the fix). Live after the fix: a newly added Season 02 (S02E01 only) reported
+S02E02-E06 on its very first check. Cost: a check whose library has complete seasons waits 10 s
+once.

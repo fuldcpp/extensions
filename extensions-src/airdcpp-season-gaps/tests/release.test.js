@@ -73,6 +73,24 @@ test('pickBest: the release folder wins over its loose video file, whichever mor
   assert.equal(pickBest(liked, w, { groups: 'liked' }).result.id, 4);
 });
 
+// Live test 2026-10-19 (real TMDB run): the release folder was already shared (dupe), so it was
+// skipped, and its loose video -- another copy of the same release -- was queued instead
+test('pickBest: a release already shared or queued is not fetched again as its loose video or folder', () => {
+  const w = wanted('Fawlty Towers', 1, 3);
+  const results = [
+    dir(1, 'Fawlty.Towers.S01E03.1080p.WEB-DL.x264-GRP', { dupe: { id: 'share_full' } }),
+    file(2, 'Fawlty.Towers.S01E03.1080p.WEB-DL.x264-GRP.mkv'),
+    file(3, 'fawlty.towers.s01e03.1080p.web-dl.x264-grp.mkv', { dupe: { id: 'share_full' } }),
+  ];
+  assert.equal(pickBest(results, w, { quality: '1080p' }), null);
+  // Only the loose video known: its folder is not fetched either
+  const looseKnown = [ file(4, 'Show.Name.S01E03.1080p-GRP.mkv', { dupe: { id: 'queue_full' } }), dir(5, 'Show.Name.S01E03.1080p-GRP') ];
+  assert.equal(pickBest(looseKnown, wanted('Show Name', 1, 3), {}), null);
+  // Another release of the episode is still fine
+  const other = [ dir(6, 'Show.Name.S01E03.1080p-GRP', { dupe: { id: 'share_full' } }), dir(7, 'Show.Name.S01E03.1080p-OTHER') ];
+  assert.equal(pickBest(other, wanted('Show Name', 1, 3), {}).result.id, 7);
+});
+
 test('the query is words, the code and the quality', () => {
   assert.equal(buildQuery("Marvel's Agents of S.H.I.E.L.D. (2013)", 2, 5, '1080p'), 'Marvels Agents of S H I E L D S02E05 1080p');
   assert.equal(buildQuery('Show', 10, 12, ''), 'Show S10E12');

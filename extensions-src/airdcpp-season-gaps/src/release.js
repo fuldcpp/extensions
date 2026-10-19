@@ -191,10 +191,19 @@ const pickBest = (results, wanted, prefs = {}) => {
   const groups = splitList(prefs.groups).map((g) => g.toLowerCase());
   const acceptedTags = new Set(splitList(prefs.acceptedTags).map((t) => t.toLowerCase()));
   const candidates = [];
-  for (const result of Array.isArray(results) ? results : []) {
+  const list = Array.isArray(results) ? results : [];
+  // A release the client already shares or queues, by its name without a video extension: its
+  // folder and its loose video are the same release, so neither is fetched a second time (live
+  // test: the folder was a dupe and the loose copy beside it was queued)
+  const releaseNameOf = (name) => {
+    const text = String(name || '').trim();
+    return (VIDEO_EXTENSIONS.has(extensionOf(text)) ? text.replace(/\.[A-Za-z0-9]{2,4}$/, '') : text).toLowerCase();
+  };
+  const known = new Set(list.filter((r) => r && r.dupe && typeof r.name === 'string').map((r) => releaseNameOf(r.name)));
+  for (const result of list) {
     if (!result || typeof result.name !== 'string' || result.id === undefined || result.id === null) continue;
     // Already shared or queued somewhere: the client knows a copy, never fetch a second
-    if (result.dupe) continue;
+    if (result.dupe || known.has(releaseNameOf(result.name))) continue;
 
     const isDirectory = !!result.type && result.type.id === 'directory';
     if (!isDirectory && !VIDEO_EXTENSIONS.has(extensionOf(result.name))) continue;

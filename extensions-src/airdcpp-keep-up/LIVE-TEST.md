@@ -90,3 +90,24 @@ origin/master, JellyfinApi.cpp:15349).
     named. State written at once (bundleId + directoryDownloadId). PASS.
 - Bug L2 (error.log line at every start) found and fixed; error.log stayed empty after reinstall.
 - 3-6, 8-13: not run.
+
+## Results 2026-10-19, second run with a real TMDB key (extrig, 1.1123)
+
+The user's own TMDB v3 key was set in `tmdb_api_key` and in client 1's media server metadata
+settings (so the series carried ProviderIds.Tmdb 2207), then removed again. The cache started
+empty. Account `keepup`: E01 and E02 marked played again with POST
+/Users/{id}/PlayedItems/{itemId}. Library E01, E02, E04, E06; peer as in season-gaps' run (with the
+loose `.mkv` decoy). Scrubbed evidence: extrig/tvgaps/evidence-tmdb.
+- Next episodes from TMDB: E03, E04, E05 (episodes_ahead 3). E04 is held and was not searched.
+  The cache then held show 2207 and season 2207:1 (6 episodes) only.
+- Dry run ON: two searches (`fawlty.towers.S01E03 1080p`, `...S01E05 1080p`), "dry run: would
+  queue Fawlty.Towers.S01E03.1080p.WEB-DL.x264-GRP" and the same for E05; the queue was unchanged
+  (3 -> 3 bundles). PASS.
+- Dry run OFF: queued exactly the folders Fawlty.Towers.S01E03.1080p.WEB-DL.x264-GRP and
+  ...S01E05... (cap 10). No decoy was named (FRENCH, sample, 2005, loose .mkv). PASS.
+- TMDB cache: tmdb-cache.json kept the same mtime and SHA-256 across the second run, so no new
+  TMDB request was made for the show. PASS.
+- Secrets: PASS. 0 hits in logs, events, hub window and the state file. With a wrong key the run
+  said "stopped early: TMDB refused the key", and error.log said "could not work out the next
+  episodes (TMDB refused the key)"; the wrong key did not appear.
+- No bugs found in this run.

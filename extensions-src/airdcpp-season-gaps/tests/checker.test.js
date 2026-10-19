@@ -196,6 +196,37 @@ test('show keys: a country-tagged library name drops the bare TMDB title; years 
   assert.ok(matchesWanted('Doctor.Who.S02E05.720p-X', wantedOf(who)));
 });
 
+// Live test 2026-10-19 (real TMDB key in the media server): the first check after the show was
+// identified said "0 show(s) with gaps" -- the media server fetches a season's list in the
+// background on the first IsMissing question and answers it empty until then
+test('native lists: a season that came back empty is asked once more after a pause', async () => {
+  let asked = 0;
+  const jf = fakeJellyfin({ displayMissing: true, series: [ series('F', 'Fawlty Towers', 2207, [ ep(1, 1), ep(1, 2), ep(1, 4), ep(1, 6) ], { seasons: [ 1 ] }) ] });
+  const rows = [ 3, 5 ].map((n) => ({ Type: 'Episode', LocationType: 'Virtual', ParentIndexNumber: 1, IndexNumber: n, PremiereDate: '1975-10-03T00:00:00.0000000Z', Name: `E${n}` }));
+  const get = jf.get;
+  jf.get = async (p, query = {}) => {
+    if (query.IsMissing === 'true') {
+      asked++;
+      return { Items: asked === 1 ? [] : rows, TotalRecordCount: 0 };
+    }
+
+    return get(p, query);
+  };
+  const pauses = [];
+  const result = await runCheck({ jellyfin: jf, tmdb: null, options: { ...OPTIONS, recheckDelayMs: 10000 }, now: NOW, sleep: async (ms) => { pauses.push(ms); } });
+  assert.deepEqual(result.shows[0].seasons.map((s) => s.missing.map((m) => m.episode)), [ [ 3, 5 ] ]);
+  assert.deepEqual(pauses, [ 10000 ], 'one pause for the whole check');
+  assert.equal(asked, 2);
+
+  // A season with nothing missing is asked twice, and only one pause is taken however many there are
+  pauses.length = 0;
+  const two = fakeJellyfin({ displayMissing: true, series: [ series('A', 'A', 1, [ ep(1, 1) ], { seasons: [ 1 ], missing: { 1: [] } }), series('B', 'B', 2, [ ep(1, 1) ], { seasons: [ 1 ], missing: { 1: [] } }) ] });
+  const clean = await runCheck({ jellyfin: two, tmdb: null, options: { ...OPTIONS, recheckDelayMs: 10000 }, now: NOW, sleep: async (ms) => { pauses.push(ms); } });
+  assert.equal(clean.shows.filter((s) => s.seasons.length).length, 0);
+  assert.deepEqual(pauses, [ 10000 ]);
+  assert.equal(two.calls.filter(([ , q ]) => q && q.IsMissing === 'true').length, 4);
+});
+
 test('live test: native only, a series the media server has not identified is flagged, not reported clean', async () => {
   // Live rig 2026-10-18: media server metadata off -> series without ProviderIds.Tmdb -> no IsMissing rows.
   // The check said "0 show(s) with gaps" for a season with E03 and E05 missing.

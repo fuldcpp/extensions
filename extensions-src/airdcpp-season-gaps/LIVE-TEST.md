@@ -100,3 +100,27 @@ server's native missing rows never exist and the TMDB path cannot run. Library: 
   queue", nothing new queued.
 - 12 secrets: PASS (password and token absent from logs, events, report, last-check.json).
 - 8-11, 13, 14: not run.
+
+## Results 2026-10-19, second run with a real TMDB key (extrig, 1.1123)
+
+The user's own TMDB v3 key was put only into the rig: client 1's MediaServerMetadataEnabled +
+MediaServerMetadataKey (DCPlusPlus.xml, client stopped; not Web API settings) and this
+extension's `tmdb_key`. Both were removed again afterwards. Library: "TV/Fawlty Towers
+(1975)/Season 01" E01, E02, E04, E06. Peer: exact E03 and E05 folders, FRENCH, `-sample.mkv`,
+`Fawlty.Towers.2005...` decoys and the loose `Fawlty.Towers.S01E03.1080p.WEB-DL.x264-GRP.mkv`
+beside its folder. Scrubbed evidence: extrig/tvgaps/evidence-tmdb.
+- Media server identification: PASS. About 3 min after the start, the series had ProviderIds.Tmdb
+  2207 and real episode names.
+- 2 native only (`set_display_missing` on; it switched `gaps` on): PASS on the second check:
+  "Fawlty Towers: 2 missing (S01: E03, E05)". The FIRST check said 0 (bug L3, fixed: now asked
+  again after a pause; live: a new Season 02 was complete on its first check).
+- 3 [TMDB] whole seasons: PASS. "S02: whole season, E01-E06" (report_seasons_after).
+- 4 [TMDB] fallback (DisplayMissingEpisodes off): PASS. "Sources: TMDB", S01E03 and S01E05; the
+  cache then held tv-2207, tv-2207-s1 and tv-2207-s2.
+- 6 fill: run 1 queued the LOOSE `.mkv` for E03, because the exact folder was a dupe (stale share
+  entry from an earlier run). Bug L2, fixed. On the fixed build: the same stale state led to "no
+  exact match", nothing queued; with a clean share both exact FOLDERS were queued (searches 20 s
+  apart). FRENCH, sample, 2005 and the loose file were never queued. PASS.
+- 12 secrets: PASS. The key was absent from the extension logs, the client logs, the events, the
+  hub window, season-gaps.md and last-check.json (0 hits). A wrong key gave "TMDB refused the key"
+  and appeared nowhere.

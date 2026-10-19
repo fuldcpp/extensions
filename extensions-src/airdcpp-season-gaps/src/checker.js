@@ -50,9 +50,18 @@ const ignoredKeys = (text) => new Set(String(text || '').split(/[\n,]/).map((s) 
 
 // tmdb: null when no key is set. options: { graceDays, includeSpecials, between, after, before,
 // identifyByName, setDisplayMissing, ignoredShows }
-const runCheck = async ({ jellyfin, tmdb, options, now = Date.now(), log = () => {} }) => {
+const sleepReal = (ms) => new Promise((resolve) => {
+  const timer = setTimeout(resolve, ms);
+  if (timer && typeof timer.unref === 'function') timer.unref();
+});
+
+const runCheck = async ({ jellyfin, tmdb, options, now = Date.now(), log = () => {}, sleep = sleepReal }) => {
   const notes = [];
   const today = now;
+  // Seasons of identified shows whose native list came back empty: the media server fetches a
+  // season's list in the background on the first question and answers it empty until then
+  // (live test 2026-10-19), so they are asked once more after one pause for the whole check
+  const askAgain = [];
 
   // The account: whether the media server will list missing episodes for it
   let native = false;
@@ -164,12 +173,15 @@ const runCheck = async ({ jellyfin, tmdb, options, now = Date.now(), log = () =>
       for (const seasonNumber of seasonNumbers) {
         const have = owned.get(seasonNumber);
         let missing = null;
+        let nativeEmpty = null;
 
         if (native) {
           const seasonItem = seasonItems.find((s) => s.IndexNumber === seasonNumber);
           if (seasonItem) {
             const rows = await jellyfin.get(`/Shows/${encodeURIComponent(item.Id)}/Episodes`, { SeasonId: seasonItem.Id, IsMissing: 'true' });
-            missing = missingInSeason(nativeEpisodes(rows && rows.Items), have, today, options.graceDays, { checkNumbering: false });
+            const listed = nativeEpisodes(rows && rows.Items);
+            missing = missingInSeason(listed, have, today, options.graceDays, { checkNumbering: false });
+            if (listed.length === 0 && typeof tmdbText === 'string' && /^\d{1,10}$/.test(tmdbText)) nativeEmpty = seasonItem;
           }
         }
 
@@ -185,7 +197,11 @@ const runCheck = async ({ jellyfin, tmdb, options, now = Date.now(), log = () =>
           }
         }
 
-        if (missing && missing.length > 0) show.seasons.push({ season: seasonNumber, whole: false, missing });
+        if (missing && missing.length > 0) {
+          show.seasons.push({ season: seasonNumber, whole: false, missing });
+        } else if (nativeEmpty) {
+          askAgain.push({ show, seriesId: item.Id, seasonItem: nativeEmpty, seasonNumber, have });
+        }
       }
 
       // Seasons the share does not hold at all
@@ -221,6 +237,23 @@ const runCheck = async ({ jellyfin, tmdb, options, now = Date.now(), log = () =>
       if (!error.fromTmdb && (error.status === 401 || error.status === 0)) throw error;
       show.skipped = `could not be read: ${errorText(error)}`;
       log(`${name}: ${errorText(error)}`);
+    }
+  }
+
+  if (askAgain.length > 0) {
+    await sleep(Number.isFinite(options.recheckDelayMs) ? Math.max(0, options.recheckDelayMs) : 0);
+    for (const one of askAgain) {
+      try {
+        const rows = await jellyfin.get(`/Shows/${encodeURIComponent(one.seriesId)}/Episodes`, { SeasonId: one.seasonItem.Id, IsMissing: 'true' });
+        const missing = missingInSeason(nativeEpisodes(rows && rows.Items), one.have, today, options.graceDays, { checkNumbering: false });
+        if (missing && missing.length > 0) {
+          one.show.seasons.push({ season: one.seasonNumber, whole: false, missing });
+          one.show.seasons.sort((a, b) => a.season - b.season);
+        }
+      } catch (error) {
+        if (error.status === 401 || error.status === 0) throw error;
+        log(`${one.show.name}: ${errorText(error)}`);
+      }
     }
   }
 
