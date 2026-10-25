@@ -53,7 +53,18 @@ module.exports = function (socket, extension, { moveImpl = moveInto, now = () =>
   const loadPending = () => {
     try {
       const data = JSON.parse(fs.readFileSync(pendingPathOf(), 'utf8'));
-      pending = (data && typeof data.pending === 'object' && data.pending) || {};
+      const loaded = (data && typeof data.pending === 'object' && data.pending) || {};
+
+      // A move with no source or destination (a hand-edited or torn file) cannot be retried, and
+      // reading it later would throw at every start
+      pending = {};
+      for (const [key, entry] of Object.entries(loaded)) {
+        if (entry && typeof entry.source === 'string' && entry.source && typeof entry.directory === 'string' && entry.directory) {
+          pending[key] = entry;
+        } else {
+          socket.logger.error(`Dropping a pending move without a source or destination from ${PENDING_FILE}: ${key}`);
+        }
+      }
     } catch (error) {
       if (error.code !== 'ENOENT') {
         socket.logger.error(`Could not read ${PENDING_FILE}: ${errorText(error)}`);
@@ -266,11 +277,18 @@ module.exports = function (socket, extension, { moveImpl = moveInto, now = () =>
 
   // A move cut short by a stop or crash leaves "<name>.sorter-partial" at its destination while
   // the original is still complete: remove the partial copy, the retry starts over
+  // One at a time, each on its own: a destination that cannot even be looked at (permissions changed,
+  // a share with other credentials) threw out of the start, and the sorter died at every start for as
+  // long as that move was pending. Now it is logged and the rest are cleaned; the retry reports it.
   const cleanPartials = async () => {
     for (const entry of Object.values(pending)) {
-      const partial = path.join(entry.directory, path.basename(entry.source)) + PARTIAL_SUFFIX;
-      if (await exists(partial) && await exists(entry.source)) {
-        await fsp.rm(partial, { recursive: true, force: true }).catch((error) => socket.logger.error(`Could not remove ${partial}: ${errorText(error)}`));
+      try {
+        const partial = path.join(entry.directory, path.basename(entry.source)) + PARTIAL_SUFFIX;
+        if (await exists(partial) && await exists(entry.source)) {
+          await fsp.rm(partial, { recursive: true, force: true }).catch((error) => socket.logger.error(`Could not remove ${partial}: ${errorText(error)}`));
+        }
+      } catch (error) {
+        socket.logger.error(`Could not check for a partial copy of ${entry.source}: ${errorText(error)}`);
       }
     }
   };

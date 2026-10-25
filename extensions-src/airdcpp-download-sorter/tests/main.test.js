@@ -186,6 +186,40 @@ test('a partial copy left by an interrupted move is removed at start, the origin
   assert.ok(fs.existsSync(path.join(src, 'video.mkv')));
 });
 
+test('a pending move without a destination is dropped at load, not thrown on at every start', async () => {
+  const t = setup();
+  const src = t.addRelease(13, 'Torn.Entry.2019.1080p.BluRay.x264-GRP');
+  fs.writeFileSync(path.join(t.root, 'pending-moves.json'), JSON.stringify({ version: 1, pending: {
+    [src]: { source: src, name: 'x', attempts: 1, since: Date.now(), nextAt: Date.now() + 1e9 },
+    other: null,
+  } }));
+  const main = createMain(t.socket, t.ext);
+  main.loadPending();
+  assert.deepEqual(main.getPending(), {});
+  await main.cleanPartials();   // used to throw (path.join(undefined)), which ended the start
+});
+
+test('a destination that cannot even be looked at is logged, and the other partial copies are still removed', async () => {
+  const t = setup();
+  const good = t.addRelease(14, 'Some.Movie.2019.1080p.BluRay.x264-GRP');
+  const dest = path.join(t.root, 'Movies');
+  const partial = path.join(dest, 'Some.Movie.2019.1080p.BluRay.x264-GRP.sorter-partial');
+  fs.mkdirSync(partial, { recursive: true });
+  // A NUL in the path makes lstat throw something other than ENOENT, as EPERM on a changed share does
+  const unreadable = path.join(t.root, 'No\u0000Look');
+  fs.writeFileSync(path.join(t.root, 'pending-moves.json'), JSON.stringify({ version: 1, pending: {
+    a: { source: good + 'x', directory: unreadable, name: 'a', attempts: 1, since: Date.now(), nextAt: Date.now() + 1e9 },
+    [good]: { source: good, directory: dest, name: 'x', attempts: 1, since: Date.now(), nextAt: Date.now() + 1e9 },
+  } }));
+  const errors = [];
+  t.socket.logger.error = (text) => errors.push(text);
+  const main = createMain(t.socket, t.ext);
+  main.loadPending();
+  await main.cleanPartials();   // used to reject on the first entry, before the second was looked at
+  assert.equal(fs.existsSync(partial), false);
+  assert.ok(errors.some((e) => /Could not check for a partial copy/.test(e)), errors.join(' | '));
+});
+
 test('guards: relative folders, a missing drive, releases around destinations are refused before the queue removal', async () => {
   // Relative own-rule folder: rejected as a rule, so the release is left alone
   const t = setup({ custom_rules: '^Rel => TV', tv_directory: '', movies_directory: '' });
