@@ -8,6 +8,7 @@
   changed, a share with other credentials), or a torn entry in pending-moves.json, stopped the
   sorter from starting at all, at every start. Such an entry is now logged and skipped (a torn one
   dropped), and the other unfinished moves are still cleaned up.
+- An unfinished move saved without its times was never tried again; it is now retried as a new one.
 
 ## 1.0.0-beta.1
 

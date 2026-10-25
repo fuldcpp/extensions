@@ -199,6 +199,22 @@ test('a pending move without a destination is dropped at load, not thrown on at 
   await main.cleanPartials();   // used to throw (path.join(undefined)), which ended the start
 });
 
+test('a pending move without its times or count is due now, not never', async () => {
+  const t = setup();
+  const src = t.addRelease(15, 'Half.Torn.2019.1080p.BluRay.x264-GRP');
+  const dest = path.join(t.root, 'Movies');
+  fs.writeFileSync(path.join(t.root, 'pending-moves.json'), JSON.stringify({ version: 1, pending: {
+    [src]: { source: src, directory: dest, name: 'x' },
+  } }));
+  const main = createMain(t.socket, t.ext);
+  main.loadPending();
+  const entry = main.getPending()[src];
+  assert.ok(entry, 'kept: it has a source and a destination');
+  assert.equal(entry.attempts, 0);
+  assert.ok(Number.isFinite(entry.since) && Number.isFinite(entry.nextAt), JSON.stringify(entry));
+  assert.ok(entry.nextAt <= Date.now(), 'due now');
+});
+
 test('a destination that cannot even be looked at is logged, and the other partial copies are still removed', async () => {
   const t = setup();
   const good = t.addRelease(14, 'Some.Movie.2019.1080p.BluRay.x264-GRP');

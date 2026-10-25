@@ -60,7 +60,10 @@ module.exports = function (socket, extension, { moveImpl = moveInto, now = () =>
       pending = {};
       for (const [key, entry] of Object.entries(loaded)) {
         if (entry && typeof entry.source === 'string' && entry.source && typeof entry.directory === 'string' && entry.directory) {
-          pending[key] = entry;
+          // Without its times or count the move is never due (nextAt <= now is false for undefined) and never
+          // given up on: a torn entry is retried from now, as a new move would be
+          const number = (value, fallback) => (Number.isFinite(value) ? value : fallback);
+          pending[key] = { ...entry, attempts: number(entry.attempts, 0), since: number(entry.since, now()), nextAt: number(entry.nextAt, now()) };
         } else {
           socket.logger.error(`Dropping a pending move without a source or destination from ${PENDING_FILE}: ${key}`);
         }
