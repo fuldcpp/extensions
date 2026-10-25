@@ -1,6 +1,6 @@
 {
   "name": "airdcpp-disk-space-guard",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "Pauses downloads when a drive runs low on free space and resumes them, at their old priority, once there is room again",
   "license": "MIT",
   "author": {

@@ -1,6 +1,6 @@
 {
   "name": "airdcpp-push-notifier",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "Push notifications to your phone (ntfy, Gotify, Telegram, Discord, Pushover or a webhook) for private messages, mentions, finished downloads and hub disconnects",
   "license": "MIT",
   "author": {

@@ -1,6 +1,6 @@
 {
   "name": "airdcpp-seen-tracker",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "Remembers when each user was last online and answers /seen <nick> in hubs and private chats",
   "license": "MIT",
   "author": {

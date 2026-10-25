@@ -1,6 +1,6 @@
 {
   "name": "airdcpp-download-sorter",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "Moves finished downloads into TV, movie and music folders (or your own rules), keeping hash data so nothing is rehashed. Starts in dry-run mode.",
   "license": "MIT",
   "author": {
