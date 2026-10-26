@@ -1,18 +1,18 @@
 {
     "name":  "airdcpp-disk-space-guard",
     "dist-tags":  {
-                      "latest":  "1.0.0-beta.1"
+                      "latest":  "1.0.0-beta.2"
                   },
     "modified":  "2026-10-14T19:30:00Z",
     "versions":  {
-                     "1.0.0-beta.1":  {
+                     "1.0.0-beta.2":  {
                                           "name":  "airdcpp-disk-space-guard",
-                                          "version":  "1.0.0-beta.1",
+                                          "version":  "1.0.0-beta.2",
                                           "dist":  {
-                                                       "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-disk-space-guard-v1.0.0-beta.1/airdcpp-disk-space-guard-1.0.0-beta.1.tgz",
-                                                       "shasum":  "5712c4a8e5c6bf6c12f935c0b56bb9ec231b8365",
-                                                       "integrity":  "sha512-5z1N6SSfsUQ2atC0zwar4k80ZsvuaWQjOnksQommupw6pu4rwYh0XpF2fOv2A7712vH2sfPXxgMSKrn1gy+wDA==",
-                                                       "size":  227200
+                                                       "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-disk-space-guard-v1.0.0-beta.2/airdcpp-disk-space-guard-1.0.0-beta.2.tgz",
+                                                       "shasum":  "984330ee3103582bb8383bba1e7385bb08a53f1f",
+                                                       "integrity":  "sha512-SOYF0tqK9H9RiQpKJ1OlLhNJCSe0u84qpRoS21V/Ikw0QS03dav7/nYaKbfWv0STDgFJMUEc8YjBXGvOEMTUUw==",
+                                                       "size":  227729
                                                    }
                                       }
                  }

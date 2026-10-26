@@ -1,7 +1,7 @@
 {
-    "_id":  "airdcpp-download-sorter@1.0.0-beta.1",
+    "_id":  "airdcpp-download-sorter@1.0.0-beta.2",
     "name":  "airdcpp-download-sorter",
-    "version":  "1.0.0-beta.1",
+    "version":  "1.0.0-beta.2",
     "description":  "Moves finished downloads into TV, movie and music folders (or your own rules), keeping hash data so nothing is rehashed. Starts in dry-run mode.",
     "author":  {
                    "name":  "FulDC++"
@@ -16,9 +16,9 @@
                     "minApiFeatureLevel":  0
                 },
     "dist":  {
-                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-download-sorter-v1.0.0-beta.1/airdcpp-download-sorter-1.0.0-beta.1.tgz",
-                 "shasum":  "1815ed506fafb072ef08eb6d90ee518f8bc8c88e",
-                 "integrity":  "sha512-mz4TthiYOLGXU5V6HbcpRNMyFf4Pr/KSGmvs0rkBAnFKy0YuGuHOz5Aew9frHec9Awi8oMbRC3mgE+SKGzMbPw==",
-                 "size":  235538
+                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-download-sorter-v1.0.0-beta.2/airdcpp-download-sorter-1.0.0-beta.2.tgz",
+                 "shasum":  "a1664f7e153052e706eae6a0ccee94d7dd1c4424",
+                 "integrity":  "sha512-6xP98BLXuTbo1SceqB6x/RqyInAekiZmr/LRMQwgyUIW6TioolmKzQ7y1PGOGMDMVxhjvDd8kBn9XOiKT1ob6A==",
+                 "size":  237193
              }
 }

@@ -76,7 +76,7 @@
                     {
                         "package":  {
                                         "name":  "airdcpp-disk-space-guard",
-                                        "version":  "1.0.0-beta.1",
+                                        "version":  "1.0.0-beta.2",
                                         "description":  "Pauses downloads when a drive runs low on free space and resumes them, at their old priority, once there is room again",
                                         "author":  "FulDC++",
                                         "publisher":  {
@@ -101,17 +101,17 @@
                                                         "minApiFeatureLevel":  0
                                                     },
                                         "dist":  {
-                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-disk-space-guard-v1.0.0-beta.1/airdcpp-disk-space-guard-1.0.0-beta.1.tgz",
-                                                     "shasum":  "5712c4a8e5c6bf6c12f935c0b56bb9ec231b8365",
-                                                     "integrity":  "sha512-5z1N6SSfsUQ2atC0zwar4k80ZsvuaWQjOnksQommupw6pu4rwYh0XpF2fOv2A7712vH2sfPXxgMSKrn1gy+wDA==",
-                                                     "size":  227200
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-disk-space-guard-v1.0.0-beta.2/airdcpp-disk-space-guard-1.0.0-beta.2.tgz",
+                                                     "shasum":  "984330ee3103582bb8383bba1e7385bb08a53f1f",
+                                                     "integrity":  "sha512-SOYF0tqK9H9RiQpKJ1OlLhNJCSe0u84qpRoS21V/Ikw0QS03dav7/nYaKbfWv0STDgFJMUEc8YjBXGvOEMTUUw==",
+                                                     "size":  227729
                                                  }
                                     }
                     },
                     {
                         "package":  {
                                         "name":  "airdcpp-download-sorter",
-                                        "version":  "1.0.0-beta.1",
+                                        "version":  "1.0.0-beta.2",
                                         "description":  "Moves finished downloads into TV, movie and music folders (or your own rules), keeping hash data so nothing is rehashed. Starts in dry-run mode.",
                                         "author":  "FulDC++",
                                         "publisher":  {
@@ -136,10 +136,10 @@
                                                         "minApiFeatureLevel":  0
                                                     },
                                         "dist":  {
-                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-download-sorter-v1.0.0-beta.1/airdcpp-download-sorter-1.0.0-beta.1.tgz",
-                                                     "shasum":  "1815ed506fafb072ef08eb6d90ee518f8bc8c88e",
-                                                     "integrity":  "sha512-mz4TthiYOLGXU5V6HbcpRNMyFf4Pr/KSGmvs0rkBAnFKy0YuGuHOz5Aew9frHec9Awi8oMbRC3mgE+SKGzMbPw==",
-                                                     "size":  235538
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-download-sorter-v1.0.0-beta.2/airdcpp-download-sorter-1.0.0-beta.2.tgz",
+                                                     "shasum":  "a1664f7e153052e706eae6a0ccee94d7dd1c4424",
+                                                     "integrity":  "sha512-6xP98BLXuTbo1SceqB6x/RqyInAekiZmr/LRMQwgyUIW6TioolmKzQ7y1PGOGMDMVxhjvDd8kBn9XOiKT1ob6A==",
+                                                     "size":  237193
                                                  }
                                     }
                     },
@@ -252,7 +252,7 @@
                     {
                         "package":  {
                                         "name":  "airdcpp-push-notifier",
-                                        "version":  "1.0.0-beta.1",
+                                        "version":  "1.0.0-beta.2",
                                         "description":  "Push notifications to your phone (ntfy, Gotify, Telegram, Discord, Pushover or a webhook) for private messages, mentions, finished downloads and hub disconnects",
                                         "author":  "FulDC++",
                                         "publisher":  {
@@ -277,10 +277,10 @@
                                                         "minApiFeatureLevel":  0
                                                     },
                                         "dist":  {
-                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-push-notifier-v1.0.0-beta.1/airdcpp-push-notifier-1.0.0-beta.1.tgz",
-                                                     "shasum":  "ac2efa33cfca311a93eadb129b999737273cc9af",
-                                                     "integrity":  "sha512-sgeHiZnBtPfuUWi+uSTcNcvVviEUk39TE8SW5j4LTVy/ikWTVvc3SL3SEH/H4A99P0+r90TavvKPxzcrruszBQ==",
-                                                     "size":  235418
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-push-notifier-v1.0.0-beta.2/airdcpp-push-notifier-1.0.0-beta.2.tgz",
+                                                     "shasum":  "97417d4136c7186c947cfc001543f43759577410",
+                                                     "integrity":  "sha512-OPfyHJZDhWs0NkDiLfd7qKHu6FCv6hANxAMyAr7jzouhJmBYbVHbFiuD4D6BOF2q7JQxCqxUp0W+mL2RDP4cQg==",
+                                                     "size":  235949
                                                  }
                                     }
                     },
@@ -572,7 +572,7 @@
                     {
                         "package":  {
                                         "name":  "airdcpp-seen-tracker",
-                                        "version":  "1.0.0-beta.1",
+                                        "version":  "1.0.0-beta.2",
                                         "description":  "Remembers when each user was last online and answers /seen \u003cnick\u003e in hubs and private chats",
                                         "author":  "FulDC++",
                                         "publisher":  {
@@ -597,10 +597,10 @@
                                                         "minApiFeatureLevel":  0
                                                     },
                                         "dist":  {
-                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-seen-tracker-v1.0.0-beta.1/airdcpp-seen-tracker-1.0.0-beta.1.tgz",
-                                                     "shasum":  "1be6cc01dce13a37830e6a5c9233ee45b6e56c58",
-                                                     "integrity":  "sha512-uJgUrDl2FXXRclKAH5Oxa9hpdotrRuDU0rTS3APQISh9apnuOXXMKA3ua8+7pK1SyQ9KCy6VxVlZPDk6p4AHJw==",
-                                                     "size":  231252
+                                                     "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-seen-tracker-v1.0.0-beta.2/airdcpp-seen-tracker-1.0.0-beta.2.tgz",
+                                                     "shasum":  "7d7806f01ed05bef6d3a71bd47a277a6468a0aa3",
+                                                     "integrity":  "sha512-oACAdZh0Ou5oeXFmHfXaKbBM+8FYTWOL2Uo7RAx4O4NC66SYu6A00eEsxlwGIBIBvd65M6CKik+CFSEngBqLkg==",
+                                                     "size":  231794
                                                  }
                                     }
                     },

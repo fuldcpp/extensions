@@ -1,7 +1,7 @@
 {
-    "_id":  "airdcpp-seen-tracker@1.0.0-beta.1",
+    "_id":  "airdcpp-seen-tracker@1.0.0-beta.2",
     "name":  "airdcpp-seen-tracker",
-    "version":  "1.0.0-beta.1",
+    "version":  "1.0.0-beta.2",
     "description":  "Remembers when each user was last online and answers /seen \u003cnick\u003e in hubs and private chats",
     "author":  {
                    "name":  "FulDC++"
@@ -16,9 +16,9 @@
                     "minApiFeatureLevel":  0
                 },
     "dist":  {
-                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-seen-tracker-v1.0.0-beta.1/airdcpp-seen-tracker-1.0.0-beta.1.tgz",
-                 "shasum":  "1be6cc01dce13a37830e6a5c9233ee45b6e56c58",
-                 "integrity":  "sha512-uJgUrDl2FXXRclKAH5Oxa9hpdotrRuDU0rTS3APQISh9apnuOXXMKA3ua8+7pK1SyQ9KCy6VxVlZPDk6p4AHJw==",
-                 "size":  231252
+                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-seen-tracker-v1.0.0-beta.2/airdcpp-seen-tracker-1.0.0-beta.2.tgz",
+                 "shasum":  "7d7806f01ed05bef6d3a71bd47a277a6468a0aa3",
+                 "integrity":  "sha512-oACAdZh0Ou5oeXFmHfXaKbBM+8FYTWOL2Uo7RAx4O4NC66SYu6A00eEsxlwGIBIBvd65M6CKik+CFSEngBqLkg==",
+                 "size":  231794
              }
 }

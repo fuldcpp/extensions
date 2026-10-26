@@ -1,7 +1,7 @@
 {
-    "_id":  "airdcpp-push-notifier@1.0.0-beta.1",
+    "_id":  "airdcpp-push-notifier@1.0.0-beta.2",
     "name":  "airdcpp-push-notifier",
-    "version":  "1.0.0-beta.1",
+    "version":  "1.0.0-beta.2",
     "description":  "Push notifications to your phone (ntfy, Gotify, Telegram, Discord, Pushover or a webhook) for private messages, mentions, finished downloads and hub disconnects",
     "author":  {
                    "name":  "FulDC++"
@@ -16,9 +16,9 @@
                     "minApiFeatureLevel":  0
                 },
     "dist":  {
-                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-push-notifier-v1.0.0-beta.1/airdcpp-push-notifier-1.0.0-beta.1.tgz",
-                 "shasum":  "ac2efa33cfca311a93eadb129b999737273cc9af",
-                 "integrity":  "sha512-sgeHiZnBtPfuUWi+uSTcNcvVviEUk39TE8SW5j4LTVy/ikWTVvc3SL3SEH/H4A99P0+r90TavvKPxzcrruszBQ==",
-                 "size":  235418
+                 "tarball":  "https://github.com/fuldcpp/extensions/releases/download/airdcpp-push-notifier-v1.0.0-beta.2/airdcpp-push-notifier-1.0.0-beta.2.tgz",
+                 "shasum":  "97417d4136c7186c947cfc001543f43759577410",
+                 "integrity":  "sha512-OPfyHJZDhWs0NkDiLfd7qKHu6FCv6hANxAMyAr7jzouhJmBYbVHbFiuD4D6BOF2q7JQxCqxUp0W+mL2RDP4cQg==",
+                 "size":  235949
              }
 }
