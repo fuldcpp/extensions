@@ -4,6 +4,18 @@ Changes to the extension catalog served at https://extensions.fuldcpp.net/. The 
 based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions are catalog
 publishing dates, since the catalog itself has no version number.
 
+## [2026-10-26]
+
+### Fixed
+- `airdcpp-push-notifier`, `airdcpp-disk-space-guard`, `airdcpp-download-sorter`,
+  `airdcpp-seen-tracker` 1.0.0-beta.2: an extension whose start failed (for example a client
+  call refused while it was starting) ended at once; the error is now logged in its error log
+  instead, as the newer extensions already did.
+- `airdcpp-download-sorter` 1.0.0-beta.2: a move left unfinished from an earlier run whose
+  destination could not be looked at (permissions changed, a share with other credentials), or
+  a torn entry in its saved state, stopped the sorter from starting at every start. Such an
+  entry is now logged and skipped, a torn one retried as a new move.
+
 ## [2026-10-19]
 
 ### Added
